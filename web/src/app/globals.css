@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  background: #080808;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #080808;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: #080808;
+  color: #f0f0f0;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: #f0f0f0;
+  color: #080808;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(255 255 255 / 0.18);
+  border-radius: 8px;
+}
