@@ -18,7 +18,10 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "node run.mjs",
-    "test": "npm run build && node --test test/*.test.mjs"
+    "test": "npm run build && node --test test/*.test.mjs",
+    "tour:build": "node app/tour/build.mjs",
+    "tour:serve": "node app/tour/serve.mjs",
+    "demo": "node demo.mjs"
   },
   "engines": {
     "node": ">=20"

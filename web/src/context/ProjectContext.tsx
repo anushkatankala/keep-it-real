@@ -17,8 +17,12 @@ import {
   STANDARD_ROOMS,
 } from "@/constants/rooms";
 import type {
+  DemoProjectInput,
+} from "@/constants/demo";
+import type {
   ProjectResults,
   ProjectState,
+  RoomConfig,
   StandardRoomKey,
 } from "@/types";
 import {
@@ -38,6 +42,9 @@ interface ProjectContextValue extends ProjectState {
   setSpecialRoomImages: (roomId: string, files: File[]) => void;
   setIsProcessing: (isProcessing: boolean) => void;
   setResults: (results: ProjectResults | null) => void;
+  startDemo: () => void;
+  resetDemo: () => void;
+  applyDemoProject: (input: DemoProjectInput) => void;
 }
 
 interface ProjectProviderProps {
@@ -60,7 +67,50 @@ const createInitialProjectState = (): ProjectState => ({
   },
   results: null,
   isProcessing: false,
+  demoMode: false,
+  cropRegion: null,
 });
+
+const attachRoomPreviews = (roomConfig: RoomConfig): RoomConfig => ({
+  ...roomConfig,
+  standardRoomImages: {
+    bedrooms: roomConfig.standardRoomImages.bedrooms.map((imageSet) => ({
+      ...imageSet,
+      imagePreviews: createImagePreviews(imageSet.imageFiles),
+    })),
+    bathrooms: roomConfig.standardRoomImages.bathrooms.map((imageSet) => ({
+      ...imageSet,
+      imagePreviews: createImagePreviews(imageSet.imageFiles),
+    })),
+    livingRooms: roomConfig.standardRoomImages.livingRooms.map((imageSet) => ({
+      ...imageSet,
+      imagePreviews: createImagePreviews(imageSet.imageFiles),
+    })),
+    diningRooms: roomConfig.standardRoomImages.diningRooms.map((imageSet) => ({
+      ...imageSet,
+      imagePreviews: createImagePreviews(imageSet.imageFiles),
+    })),
+    kitchens: roomConfig.standardRoomImages.kitchens.map((imageSet) => ({
+      ...imageSet,
+      imagePreviews: createImagePreviews(imageSet.imageFiles),
+    })),
+  },
+  specialRooms: roomConfig.specialRooms.map((room) => ({
+    ...room,
+    imagePreviews: createImagePreviews(room.imageFiles),
+  })),
+});
+
+const revokeRoomPreviews = (roomConfig: RoomConfig) => {
+  Object.values(roomConfig.standardRoomImages).forEach((imageSets) => {
+    imageSets.forEach(({ imagePreviews }) => {
+      revokeImagePreviews(imagePreviews);
+    });
+  });
+  roomConfig.specialRooms.forEach(({ imagePreviews }) => {
+    revokeImagePreviews(imagePreviews);
+  });
+};
 
 const ProjectContext = createContext<ProjectContextValue | null>(null);
 
@@ -248,6 +298,45 @@ export function ProjectProvider({ children }: ProjectProviderProps) {
     [updateProjectState],
   );
 
+  const startDemo = useCallback(() => {
+    updateProjectState((current) => ({
+      ...current,
+      demoMode: true,
+    }));
+  }, [updateProjectState]);
+
+  const resetDemo = useCallback(() => {
+    updateProjectState((current) => ({
+      ...current,
+      demoMode: true,
+      cropRegion: null,
+      results: null,
+      isProcessing: false,
+    }));
+  }, [updateProjectState]);
+
+  const applyDemoProject = useCallback(
+    (input: DemoProjectInput) => {
+      const previous = projectStateRef.current;
+      const dronePreviews = createImagePreviews(input.droneFiles);
+      const roomConfig = attachRoomPreviews(input.roomConfig);
+
+      updateProjectState((current) => ({
+        ...current,
+        demoMode: true,
+        cropRegion: input.cropRegion,
+        droneImages: { files: input.droneFiles, previews: dronePreviews },
+        roomConfig,
+        results: null,
+        isProcessing: false,
+      }));
+
+      revokeImagePreviews(previous.droneImages.previews);
+      revokeRoomPreviews(previous.roomConfig);
+    },
+    [updateProjectState],
+  );
+
   useEffect(
     () => () => {
       const currentState = projectStateRef.current;
@@ -276,12 +365,18 @@ export function ProjectProvider({ children }: ProjectProviderProps) {
       setSpecialRoomImages,
       setIsProcessing,
       setResults,
+      startDemo,
+      resetDemo,
+      applyDemoProject,
     }),
     [
       projectState,
+      applyDemoProject,
       setDroneImages,
       setIsProcessing,
       setResults,
+      resetDemo,
+      startDemo,
       setSpecialRoomImages,
       setStandardRoomImages,
       setStandardRoomCount,

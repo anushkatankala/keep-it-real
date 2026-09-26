@@ -35,11 +35,21 @@ export interface SpecialRoom {
   imagePreviews: string[];
 }
 
+export interface CropRegion {
+  minU: number;
+  minV: number;
+  maxU: number;
+  maxV: number;
+  rotation: number;
+}
+
 export interface ProjectState {
   droneImages: DroneImageSet;
   roomConfig: RoomConfig;
   results: ProjectResults | null;
   isProcessing: boolean;
+  demoMode: boolean;
+  cropRegion: CropRegion | null;
 }
 
 export interface ProjectResults {

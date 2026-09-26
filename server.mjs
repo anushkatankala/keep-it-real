@@ -20,14 +20,23 @@ const MIME = {
   ".css": "text/css; charset=utf-8",
   ".json": "application/json",
   ".wasm": "application/wasm",
-  ".glb": "model/gltf-binary"
+  ".glb": "model/gltf-binary",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".png": "image/png",
+  ".webp": "image/webp"
 };
 
 const ROOT = resolve(import.meta.dirname);
+const FIXTURE = join(ROOT, "app", "tour", "fixture");
+const DEMO_ASSETS = join(FIXTURE, "demo-assets");
 const STATIC_ROOTS = {
   "/vendor/three/": join(ROOT, "node_modules/three/"),
   "/": join(ROOT, "public/")
 };
+
+const FRAME_ANCESTORS =
+  "frame-ancestors 'self' http://localhost:3000 http://127.0.0.1:3000";
 
 function parseArgs(argv) {
   const args = { port: 5173, model: "house.glb" };
@@ -46,20 +55,33 @@ function parseArgs(argv) {
 function staticPath(pathname) {
   for (const [prefix, directory] of Object.entries(STATIC_ROOTS)) {
     if (!pathname.startsWith(prefix)) continue;
-    const relative = pathname.slice(prefix.length) || "index.html";
+    let relative = pathname.slice(prefix.length) || "index.html";
+    if (relative.endsWith("/")) relative += "index.html";
     const candidate = resolve(directory, relative);
     if (candidate.startsWith(directory)) return candidate;
   }
   return null;
 }
 
+function commonHeaders(extra = {}) {
+  return {
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "GET, POST, OPTIONS",
+    "access-control-allow-headers": "content-type",
+    "access-control-expose-headers": "x-kept-triangles, x-total-triangles",
+    "content-security-policy": FRAME_ANCESTORS,
+    "cache-control": "no-store",
+    ...extra
+  };
+}
+
 function send(response, status, body, contentType) {
-  response.writeHead(status, {
+  const payload = typeof body === "string" || Buffer.isBuffer(body) ? body : Buffer.from(body);
+  response.writeHead(status, commonHeaders({
     "content-type": contentType,
-    "content-length": Buffer.byteLength(body),
-    "cache-control": "no-store"
-  });
-  response.end(body);
+    "content-length": Buffer.byteLength(payload)
+  }));
+  response.end(payload);
 }
 
 function sendJson(response, status, payload) {
@@ -91,6 +113,14 @@ function validateRegion(value) {
   return region;
 }
 
+function demoAssetPath(filename) {
+  if (!filename || filename.includes("/") || filename.includes("\\") || filename.includes("..")) {
+    return null;
+  }
+  const candidate = resolve(DEMO_ASSETS, filename);
+  return candidate.startsWith(resolve(DEMO_ASSETS)) ? candidate : null;
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (args.help) {
@@ -112,14 +142,46 @@ async function main() {
     bytes: original.byteLength
   };
 
+  /** Last successful crop, so the Next app can iframe `/`?src=cropped. */
+  let lastCrop = null;
+
   const server = createServer(async (request, response) => {
     const url = new URL(request.url, `http://${request.headers.host ?? "localhost"}`);
+
+    if (request.method === "OPTIONS") {
+      response.writeHead(204, commonHeaders());
+      return response.end();
+    }
 
     try {
       if (url.pathname === "/meta") return sendJson(response, 200, metadata);
 
       if (url.pathname === "/model") {
         return send(response, 200, original, "model/gltf-binary");
+      }
+
+      if (url.pathname === "/cropped/meta") {
+        if (!lastCrop) return sendJson(response, 404, { error: "No crop yet" });
+        return sendJson(response, 200, lastCrop.metadata);
+      }
+
+      if (url.pathname === "/cropped") {
+        if (!lastCrop) return sendJson(response, 404, { error: "No crop yet" });
+        return send(response, 200, lastCrop.glb, "model/gltf-binary");
+      }
+
+      if (url.pathname === "/demo/plan.json") {
+        const plan = await readFile(join(FIXTURE, "plan.json"));
+        return send(response, 200, plan, "application/json");
+      }
+
+      if (url.pathname.startsWith("/demo/assets/")) {
+        const filename = url.pathname.slice("/demo/assets/".length);
+        const file = demoAssetPath(filename);
+        if (!file) return sendJson(response, 400, { error: "Bad asset name" });
+        const body = await readFile(file).catch(() => null);
+        if (!body) return sendJson(response, 404, { error: `Not found: ${filename}` });
+        return send(response, 200, body, MIME[extname(file)] ?? "application/octet-stream");
       }
 
       if (url.pathname === "/crop") {
@@ -136,14 +198,41 @@ async function main() {
           `crop ${JSON.stringify(region)} -> ${result.keptTriangles}/${result.totalTriangles} triangles ` +
             `in ${Date.now() - started}ms`
         );
-        response.writeHead(200, {
+
+        const glb = Buffer.from(result.glb);
+        const croppedName = String(metadata.name).replace(/\.glb$/i, "") + "-cropped.glb";
+        let croppedMeta = {
+          name: croppedName,
+          up: metadata.up,
+          horizontal: metadata.horizontal,
+          bounds: metadata.bounds,
+          triangles: result.keptTriangles,
+          bytes: glb.byteLength,
+          region,
+          kept: result.keptTriangles,
+          total: result.totalTriangles
+        };
+        try {
+          const croppedFootprint = await glbFootprint(glb);
+          croppedMeta = {
+            ...croppedMeta,
+            up: croppedFootprint.up,
+            horizontal: croppedFootprint.horizontal,
+            bounds: croppedFootprint.bounds,
+            triangles: croppedFootprint.triangles
+          };
+        } catch (error) {
+          console.warn(`cropped footprint: ${error.message}`);
+        }
+        lastCrop = { glb, region, metadata: croppedMeta };
+
+        response.writeHead(200, commonHeaders({
           "content-type": "model/gltf-binary",
-          "content-length": result.glb.byteLength,
-          "cache-control": "no-store",
+          "content-length": glb.byteLength,
           "x-kept-triangles": String(result.keptTriangles),
           "x-total-triangles": String(result.totalTriangles)
-        });
-        return response.end(Buffer.from(result.glb));
+        }));
+        return response.end(glb);
       }
 
       const file = staticPath(url.pathname);
@@ -157,9 +246,17 @@ async function main() {
     }
   });
 
+  server.on("error", (error) => {
+    if (error.code === "EADDRINUSE") {
+      console.error(`\nPort ${args.port} is already in use. If that is this crop server, reuse it.`);
+      process.exit(1);
+    }
+    throw error;
+  });
+
   server.listen(args.port, "127.0.0.1", () => {
     console.log(`${args.model}: ${metadata.triangles.toLocaleString()} triangles, ${metadata.up} is vertical`);
-    console.log(`\nOpen http://127.0.0.1:${args.port} — drag a rectangle to crop, then download the GLB.`);
+    console.log(`\nOpen http://127.0.0.1:${args.port} — drag a rectangle to crop, then continue.`);
     console.log("Press Ctrl-C to stop.");
   });
 }

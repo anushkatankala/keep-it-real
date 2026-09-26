@@ -1,0 +1,204 @@
+{
+  "id": "property",
+  "name": "18 Oakwood Drive",
+  "style": "bright contemporary interiors, warm wood floors, white walls",
+  "model": "house.glb",
+  "up": "z",
+  "horizontal": [
+    "x",
+    "y"
+  ],
+  "rotation": 0,
+  "bounds": {
+    "min": [
+      -11.413,
+      -5.5,
+      0
+    ],
+    "max": [
+      11.413,
+      5.5,
+      6.4
+    ]
+  },
+  "floors": [
+    {
+      "id": "f0",
+      "name": "Ground floor",
+      "elevation": 0,
+      "ceiling": 2.7,
+      "rooms": [
+        {
+          "id": "entry",
+          "name": "Entry",
+          "type": "entry",
+          "rect": {
+            "minU": -11.413,
+            "minV": -0.9,
+            "maxU": -9.013,
+            "maxV": 0.9
+          },
+          "areaSqFt": 47
+        },
+        {
+          "id": "hallway",
+          "name": "Hallway",
+          "type": "hallway",
+          "rect": {
+            "minU": -9.013,
+            "minV": -0.9,
+            "maxU": 11.413,
+            "maxV": 0.9
+          },
+          "areaSqFt": 396
+        },
+        {
+          "id": "livingRooms-1",
+          "name": "Living Room 1",
+          "type": "living",
+          "rect": {
+            "minU": -11.413,
+            "minV": -5.5,
+            "maxU": -1.542,
+            "maxV": -0.9
+          },
+          "areaSqFt": 489
+        },
+        {
+          "id": "bedrooms-1",
+          "name": "Bedroom 1",
+          "type": "bedroom",
+          "rect": {
+            "minU": -1.542,
+            "minV": -5.5,
+            "maxU": 4.935,
+            "maxV": -0.9
+          },
+          "areaSqFt": 321
+        },
+        {
+          "id": "bedrooms-3",
+          "name": "Bedroom 3",
+          "type": "bedroom",
+          "rect": {
+            "minU": 4.935,
+            "minV": -5.5,
+            "maxU": 9.562,
+            "maxV": -0.9
+          },
+          "areaSqFt": 229
+        },
+        {
+          "id": "laundry-room",
+          "name": "Laundry Room",
+          "type": "laundry",
+          "rect": {
+            "minU": 9.562,
+            "minV": -5.5,
+            "maxU": 11.413,
+            "maxV": -0.9
+          },
+          "areaSqFt": 92
+        },
+        {
+          "id": "kitchens-1",
+          "name": "Kitchen 1",
+          "type": "kitchen",
+          "rect": {
+            "minU": -11.413,
+            "minV": 0.9,
+            "maxU": -8.152,
+            "maxV": 5.5
+          },
+          "areaSqFt": 161
+        },
+        {
+          "id": "diningRooms-1",
+          "name": "Dining Room 1",
+          "type": "dining",
+          "rect": {
+            "minU": -8.152,
+            "minV": 0.9,
+            "maxU": -4.674,
+            "maxV": 5.5
+          },
+          "areaSqFt": 172
+        },
+        {
+          "id": "home-office",
+          "name": "Home Office",
+          "type": "office",
+          "rect": {
+            "minU": -4.674,
+            "minV": 0.9,
+            "maxU": -2.283,
+            "maxV": 5.5
+          },
+          "areaSqFt": 118
+        },
+        {
+          "id": "bedrooms-2",
+          "name": "Bedroom 2",
+          "type": "bedroom",
+          "rect": {
+            "minU": -2.283,
+            "minV": 0.9,
+            "maxU": 0.978,
+            "maxV": 5.5
+          },
+          "areaSqFt": 161
+        },
+        {
+          "id": "bathrooms-1",
+          "name": "Bathroom 1",
+          "type": "bathroom",
+          "rect": {
+            "minU": 0.978,
+            "minV": 0.9,
+            "maxU": 2.5,
+            "maxV": 5.5
+          },
+          "areaSqFt": 75
+        },
+        {
+          "id": "bathrooms-2",
+          "name": "Bathroom 2",
+          "type": "bathroom",
+          "rect": {
+            "minU": 2.5,
+            "minV": 0.9,
+            "maxU": 4.022,
+            "maxV": 5.5
+          },
+          "areaSqFt": 75
+        },
+        {
+          "id": "garage",
+          "name": "Garage",
+          "type": "garage",
+          "rect": {
+            "minU": 4.022,
+            "minV": 0.9,
+            "maxU": 11.413,
+            "maxV": 5.5
+          },
+          "areaSqFt": 366
+        }
+      ]
+    }
+  ],
+  "generated": {
+    "source": "web room configuration",
+    "note": "Layout is synthesised from room counts; it is not a survey of the real house."
+  },
+  "doorOverrides": {
+    "bedrooms-1:livingRooms-1": false,
+    "bedrooms-1:bedrooms-3": false,
+    "bedrooms-3:laundry-room": false,
+    "diningRooms-1:home-office": false,
+    "bedrooms-2:home-office": false,
+    "bathrooms-1:bedrooms-2": false,
+    "bathrooms-1:bathrooms-2": false,
+    "bathrooms-2:garage": false
+  }
+}

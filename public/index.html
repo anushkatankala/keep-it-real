@@ -81,6 +81,37 @@
         border-radius: 999px;
         color: #8b909b;
       }
+
+      #continueBar {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: min(360px, calc(100vw - 32px));
+        padding: 14px 16px;
+        background: color-mix(in srgb, var(--panel) 94%, transparent);
+        border: 1px solid var(--accent);
+        border-radius: 12px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+      }
+      #continueBar[hidden] { display: none; }
+      #continueBar p { margin: 0; color: #c9d4e6; }
+      #continueBanner {
+        width: 100%;
+        padding: 10px 12px;
+        font: inherit;
+        font-weight: 650;
+        color: #05203f;
+        background: var(--accent);
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      body.view-cropped #panel,
+      body.view-cropped #hint,
+      body.view-cropped #continueBar { display: none; }
     </style>
   </head>
   <body>
@@ -128,7 +159,15 @@
         <button id="download" disabled>Download .glb</button>
         <button id="reset" disabled>Original</button>
       </div>
+      <div class="row">
+        <button id="continue" class="primary" disabled>Continue to floor plan →</button>
+      </div>
       <div id="status"></div>
+    </div>
+
+    <div id="continueBar" hidden>
+      <p>Crop saved. Next, attach the example floor plan and room details.</p>
+      <button id="continueBanner" type="button">Continue to floor plan →</button>
     </div>
 
     <div id="hint">Turn the view until the house is square to the screen, then left-drag a box · right-drag to orbit · [ ] to turn</div>

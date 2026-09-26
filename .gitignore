@@ -8,6 +8,10 @@ dist/
 photos/
 *.glb
 
+# Narration cached by hash of voice and text. Rebuildable, and the built tour
+# in app/tour/build/ is the artefact worth committing.
+app/tour/.cache/
+
 # Local runtime files
 .server.log
 .tmp-*

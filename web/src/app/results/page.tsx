@@ -1,10 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { RouteGuard } from "@/components/layout/RouteGuard";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { TabBar, type TabDefinition } from "@/components/ui/TabBar";
+import { buildDemoResults } from "@/constants/demo";
 import { STANDARD_ROOMS } from "@/constants/rooms";
 import { useProject } from "@/context/ProjectContext";
 import type { RoomConfig } from "@/types";
@@ -132,13 +134,15 @@ function TourPanel({ roomConfig, tourUrl }: TourPanelProps) {
     [roomConfig],
   );
   const [selectedRoom, setSelectedRoom] = useState(roomList[0] ?? "");
+  const frameRef = useRef<HTMLIFrameElement>(null);
 
   return (
     <div className="min-h-[calc(100vh-14rem)] py-6">
       <div className="relative min-h-[calc(100vh-22rem)] border border-white/[0.08] bg-white/[0.02]">
-        {/* TODO: recommend Pannellum or Marzipano for 360 rendering */}
         {tourUrl ? (
           <iframe
+            ref={frameRef}
+            allow="fullscreen"
             className="absolute inset-0 h-full w-full border-0"
             src={tourUrl}
             title="Property virtual tour"
@@ -164,6 +168,10 @@ function TourPanel({ roomConfig, tourUrl }: TourPanelProps) {
         {roomList.map((room) => {
           const handleRoomSelect = () => {
             setSelectedRoom(room);
+            frameRef.current?.contentWindow?.postMessage(
+              { type: "WALK_TO", name: room },
+              "*",
+            );
           };
 
           return (
@@ -187,28 +195,37 @@ function TourPanel({ roomConfig, tourUrl }: TourPanelProps) {
 }
 
 interface WalkthroughPanelProps {
+  transcript: readonly { time: string; text: string }[];
   videoUrl: string | null;
 }
 
-/** Renders the AI walkthrough video and its timestamped transcript panel. */
-function WalkthroughPanel({ videoUrl }: WalkthroughPanelProps) {
+/** Renders the AI walkthrough tour and its timestamped transcript panel. */
+function WalkthroughPanel({ transcript, videoUrl }: WalkthroughPanelProps) {
   return (
     <div className="min-h-[calc(100vh-14rem)] py-6">
-      <video
-        className="aspect-video w-full border border-white/[0.08] bg-black"
-        controls
-        preload="metadata"
-        src={videoUrl ?? undefined}
-      >
-        Your browser does not support embedded video.
-      </video>
+      {/* The tour is a live page that renders its own camera and captions, not a
+          video file, so it is embedded rather than played. */}
+      {videoUrl ? (
+        <iframe
+          allow="autoplay; fullscreen"
+          className="aspect-video w-full border border-white/[0.08] bg-black"
+          src={videoUrl}
+          title="AI realtor walkthrough"
+        />
+      ) : (
+        <div className="flex aspect-video w-full items-center justify-center border border-white/[0.08] bg-black">
+          <p className="text-sm font-light text-white/40">
+            AI walkthrough placeholder
+          </p>
+        </div>
+      )}
 
       <GlassCard className="mt-6 p-6">
         <p className="text-xs uppercase tracking-[0.2em] text-white/40">
           Transcript
         </p>
         <div className="mt-5">
-          {TRANSCRIPT_ROWS.map(({ time, text }) => (
+          {transcript.map(({ time, text }) => (
             <div
               key={time}
               className="flex gap-8 border-b border-white/[0.06] py-4 text-sm"
@@ -225,10 +242,37 @@ function WalkthroughPanel({ videoUrl }: WalkthroughPanelProps) {
   );
 }
 
+const DEMO_TRANSCRIPT_ROWS = [
+  { time: "00:00", text: "Welcome to 142 Maple Street — the real exterior, from drone photographs." },
+  { time: "00:13", text: "Entry, living room, and the kitchen that opens to dining." },
+  { time: "00:46", text: "Primary bedroom, second bedroom, and the bath that connects them." },
+];
+
 /** Presents the processed property across model, tour, and video result tabs. */
 export default function ResultsPage() {
-  const { isProcessing, results, roomConfig } = useProject();
+  const {
+    cropRegion,
+    demoMode,
+    isProcessing,
+    results,
+    roomConfig,
+    resetDemo,
+    setIsProcessing,
+    setResults,
+  } = useProject();
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<string>(RESULT_TABS[0].id);
+
+  useEffect(() => {
+    if (!demoMode || !isProcessing) return;
+
+    const timer = window.setTimeout(() => {
+      setResults(buildDemoResults(Boolean(cropRegion)));
+      setIsProcessing(false);
+    }, 1100);
+
+    return () => window.clearTimeout(timer);
+  }, [cropRegion, demoMode, isProcessing, setIsProcessing, setResults]);
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
@@ -251,7 +295,12 @@ export default function ResultsPage() {
           id="model-panel"
           role="tabpanel"
         >
-          <ModelPanel viewerUrl={results?.viewerUrl ?? null} />
+          <ModelPanel
+            viewerUrl={
+              (demoMode ? buildDemoResults(Boolean(cropRegion)).viewerUrl : results?.viewerUrl) ??
+              null
+            }
+          />
         </section>
 
         {activeTab === "tour" ? (
@@ -262,7 +311,11 @@ export default function ResultsPage() {
           >
             <TourPanel
               roomConfig={roomConfig}
-              tourUrl={results?.virtualTourUrl ?? null}
+              tourUrl={
+                (demoMode
+                  ? buildDemoResults(Boolean(cropRegion)).virtualTourUrl
+                  : results?.virtualTourUrl) ?? null
+              }
             />
           </section>
         ) : null}
@@ -273,7 +326,14 @@ export default function ResultsPage() {
             id="walkthrough-panel"
             role="tabpanel"
           >
-            <WalkthroughPanel videoUrl={results?.aiVideoUrl ?? null} />
+            <WalkthroughPanel
+              transcript={demoMode ? DEMO_TRANSCRIPT_ROWS : TRANSCRIPT_ROWS}
+              videoUrl={
+                (demoMode
+                  ? buildDemoResults(Boolean(cropRegion)).aiVideoUrl
+                  : results?.aiVideoUrl) ?? null
+              }
+            />
           </section>
         ) : null}
       </>
@@ -284,9 +344,23 @@ export default function ResultsPage() {
     <RouteGuard>
       <main className="min-h-screen px-8 pb-8 pt-32">
         <div className="mx-auto max-w-4xl">
-          <p className="mb-5 text-xs uppercase tracking-[0.2em] text-white/40">
-            03 / Property output
-          </p>
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+              03 / Property output
+            </p>
+            {demoMode ? (
+              <button
+                className="text-xs font-light text-white/40 transition-colors hover:text-white"
+                onClick={() => {
+                  resetDemo();
+                  router.push("/demo");
+                }}
+                type="button"
+              >
+                Start over
+              </button>
+            ) : null}
+          </div>
           <TabBar
             activeTab={activeTab}
             onTabChange={handleTabChange}

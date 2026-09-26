@@ -1,0 +1,89 @@
+{
+  "id": "maple",
+  "name": "142 Maple Street",
+  "style": "modern farmhouse, warm oak floors, white walls, black window frames",
+  "model": "house.glb",
+  "up": "z",
+  "horizontal": ["x", "y"],
+  "rotation": 0,
+  "bounds": { "min": [-9, -6, 0], "max": [9, 6, 6.4] },
+  "floors": [
+    {
+      "id": "f0",
+      "name": "Ground floor",
+      "elevation": 0,
+      "ceiling": 2.7,
+      "rooms": [
+        {
+          "id": "r1",
+          "name": "Entry",
+          "type": "entry",
+          "rect": { "minU": -2, "minV": -6, "maxU": 2, "maxV": -3 },
+          "areaSqFt": 129,
+          "notes": "double-height ceiling, coat closet, slate tile"
+        },
+        {
+          "id": "r2",
+          "name": "Living room",
+          "type": "living",
+          "rect": { "minU": -9, "minV": -6, "maxU": -2, "maxV": 0 },
+          "areaSqFt": 452,
+          "notes": "wood-burning fireplace, corner windows on two sides"
+        },
+        {
+          "id": "r3",
+          "name": "Kitchen",
+          "type": "kitchen",
+          "rect": { "minU": 2, "minV": -6, "maxU": 9, "maxV": -1 },
+          "areaSqFt": 377,
+          "notes": "island seating for four, gas range, pantry"
+        },
+        {
+          "id": "r4",
+          "name": "Dining room",
+          "type": "dining",
+          "rect": { "minU": 2, "minV": -1, "maxU": 9, "maxV": 2 },
+          "areaSqFt": 226,
+          "notes": "seats eight, opens to the garden"
+        },
+        {
+          "id": "r5",
+          "name": "Hallway",
+          "type": "hallway",
+          "rect": { "minU": -2, "minV": -3, "maxU": 2, "maxV": 3 },
+          "areaSqFt": 258,
+          "notes": "skylight, linen cupboard"
+        },
+        {
+          "id": "r6",
+          "name": "Primary bedroom",
+          "type": "bedroom",
+          "rect": { "minU": -9, "minV": 0, "maxU": -2, "maxV": 6 },
+          "areaSqFt": 452,
+          "notes": "walk-in wardrobe, ensuite, morning light"
+        },
+        {
+          "id": "r7",
+          "name": "Second bedroom",
+          "type": "bedroom",
+          "rect": { "minU": 2, "minV": 2, "maxU": 9, "maxV": 6 },
+          "areaSqFt": 301,
+          "notes": "currently a guest room, fits a desk"
+        },
+        {
+          "id": "r8",
+          "name": "Bathroom",
+          "type": "bathroom",
+          "rect": { "minU": -2, "minV": 3, "maxU": 2, "maxV": 6 },
+          "areaSqFt": 129,
+          "notes": "freestanding tub, double vanity, connects to the primary"
+        }
+      ]
+    }
+  ],
+  "doorOverrides": {
+    "r2:r6": false,
+    "r4:r7": false,
+    "r7:r8": false
+  }
+}

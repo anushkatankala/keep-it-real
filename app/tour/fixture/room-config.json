@@ -1,0 +1,31 @@
+{
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "livingRooms": 1,
+  "diningRooms": 1,
+  "kitchens": 1,
+  "standardRoomImages": {
+    "bedrooms": [
+      { "id": "bedrooms-1", "label": "Bedroom 1" },
+      { "id": "bedrooms-2", "label": "Bedroom 2" },
+      { "id": "bedrooms-3", "label": "Bedroom 3" }
+    ],
+    "bathrooms": [
+      { "id": "bathrooms-1", "label": "Bathroom 1" },
+      { "id": "bathrooms-2", "label": "Bathroom 2" }
+    ],
+    "livingRooms": [{ "id": "livingRooms-1", "label": "Living Room 1" }],
+    "diningRooms": [{ "id": "diningRooms-1", "label": "Dining Room 1" }],
+    "kitchens": [{ "id": "kitchens-1", "label": "Kitchen 1" }]
+  },
+  "specialRooms": [
+    { "id": "basement", "label": "Basement", "selected": false },
+    { "id": "boiler-room", "label": "Boiler Room", "selected": false },
+    { "id": "attic", "label": "Attic", "selected": false },
+    { "id": "garage", "label": "Garage", "selected": true },
+    { "id": "laundry-room", "label": "Laundry Room", "selected": true },
+    { "id": "home-office", "label": "Home Office", "selected": true },
+    { "id": "gym", "label": "Gym", "selected": false },
+    { "id": "storage-room", "label": "Storage Room", "selected": false }
+  ]
+}

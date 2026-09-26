@@ -1,0 +1,59 @@
+{
+  "_comment": "Hand-written stand-in for Gemini output. Same shape generateScript returns, so the build runs with no API key. Every atPhrase appears verbatim in its own text, and every target exists in that room's geometry.",
+  "stops": [
+    {
+      "roomId": "exterior",
+      "text": "Welcome to 142 Maple Street. What you are looking at is the real thing, built from drone photographs of the house itself. Just over 2,300 square feet across eight rooms. Let's go inside.",
+      "moves": []
+    },
+    {
+      "roomId": "r1",
+      "text": "Come on in. The entry runs a full double height, so the first thing you notice is the light coming down from above, and that slate tile means wet boots are never a problem.",
+      "moves": [{ "atPhrase": "the light coming down", "target": "windows", "fov": 70 }]
+    },
+    {
+      "roomId": "r2",
+      "text": "This is where you will actually live. 452 square feet with windows on two sides, so it stays bright from morning right through to the afternoon, and that is a real wood-burning fireplace.",
+      "moves": [
+        { "atPhrase": "windows on two sides", "target": "windows", "fov": 60 },
+        { "atPhrase": "bright from morning", "target": "windows:2", "fov": 66 }
+      ]
+    },
+    {
+      "roomId": "r5",
+      "text": "Straight through the hall, where a skylight keeps it from ever feeling like a corridor.",
+      "moves": []
+    },
+    {
+      "roomId": "r3",
+      "text": "Now the kitchen. The island seats four comfortably, there is a gas range for anyone who actually cooks, and a walk-in pantry behind you. At 377 square feet, it is the second largest room in the house.",
+      "moves": [
+        { "atPhrase": "island seats four", "target": "windows", "fov": 62 },
+        { "atPhrase": "walk-in pantry behind you", "target": "door:r1", "fov": 70 }
+      ]
+    },
+    {
+      "roomId": "r4",
+      "text": "The dining room seats eight without anyone having to squeeze in, and it opens straight out to the garden, which is where everybody ends up in July.",
+      "moves": [{ "atPhrase": "opens straight out to the garden", "target": "windows", "fov": 60 }]
+    },
+    {
+      "roomId": "r6",
+      "text": "Here is the primary bedroom, the same footprint as the living room at 452 square feet. There is a walk-in wardrobe, and its own ensuite through that door. The windows face the morning sun, which is either a feature or a warning depending on who you are.",
+      "moves": [
+        { "atPhrase": "walk-in wardrobe", "target": "door:r8", "fov": 66 },
+        { "atPhrase": "windows face the morning sun", "target": "windows", "fov": 60 }
+      ]
+    },
+    {
+      "roomId": "r8",
+      "text": "The bathroom settles the two arguments people actually have: a freestanding tub, and a double vanity so nobody is waiting. It opens to the primary on one side and the hall on the other.",
+      "moves": [{ "atPhrase": "freestanding tub", "target": "windows", "fov": 62 }]
+    },
+    {
+      "roomId": "r7",
+      "text": "And the second bedroom, 301 square feet, set up as a guest room for now, though there is easily room for a desk if you need the office. That is 142 Maple Street. It photographs well, but it lives better.",
+      "moves": [{ "atPhrase": "room for a desk", "target": "windows", "fov": 64 }]
+    }
+  ]
+}

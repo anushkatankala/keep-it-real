@@ -8,6 +8,11 @@ import { FileDropZone } from "@/components/ui/FileDropZone";
 import { RoomCounter } from "@/components/ui/RoomCounter";
 import { RoomSelector } from "@/components/ui/RoomSelector";
 import {
+  DEMO_FLOOR_PLAN_URL,
+  DEMO_PROPERTY_NAME,
+  croppedViewerUrl,
+} from "@/constants/demo";
+import {
   MAX_ROOM_COUNT,
   MIN_ROOM_COUNT,
   STANDARD_ROOMS,
@@ -19,6 +24,8 @@ import type { StandardRoomKey } from "@/types";
 export default function RoomConfigPage() {
   const router = useRouter();
   const {
+    cropRegion,
+    demoMode,
     roomConfig,
     setIsProcessing,
     setResults,
@@ -47,7 +54,8 @@ export default function RoomConfigPage() {
   );
   const hasAllRequiredImages =
     hasAllStandardRoomImages && hasAllSpecialRoomImages;
-  const canProcessProperty = hasRoomSelection && hasAllRequiredImages;
+  const canProcessProperty =
+    demoMode || (hasRoomSelection && hasAllRequiredImages);
 
   const handleRoomCountChange = (
     room: StandardRoomKey,
@@ -90,13 +98,38 @@ export default function RoomConfigPage() {
               02 / Interior map
             </p>
             <h1 className="mt-7 text-4xl font-light tracking-tight text-ink">
-              Define the interior.
+              {demoMode ? DEMO_PROPERTY_NAME : "Define the interior."}
             </h1>
             <p className="mt-5 text-sm font-light leading-loose text-white/50">
-              Add each space, then attach at least one interior image to every
-              room instance.
+              {demoMode
+                ? "The example floor plan and eight rooms are already filled in. Confirm the cropped house, then process."
+                : "Add each space, then attach at least one interior image to every room instance."}
             </p>
           </header>
+
+          {demoMode ? (
+            <section className="mt-14 grid gap-4 md:grid-cols-2">
+              <figure className="overflow-hidden border border-white/[0.08] bg-white/[0.02]">
+                <img
+                  alt="Example floor plan for 142 Maple Street"
+                  className="h-64 w-full object-contain bg-black md:h-80"
+                  src={DEMO_FLOOR_PLAN_URL}
+                />
+                <figcaption className="px-4 py-3 text-xs uppercase tracking-[0.16em] text-white/35">
+                  Uploaded floor plan
+                </figcaption>
+              </figure>
+              <div className="relative min-h-64 overflow-hidden border border-white/[0.08] bg-black md:min-h-80">
+                <iframe
+                  allow="fullscreen"
+                  allowFullScreen
+                  className="absolute inset-0 h-full w-full border-0"
+                  src={croppedViewerUrl(Boolean(cropRegion))}
+                  title="Cropped house model"
+                />
+              </div>
+            </section>
+          ) : null}
 
           <section className="mt-24" aria-labelledby="standard-rooms-heading">
             <p className="text-xs uppercase tracking-[0.2em] text-white/40">
@@ -180,11 +213,13 @@ export default function RoomConfigPage() {
 
           <div className="mt-24 flex items-center justify-between gap-8 border-t border-white/[0.06] pt-8">
             <p className="max-w-md text-xs font-light leading-loose text-white/40">
-              {!hasRoomSelection
-                ? "Add at least one room to continue."
-                : hasAllRequiredImages
-                  ? "Every room has image coverage."
-                  : "Upload at least one image for every room before processing."}
+              {demoMode
+                ? "Example rooms, floor plan, and interiors are ready."
+                : !hasRoomSelection
+                  ? "Add at least one room to continue."
+                  : hasAllRequiredImages
+                    ? "Every room has image coverage."
+                    : "Upload at least one image for every room before processing."}
             </p>
             <Button
               disabled={!canProcessProperty}

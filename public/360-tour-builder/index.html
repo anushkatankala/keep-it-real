@@ -2208,6 +2208,38 @@ SOFTWARE.
                 }
             }
         });
+
+        (async function preloadDemoTour() {
+            if (new URLSearchParams(location.search).get("demo") !== "1") return;
+            const rooms = [
+                ["Entry", "exterior.jpeg"],
+                ["Living room", "living.jpeg"],
+                ["Kitchen", "kitchen.jpeg"],
+                ["Dining room", "kitchen.jpeg"],
+                ["Hallway", "living.jpeg"],
+                ["Primary bedroom", "bedroom-primary.jpeg"],
+                ["Second bedroom", "bedroom-second.jpeg"],
+                ["Bathroom", "bathroom.jpeg"]
+            ];
+            async function asFile(path, name) {
+                const response = await fetch(path);
+                if (!response.ok) throw new Error(`Missing ${path}`);
+                const blob = await response.blob();
+                return new File([blob], name, { type: blob.type || "image/jpeg" });
+            }
+            try {
+                AppState.globalTitle = "142 Maple Street";
+                const titleInput = document.getElementById("input-title");
+                if (titleInput) titleInput.value = AppState.globalTitle;
+                const planFile = await asFile("/demo/assets/floor-plan.jpeg", "floor-plan.jpeg");
+                await processPlanFile(planFile);
+                for (const [label, filename] of rooms) {
+                    await processSceneFile(await asFile(`/demo/assets/${filename}`, `${label}.jpeg`));
+                }
+            } catch (error) {
+                console.warn("Demo 360 preload skipped:", error);
+            }
+        })();
     </script>
 </body>
 </html>

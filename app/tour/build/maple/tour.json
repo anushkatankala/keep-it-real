@@ -1,0 +1,2187 @@
+{
+  "projectId": "maple",
+  "projectName": "142 Maple Street",
+  "generatedAt": "2026-09-26T20:03:27.511Z",
+  "voice": {
+    "provider": "estimated",
+    "voiceId": null,
+    "modelId": null
+  },
+  "totalDuration": 108.895,
+  "stops": [
+    {
+      "id": "s0",
+      "kind": "exterior",
+      "roomId": null,
+      "name": "142 Maple Street",
+      "transit": false,
+      "audio": null,
+      "duration": 12.735,
+      "text": "Welcome to 142 Maple Street. What you are looking at is the real thing, built from drone photographs of the house itself. Just over 2,300 square feet across eight rooms. Let's go inside.",
+      "words": [
+        {
+          "text": "Welcome",
+          "index": 0,
+          "start": 0,
+          "end": 0.435
+        },
+        {
+          "text": "to",
+          "index": 8,
+          "start": 0.435,
+          "end": 0.645
+        },
+        {
+          "text": "142",
+          "index": 11,
+          "start": 0.645,
+          "end": 0.9
+        },
+        {
+          "text": "Maple",
+          "index": 15,
+          "start": 0.9,
+          "end": 1.245
+        },
+        {
+          "text": "Street.",
+          "index": 21,
+          "start": 1.245,
+          "end": 1.635
+        },
+        {
+          "text": "What",
+          "index": 29,
+          "start": 2.055,
+          "end": 2.355
+        },
+        {
+          "text": "you",
+          "index": 34,
+          "start": 2.355,
+          "end": 2.61
+        },
+        {
+          "text": "are",
+          "index": 38,
+          "start": 2.61,
+          "end": 2.865
+        },
+        {
+          "text": "looking",
+          "index": 42,
+          "start": 2.865,
+          "end": 3.3
+        },
+        {
+          "text": "at",
+          "index": 50,
+          "start": 3.3,
+          "end": 3.51
+        },
+        {
+          "text": "is",
+          "index": 53,
+          "start": 3.51,
+          "end": 3.72
+        },
+        {
+          "text": "the",
+          "index": 56,
+          "start": 3.72,
+          "end": 3.975
+        },
+        {
+          "text": "real",
+          "index": 60,
+          "start": 3.975,
+          "end": 4.275
+        },
+        {
+          "text": "thing,",
+          "index": 65,
+          "start": 4.275,
+          "end": 4.62
+        },
+        {
+          "text": "built",
+          "index": 72,
+          "start": 4.8,
+          "end": 5.145
+        },
+        {
+          "text": "from",
+          "index": 78,
+          "start": 5.145,
+          "end": 5.445
+        },
+        {
+          "text": "drone",
+          "index": 83,
+          "start": 5.445,
+          "end": 5.79
+        },
+        {
+          "text": "photographs",
+          "index": 89,
+          "start": 5.79,
+          "end": 6.405
+        },
+        {
+          "text": "of",
+          "index": 101,
+          "start": 6.405,
+          "end": 6.615
+        },
+        {
+          "text": "the",
+          "index": 104,
+          "start": 6.615,
+          "end": 6.87
+        },
+        {
+          "text": "house",
+          "index": 108,
+          "start": 6.87,
+          "end": 7.215
+        },
+        {
+          "text": "itself.",
+          "index": 114,
+          "start": 7.215,
+          "end": 7.605
+        },
+        {
+          "text": "Just",
+          "index": 122,
+          "start": 8.025,
+          "end": 8.325
+        },
+        {
+          "text": "over",
+          "index": 127,
+          "start": 8.325,
+          "end": 8.625
+        },
+        {
+          "text": "2,300",
+          "index": 132,
+          "start": 8.625,
+          "end": 8.925
+        },
+        {
+          "text": "square",
+          "index": 138,
+          "start": 8.925,
+          "end": 9.315
+        },
+        {
+          "text": "feet",
+          "index": 145,
+          "start": 9.315,
+          "end": 9.615
+        },
+        {
+          "text": "across",
+          "index": 150,
+          "start": 9.615,
+          "end": 10.005
+        },
+        {
+          "text": "eight",
+          "index": 157,
+          "start": 10.005,
+          "end": 10.35
+        },
+        {
+          "text": "rooms.",
+          "index": 163,
+          "start": 10.35,
+          "end": 10.695
+        },
+        {
+          "text": "Let's",
+          "index": 170,
+          "start": 11.115,
+          "end": 11.415
+        },
+        {
+          "text": "go",
+          "index": 176,
+          "start": 11.415,
+          "end": 11.625
+        },
+        {
+          "text": "inside.",
+          "index": 179,
+          "start": 11.625,
+          "end": 12.015
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "orbit",
+          "from": 335,
+          "to": 90,
+          "elevation": 18,
+          "fov": 55
+        }
+      ]
+    },
+    {
+      "id": "s1",
+      "kind": "room",
+      "roomId": "r1",
+      "name": "Entry",
+      "transit": false,
+      "audio": null,
+      "duration": 11.655,
+      "text": "Come on in. The entry runs a full double height, so the first thing you notice is the light coming down from above, and that slate tile means wet boots are never a problem.",
+      "words": [
+        {
+          "text": "Come",
+          "index": 0,
+          "start": 0,
+          "end": 0.3
+        },
+        {
+          "text": "on",
+          "index": 5,
+          "start": 0.3,
+          "end": 0.51
+        },
+        {
+          "text": "in.",
+          "index": 8,
+          "start": 0.51,
+          "end": 0.72
+        },
+        {
+          "text": "The",
+          "index": 12,
+          "start": 1.14,
+          "end": 1.395
+        },
+        {
+          "text": "entry",
+          "index": 16,
+          "start": 1.395,
+          "end": 1.74
+        },
+        {
+          "text": "runs",
+          "index": 22,
+          "start": 1.74,
+          "end": 2.04
+        },
+        {
+          "text": "a",
+          "index": 27,
+          "start": 2.04,
+          "end": 2.205
+        },
+        {
+          "text": "full",
+          "index": 29,
+          "start": 2.205,
+          "end": 2.505
+        },
+        {
+          "text": "double",
+          "index": 34,
+          "start": 2.505,
+          "end": 2.895
+        },
+        {
+          "text": "height,",
+          "index": 41,
+          "start": 2.895,
+          "end": 3.285
+        },
+        {
+          "text": "so",
+          "index": 49,
+          "start": 3.465,
+          "end": 3.675
+        },
+        {
+          "text": "the",
+          "index": 52,
+          "start": 3.675,
+          "end": 3.93
+        },
+        {
+          "text": "first",
+          "index": 56,
+          "start": 3.93,
+          "end": 4.275
+        },
+        {
+          "text": "thing",
+          "index": 62,
+          "start": 4.275,
+          "end": 4.62
+        },
+        {
+          "text": "you",
+          "index": 68,
+          "start": 4.62,
+          "end": 4.875
+        },
+        {
+          "text": "notice",
+          "index": 72,
+          "start": 4.875,
+          "end": 5.265
+        },
+        {
+          "text": "is",
+          "index": 79,
+          "start": 5.265,
+          "end": 5.475
+        },
+        {
+          "text": "the",
+          "index": 82,
+          "start": 5.475,
+          "end": 5.73
+        },
+        {
+          "text": "light",
+          "index": 86,
+          "start": 5.73,
+          "end": 6.075
+        },
+        {
+          "text": "coming",
+          "index": 92,
+          "start": 6.075,
+          "end": 6.465
+        },
+        {
+          "text": "down",
+          "index": 99,
+          "start": 6.465,
+          "end": 6.765
+        },
+        {
+          "text": "from",
+          "index": 104,
+          "start": 6.765,
+          "end": 7.065
+        },
+        {
+          "text": "above,",
+          "index": 109,
+          "start": 7.065,
+          "end": 7.41
+        },
+        {
+          "text": "and",
+          "index": 116,
+          "start": 7.59,
+          "end": 7.845
+        },
+        {
+          "text": "that",
+          "index": 120,
+          "start": 7.845,
+          "end": 8.145
+        },
+        {
+          "text": "slate",
+          "index": 125,
+          "start": 8.145,
+          "end": 8.49
+        },
+        {
+          "text": "tile",
+          "index": 131,
+          "start": 8.49,
+          "end": 8.79
+        },
+        {
+          "text": "means",
+          "index": 136,
+          "start": 8.79,
+          "end": 9.135
+        },
+        {
+          "text": "wet",
+          "index": 142,
+          "start": 9.135,
+          "end": 9.39
+        },
+        {
+          "text": "boots",
+          "index": 146,
+          "start": 9.39,
+          "end": 9.735
+        },
+        {
+          "text": "are",
+          "index": 152,
+          "start": 9.735,
+          "end": 9.99
+        },
+        {
+          "text": "never",
+          "index": 156,
+          "start": 9.99,
+          "end": 10.335
+        },
+        {
+          "text": "a",
+          "index": 162,
+          "start": 10.335,
+          "end": 10.5
+        },
+        {
+          "text": "problem.",
+          "index": 164,
+          "start": 10.5,
+          "end": 10.935
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 270,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": -2.2
+        },
+        {
+          "at": 5.475,
+          "type": "lookAt",
+          "heading": 90,
+          "pitch": -2,
+          "fov": 70,
+          "duration": 2200
+        },
+        {
+          "at": 9.655,
+          "type": "lookAt",
+          "heading": 180,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "kind": "room",
+      "roomId": "r2",
+      "name": "Living room",
+      "transit": false,
+      "audio": null,
+      "duration": 12.21,
+      "text": "This is where you will actually live. 452 square feet with windows on two sides, so it stays bright from morning right through to the afternoon, and that is a real wood-burning fireplace.",
+      "words": [
+        {
+          "text": "This",
+          "index": 0,
+          "start": 0,
+          "end": 0.3
+        },
+        {
+          "text": "is",
+          "index": 5,
+          "start": 0.3,
+          "end": 0.51
+        },
+        {
+          "text": "where",
+          "index": 8,
+          "start": 0.51,
+          "end": 0.855
+        },
+        {
+          "text": "you",
+          "index": 14,
+          "start": 0.855,
+          "end": 1.11
+        },
+        {
+          "text": "will",
+          "index": 18,
+          "start": 1.11,
+          "end": 1.41
+        },
+        {
+          "text": "actually",
+          "index": 23,
+          "start": 1.41,
+          "end": 1.89
+        },
+        {
+          "text": "live.",
+          "index": 32,
+          "start": 1.89,
+          "end": 2.19
+        },
+        {
+          "text": "452",
+          "index": 38,
+          "start": 2.61,
+          "end": 2.865
+        },
+        {
+          "text": "square",
+          "index": 42,
+          "start": 2.865,
+          "end": 3.255
+        },
+        {
+          "text": "feet",
+          "index": 49,
+          "start": 3.255,
+          "end": 3.555
+        },
+        {
+          "text": "with",
+          "index": 54,
+          "start": 3.555,
+          "end": 3.855
+        },
+        {
+          "text": "windows",
+          "index": 59,
+          "start": 3.855,
+          "end": 4.29
+        },
+        {
+          "text": "on",
+          "index": 67,
+          "start": 4.29,
+          "end": 4.5
+        },
+        {
+          "text": "two",
+          "index": 70,
+          "start": 4.5,
+          "end": 4.755
+        },
+        {
+          "text": "sides,",
+          "index": 74,
+          "start": 4.755,
+          "end": 5.1
+        },
+        {
+          "text": "so",
+          "index": 81,
+          "start": 5.28,
+          "end": 5.49
+        },
+        {
+          "text": "it",
+          "index": 84,
+          "start": 5.49,
+          "end": 5.7
+        },
+        {
+          "text": "stays",
+          "index": 87,
+          "start": 5.7,
+          "end": 6.045
+        },
+        {
+          "text": "bright",
+          "index": 93,
+          "start": 6.045,
+          "end": 6.435
+        },
+        {
+          "text": "from",
+          "index": 100,
+          "start": 6.435,
+          "end": 6.735
+        },
+        {
+          "text": "morning",
+          "index": 105,
+          "start": 6.735,
+          "end": 7.17
+        },
+        {
+          "text": "right",
+          "index": 113,
+          "start": 7.17,
+          "end": 7.515
+        },
+        {
+          "text": "through",
+          "index": 119,
+          "start": 7.515,
+          "end": 7.95
+        },
+        {
+          "text": "to",
+          "index": 127,
+          "start": 7.95,
+          "end": 8.16
+        },
+        {
+          "text": "the",
+          "index": 130,
+          "start": 8.16,
+          "end": 8.415
+        },
+        {
+          "text": "afternoon,",
+          "index": 134,
+          "start": 8.415,
+          "end": 8.94
+        },
+        {
+          "text": "and",
+          "index": 145,
+          "start": 9.12,
+          "end": 9.375
+        },
+        {
+          "text": "that",
+          "index": 149,
+          "start": 9.375,
+          "end": 9.675
+        },
+        {
+          "text": "is",
+          "index": 154,
+          "start": 9.675,
+          "end": 9.885
+        },
+        {
+          "text": "a",
+          "index": 157,
+          "start": 9.885,
+          "end": 10.05
+        },
+        {
+          "text": "real",
+          "index": 159,
+          "start": 10.05,
+          "end": 10.35
+        },
+        {
+          "text": "wood-burning",
+          "index": 164,
+          "start": 10.35,
+          "end": 10.965
+        },
+        {
+          "text": "fireplace.",
+          "index": 177,
+          "start": 10.965,
+          "end": 11.49
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 203.199,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": -2.2
+        },
+        {
+          "at": 3.855,
+          "type": "lookAt",
+          "heading": 90,
+          "pitch": -2,
+          "fov": 60,
+          "duration": 2200
+        },
+        {
+          "at": 6.045,
+          "type": "lookAt",
+          "heading": 180,
+          "pitch": -2,
+          "fov": 66,
+          "duration": 2200
+        },
+        {
+          "at": 10.21,
+          "type": "lookAt",
+          "heading": 336.801,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "kind": "room",
+      "roomId": "r5",
+      "name": "Hallway",
+      "transit": true,
+      "audio": null,
+      "duration": 5.895,
+      "text": "Straight through the hall, where a skylight keeps it from ever feeling like a corridor.",
+      "words": [
+        {
+          "text": "Straight",
+          "index": 0,
+          "start": 0,
+          "end": 0.48
+        },
+        {
+          "text": "through",
+          "index": 9,
+          "start": 0.48,
+          "end": 0.915
+        },
+        {
+          "text": "the",
+          "index": 17,
+          "start": 0.915,
+          "end": 1.17
+        },
+        {
+          "text": "hall,",
+          "index": 21,
+          "start": 1.17,
+          "end": 1.47
+        },
+        {
+          "text": "where",
+          "index": 27,
+          "start": 1.65,
+          "end": 1.995
+        },
+        {
+          "text": "a",
+          "index": 33,
+          "start": 1.995,
+          "end": 2.16
+        },
+        {
+          "text": "skylight",
+          "index": 35,
+          "start": 2.16,
+          "end": 2.64
+        },
+        {
+          "text": "keeps",
+          "index": 44,
+          "start": 2.64,
+          "end": 2.985
+        },
+        {
+          "text": "it",
+          "index": 50,
+          "start": 2.985,
+          "end": 3.195
+        },
+        {
+          "text": "from",
+          "index": 53,
+          "start": 3.195,
+          "end": 3.495
+        },
+        {
+          "text": "ever",
+          "index": 58,
+          "start": 3.495,
+          "end": 3.795
+        },
+        {
+          "text": "feeling",
+          "index": 63,
+          "start": 3.795,
+          "end": 4.23
+        },
+        {
+          "text": "like",
+          "index": 71,
+          "start": 4.23,
+          "end": 4.53
+        },
+        {
+          "text": "a",
+          "index": 76,
+          "start": 4.53,
+          "end": 4.695
+        },
+        {
+          "text": "corridor.",
+          "index": 78,
+          "start": 4.695,
+          "end": 5.175
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 323.13,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": 2.2
+        },
+        {
+          "at": 3.895,
+          "type": "lookAt",
+          "heading": 45,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "kind": "room",
+      "roomId": "r3",
+      "name": "Kitchen",
+      "transit": false,
+      "audio": null,
+      "duration": 13.605,
+      "text": "Now the kitchen. The island seats four comfortably, there is a gas range for anyone who actually cooks, and a walk-in pantry behind you. At 377 square feet, it is the second largest room in the house.",
+      "words": [
+        {
+          "text": "Now",
+          "index": 0,
+          "start": 0,
+          "end": 0.255
+        },
+        {
+          "text": "the",
+          "index": 4,
+          "start": 0.255,
+          "end": 0.51
+        },
+        {
+          "text": "kitchen.",
+          "index": 8,
+          "start": 0.51,
+          "end": 0.945
+        },
+        {
+          "text": "The",
+          "index": 17,
+          "start": 1.365,
+          "end": 1.62
+        },
+        {
+          "text": "island",
+          "index": 21,
+          "start": 1.62,
+          "end": 2.01
+        },
+        {
+          "text": "seats",
+          "index": 28,
+          "start": 2.01,
+          "end": 2.355
+        },
+        {
+          "text": "four",
+          "index": 34,
+          "start": 2.355,
+          "end": 2.655
+        },
+        {
+          "text": "comfortably,",
+          "index": 39,
+          "start": 2.655,
+          "end": 3.27
+        },
+        {
+          "text": "there",
+          "index": 52,
+          "start": 3.45,
+          "end": 3.795
+        },
+        {
+          "text": "is",
+          "index": 58,
+          "start": 3.795,
+          "end": 4.005
+        },
+        {
+          "text": "a",
+          "index": 61,
+          "start": 4.005,
+          "end": 4.17
+        },
+        {
+          "text": "gas",
+          "index": 63,
+          "start": 4.17,
+          "end": 4.425
+        },
+        {
+          "text": "range",
+          "index": 67,
+          "start": 4.425,
+          "end": 4.77
+        },
+        {
+          "text": "for",
+          "index": 73,
+          "start": 4.77,
+          "end": 5.025
+        },
+        {
+          "text": "anyone",
+          "index": 77,
+          "start": 5.025,
+          "end": 5.415
+        },
+        {
+          "text": "who",
+          "index": 84,
+          "start": 5.415,
+          "end": 5.67
+        },
+        {
+          "text": "actually",
+          "index": 88,
+          "start": 5.67,
+          "end": 6.15
+        },
+        {
+          "text": "cooks,",
+          "index": 97,
+          "start": 6.15,
+          "end": 6.495
+        },
+        {
+          "text": "and",
+          "index": 104,
+          "start": 6.675,
+          "end": 6.93
+        },
+        {
+          "text": "a",
+          "index": 108,
+          "start": 6.93,
+          "end": 7.095
+        },
+        {
+          "text": "walk-in",
+          "index": 110,
+          "start": 7.095,
+          "end": 7.485
+        },
+        {
+          "text": "pantry",
+          "index": 118,
+          "start": 7.485,
+          "end": 7.875
+        },
+        {
+          "text": "behind",
+          "index": 125,
+          "start": 7.875,
+          "end": 8.265
+        },
+        {
+          "text": "you.",
+          "index": 132,
+          "start": 8.265,
+          "end": 8.52
+        },
+        {
+          "text": "At",
+          "index": 137,
+          "start": 8.94,
+          "end": 9.15
+        },
+        {
+          "text": "377",
+          "index": 140,
+          "start": 9.15,
+          "end": 9.405
+        },
+        {
+          "text": "square",
+          "index": 144,
+          "start": 9.405,
+          "end": 9.795
+        },
+        {
+          "text": "feet,",
+          "index": 151,
+          "start": 9.795,
+          "end": 10.095
+        },
+        {
+          "text": "it",
+          "index": 157,
+          "start": 10.275,
+          "end": 10.485
+        },
+        {
+          "text": "is",
+          "index": 160,
+          "start": 10.485,
+          "end": 10.695
+        },
+        {
+          "text": "the",
+          "index": 163,
+          "start": 10.695,
+          "end": 10.95
+        },
+        {
+          "text": "second",
+          "index": 167,
+          "start": 10.95,
+          "end": 11.34
+        },
+        {
+          "text": "largest",
+          "index": 174,
+          "start": 11.34,
+          "end": 11.775
+        },
+        {
+          "text": "room",
+          "index": 182,
+          "start": 11.775,
+          "end": 12.075
+        },
+        {
+          "text": "in",
+          "index": 187,
+          "start": 12.075,
+          "end": 12.285
+        },
+        {
+          "text": "the",
+          "index": 190,
+          "start": 12.285,
+          "end": 12.54
+        },
+        {
+          "text": "house.",
+          "index": 194,
+          "start": 12.54,
+          "end": 12.885
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 23.199,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": 2.2
+        },
+        {
+          "at": 1.62,
+          "type": "lookAt",
+          "heading": 90,
+          "pitch": -2,
+          "fov": 62,
+          "duration": 2200
+        },
+        {
+          "at": 7.095,
+          "type": "lookAt",
+          "heading": 164.055,
+          "pitch": -4,
+          "fov": 70,
+          "duration": 2200
+        },
+        {
+          "at": 11.605,
+          "type": "lookAt",
+          "heading": 270,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "kind": "room",
+      "roomId": "r4",
+      "name": "Dining room",
+      "transit": false,
+      "audio": null,
+      "duration": 9.63,
+      "text": "The dining room seats eight without anyone having to squeeze in, and it opens straight out to the garden, which is where everybody ends up in July.",
+      "words": [
+        {
+          "text": "The",
+          "index": 0,
+          "start": 0,
+          "end": 0.255
+        },
+        {
+          "text": "dining",
+          "index": 4,
+          "start": 0.255,
+          "end": 0.645
+        },
+        {
+          "text": "room",
+          "index": 11,
+          "start": 0.645,
+          "end": 0.945
+        },
+        {
+          "text": "seats",
+          "index": 16,
+          "start": 0.945,
+          "end": 1.29
+        },
+        {
+          "text": "eight",
+          "index": 22,
+          "start": 1.29,
+          "end": 1.635
+        },
+        {
+          "text": "without",
+          "index": 28,
+          "start": 1.635,
+          "end": 2.07
+        },
+        {
+          "text": "anyone",
+          "index": 36,
+          "start": 2.07,
+          "end": 2.46
+        },
+        {
+          "text": "having",
+          "index": 43,
+          "start": 2.46,
+          "end": 2.85
+        },
+        {
+          "text": "to",
+          "index": 50,
+          "start": 2.85,
+          "end": 3.06
+        },
+        {
+          "text": "squeeze",
+          "index": 53,
+          "start": 3.06,
+          "end": 3.495
+        },
+        {
+          "text": "in,",
+          "index": 61,
+          "start": 3.495,
+          "end": 3.705
+        },
+        {
+          "text": "and",
+          "index": 65,
+          "start": 3.885,
+          "end": 4.14
+        },
+        {
+          "text": "it",
+          "index": 69,
+          "start": 4.14,
+          "end": 4.35
+        },
+        {
+          "text": "opens",
+          "index": 72,
+          "start": 4.35,
+          "end": 4.695
+        },
+        {
+          "text": "straight",
+          "index": 78,
+          "start": 4.695,
+          "end": 5.175
+        },
+        {
+          "text": "out",
+          "index": 87,
+          "start": 5.175,
+          "end": 5.43
+        },
+        {
+          "text": "to",
+          "index": 91,
+          "start": 5.43,
+          "end": 5.64
+        },
+        {
+          "text": "the",
+          "index": 94,
+          "start": 5.64,
+          "end": 5.895
+        },
+        {
+          "text": "garden,",
+          "index": 98,
+          "start": 5.895,
+          "end": 6.285
+        },
+        {
+          "text": "which",
+          "index": 106,
+          "start": 6.465,
+          "end": 6.81
+        },
+        {
+          "text": "is",
+          "index": 112,
+          "start": 6.81,
+          "end": 7.02
+        },
+        {
+          "text": "where",
+          "index": 115,
+          "start": 7.02,
+          "end": 7.365
+        },
+        {
+          "text": "everybody",
+          "index": 121,
+          "start": 7.365,
+          "end": 7.89
+        },
+        {
+          "text": "ends",
+          "index": 131,
+          "start": 7.89,
+          "end": 8.19
+        },
+        {
+          "text": "up",
+          "index": 136,
+          "start": 8.19,
+          "end": 8.4
+        },
+        {
+          "text": "in",
+          "index": 139,
+          "start": 8.4,
+          "end": 8.61
+        },
+        {
+          "text": "July.",
+          "index": 142,
+          "start": 8.61,
+          "end": 8.91
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 270,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": 2.2
+        },
+        {
+          "at": 4.35,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": -2,
+          "fov": 60,
+          "duration": 2200
+        },
+        {
+          "at": 7.63,
+          "type": "lookAt",
+          "heading": 192.804,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "kind": "room",
+      "roomId": "r6",
+      "name": "Primary bedroom",
+      "transit": false,
+      "audio": null,
+      "duration": 16.74,
+      "text": "Here is the primary bedroom, the same footprint as the living room at 452 square feet. There is a walk-in wardrobe, and its own ensuite through that door. The windows face the morning sun, which is either a feature or a warning depending on who you are.",
+      "words": [
+        {
+          "text": "Here",
+          "index": 0,
+          "start": 0,
+          "end": 0.3
+        },
+        {
+          "text": "is",
+          "index": 5,
+          "start": 0.3,
+          "end": 0.51
+        },
+        {
+          "text": "the",
+          "index": 8,
+          "start": 0.51,
+          "end": 0.765
+        },
+        {
+          "text": "primary",
+          "index": 12,
+          "start": 0.765,
+          "end": 1.2
+        },
+        {
+          "text": "bedroom,",
+          "index": 20,
+          "start": 1.2,
+          "end": 1.635
+        },
+        {
+          "text": "the",
+          "index": 29,
+          "start": 1.815,
+          "end": 2.07
+        },
+        {
+          "text": "same",
+          "index": 33,
+          "start": 2.07,
+          "end": 2.37
+        },
+        {
+          "text": "footprint",
+          "index": 38,
+          "start": 2.37,
+          "end": 2.895
+        },
+        {
+          "text": "as",
+          "index": 48,
+          "start": 2.895,
+          "end": 3.105
+        },
+        {
+          "text": "the",
+          "index": 51,
+          "start": 3.105,
+          "end": 3.36
+        },
+        {
+          "text": "living",
+          "index": 55,
+          "start": 3.36,
+          "end": 3.75
+        },
+        {
+          "text": "room",
+          "index": 62,
+          "start": 3.75,
+          "end": 4.05
+        },
+        {
+          "text": "at",
+          "index": 67,
+          "start": 4.05,
+          "end": 4.26
+        },
+        {
+          "text": "452",
+          "index": 70,
+          "start": 4.26,
+          "end": 4.515
+        },
+        {
+          "text": "square",
+          "index": 74,
+          "start": 4.515,
+          "end": 4.905
+        },
+        {
+          "text": "feet.",
+          "index": 81,
+          "start": 4.905,
+          "end": 5.205
+        },
+        {
+          "text": "There",
+          "index": 87,
+          "start": 5.625,
+          "end": 5.97
+        },
+        {
+          "text": "is",
+          "index": 93,
+          "start": 5.97,
+          "end": 6.18
+        },
+        {
+          "text": "a",
+          "index": 96,
+          "start": 6.18,
+          "end": 6.345
+        },
+        {
+          "text": "walk-in",
+          "index": 98,
+          "start": 6.345,
+          "end": 6.735
+        },
+        {
+          "text": "wardrobe,",
+          "index": 106,
+          "start": 6.735,
+          "end": 7.215
+        },
+        {
+          "text": "and",
+          "index": 116,
+          "start": 7.395,
+          "end": 7.65
+        },
+        {
+          "text": "its",
+          "index": 120,
+          "start": 7.65,
+          "end": 7.905
+        },
+        {
+          "text": "own",
+          "index": 124,
+          "start": 7.905,
+          "end": 8.16
+        },
+        {
+          "text": "ensuite",
+          "index": 128,
+          "start": 8.16,
+          "end": 8.595
+        },
+        {
+          "text": "through",
+          "index": 136,
+          "start": 8.595,
+          "end": 9.03
+        },
+        {
+          "text": "that",
+          "index": 144,
+          "start": 9.03,
+          "end": 9.33
+        },
+        {
+          "text": "door.",
+          "index": 149,
+          "start": 9.33,
+          "end": 9.63
+        },
+        {
+          "text": "The",
+          "index": 155,
+          "start": 10.05,
+          "end": 10.305
+        },
+        {
+          "text": "windows",
+          "index": 159,
+          "start": 10.305,
+          "end": 10.74
+        },
+        {
+          "text": "face",
+          "index": 167,
+          "start": 10.74,
+          "end": 11.04
+        },
+        {
+          "text": "the",
+          "index": 172,
+          "start": 11.04,
+          "end": 11.295
+        },
+        {
+          "text": "morning",
+          "index": 176,
+          "start": 11.295,
+          "end": 11.73
+        },
+        {
+          "text": "sun,",
+          "index": 184,
+          "start": 11.73,
+          "end": 11.985
+        },
+        {
+          "text": "which",
+          "index": 189,
+          "start": 12.165,
+          "end": 12.51
+        },
+        {
+          "text": "is",
+          "index": 195,
+          "start": 12.51,
+          "end": 12.72
+        },
+        {
+          "text": "either",
+          "index": 198,
+          "start": 12.72,
+          "end": 13.11
+        },
+        {
+          "text": "a",
+          "index": 205,
+          "start": 13.11,
+          "end": 13.275
+        },
+        {
+          "text": "feature",
+          "index": 207,
+          "start": 13.275,
+          "end": 13.71
+        },
+        {
+          "text": "or",
+          "index": 215,
+          "start": 13.71,
+          "end": 13.92
+        },
+        {
+          "text": "a",
+          "index": 218,
+          "start": 13.92,
+          "end": 14.085
+        },
+        {
+          "text": "warning",
+          "index": 220,
+          "start": 14.085,
+          "end": 14.52
+        },
+        {
+          "text": "depending",
+          "index": 228,
+          "start": 14.52,
+          "end": 15.045
+        },
+        {
+          "text": "on",
+          "index": 238,
+          "start": 15.045,
+          "end": 15.255
+        },
+        {
+          "text": "who",
+          "index": 241,
+          "start": 15.255,
+          "end": 15.51
+        },
+        {
+          "text": "you",
+          "index": 245,
+          "start": 15.51,
+          "end": 15.765
+        },
+        {
+          "text": "are.",
+          "index": 249,
+          "start": 15.765,
+          "end": 16.02
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 192.804,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": 2.2
+        },
+        {
+          "at": 6.345,
+          "type": "lookAt",
+          "heading": 336.801,
+          "pitch": -4,
+          "fov": 66,
+          "duration": 2200
+        },
+        {
+          "at": 10.305,
+          "type": "lookAt",
+          "heading": 270,
+          "pitch": -2,
+          "fov": 60,
+          "duration": 2200
+        },
+        {
+          "at": 14.74,
+          "type": "lookAt",
+          "heading": 336.801,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "kind": "room",
+      "roomId": "r8",
+      "name": "Bathroom",
+      "transit": false,
+      "audio": null,
+      "duration": 12.28,
+      "text": "The bathroom settles the two arguments people actually have: a freestanding tub, and a double vanity so nobody is waiting. It opens to the primary on one side and the hall on the other.",
+      "words": [
+        {
+          "text": "The",
+          "index": 0,
+          "start": 0,
+          "end": 0.255
+        },
+        {
+          "text": "bathroom",
+          "index": 4,
+          "start": 0.255,
+          "end": 0.735
+        },
+        {
+          "text": "settles",
+          "index": 13,
+          "start": 0.735,
+          "end": 1.17
+        },
+        {
+          "text": "the",
+          "index": 21,
+          "start": 1.17,
+          "end": 1.425
+        },
+        {
+          "text": "two",
+          "index": 25,
+          "start": 1.425,
+          "end": 1.68
+        },
+        {
+          "text": "arguments",
+          "index": 29,
+          "start": 1.68,
+          "end": 2.205
+        },
+        {
+          "text": "people",
+          "index": 39,
+          "start": 2.205,
+          "end": 2.595
+        },
+        {
+          "text": "actually",
+          "index": 46,
+          "start": 2.595,
+          "end": 3.075
+        },
+        {
+          "text": "have:",
+          "index": 55,
+          "start": 3.075,
+          "end": 3.375
+        },
+        {
+          "text": "a",
+          "index": 61,
+          "start": 3.595,
+          "end": 3.76
+        },
+        {
+          "text": "freestanding",
+          "index": 63,
+          "start": 3.76,
+          "end": 4.42
+        },
+        {
+          "text": "tub,",
+          "index": 76,
+          "start": 4.42,
+          "end": 4.675
+        },
+        {
+          "text": "and",
+          "index": 81,
+          "start": 4.855,
+          "end": 5.11
+        },
+        {
+          "text": "a",
+          "index": 85,
+          "start": 5.11,
+          "end": 5.275
+        },
+        {
+          "text": "double",
+          "index": 87,
+          "start": 5.275,
+          "end": 5.665
+        },
+        {
+          "text": "vanity",
+          "index": 94,
+          "start": 5.665,
+          "end": 6.055
+        },
+        {
+          "text": "so",
+          "index": 101,
+          "start": 6.055,
+          "end": 6.265
+        },
+        {
+          "text": "nobody",
+          "index": 104,
+          "start": 6.265,
+          "end": 6.655
+        },
+        {
+          "text": "is",
+          "index": 111,
+          "start": 6.655,
+          "end": 6.865
+        },
+        {
+          "text": "waiting.",
+          "index": 114,
+          "start": 6.865,
+          "end": 7.3
+        },
+        {
+          "text": "It",
+          "index": 123,
+          "start": 7.72,
+          "end": 7.93
+        },
+        {
+          "text": "opens",
+          "index": 126,
+          "start": 7.93,
+          "end": 8.275
+        },
+        {
+          "text": "to",
+          "index": 132,
+          "start": 8.275,
+          "end": 8.485
+        },
+        {
+          "text": "the",
+          "index": 135,
+          "start": 8.485,
+          "end": 8.74
+        },
+        {
+          "text": "primary",
+          "index": 139,
+          "start": 8.74,
+          "end": 9.175
+        },
+        {
+          "text": "on",
+          "index": 147,
+          "start": 9.175,
+          "end": 9.385
+        },
+        {
+          "text": "one",
+          "index": 150,
+          "start": 9.385,
+          "end": 9.64
+        },
+        {
+          "text": "side",
+          "index": 154,
+          "start": 9.64,
+          "end": 9.94
+        },
+        {
+          "text": "and",
+          "index": 159,
+          "start": 9.94,
+          "end": 10.195
+        },
+        {
+          "text": "the",
+          "index": 163,
+          "start": 10.195,
+          "end": 10.45
+        },
+        {
+          "text": "hall",
+          "index": 167,
+          "start": 10.45,
+          "end": 10.75
+        },
+        {
+          "text": "on",
+          "index": 172,
+          "start": 10.75,
+          "end": 10.96
+        },
+        {
+          "text": "the",
+          "index": 175,
+          "start": 10.96,
+          "end": 11.215
+        },
+        {
+          "text": "other.",
+          "index": 179,
+          "start": 11.215,
+          "end": 11.56
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": -2.2
+        },
+        {
+          "at": 3.76,
+          "type": "lookAt",
+          "heading": 270,
+          "pitch": -2,
+          "fov": 62,
+          "duration": 2200
+        },
+        {
+          "at": 10.28,
+          "type": "lookAt",
+          "heading": 5.194,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "kind": "room",
+      "roomId": "r7",
+      "name": "Second bedroom",
+      "transit": false,
+      "audio": null,
+      "duration": 14.145,
+      "text": "And the second bedroom, 301 square feet, set up as a guest room for now, though there is easily room for a desk if you need the office. That is 142 Maple Street. It photographs well, but it lives better.",
+      "words": [
+        {
+          "text": "And",
+          "index": 0,
+          "start": 0,
+          "end": 0.255
+        },
+        {
+          "text": "the",
+          "index": 4,
+          "start": 0.255,
+          "end": 0.51
+        },
+        {
+          "text": "second",
+          "index": 8,
+          "start": 0.51,
+          "end": 0.9
+        },
+        {
+          "text": "bedroom,",
+          "index": 15,
+          "start": 0.9,
+          "end": 1.335
+        },
+        {
+          "text": "301",
+          "index": 24,
+          "start": 1.515,
+          "end": 1.77
+        },
+        {
+          "text": "square",
+          "index": 28,
+          "start": 1.77,
+          "end": 2.16
+        },
+        {
+          "text": "feet,",
+          "index": 35,
+          "start": 2.16,
+          "end": 2.46
+        },
+        {
+          "text": "set",
+          "index": 41,
+          "start": 2.64,
+          "end": 2.895
+        },
+        {
+          "text": "up",
+          "index": 45,
+          "start": 2.895,
+          "end": 3.105
+        },
+        {
+          "text": "as",
+          "index": 48,
+          "start": 3.105,
+          "end": 3.315
+        },
+        {
+          "text": "a",
+          "index": 51,
+          "start": 3.315,
+          "end": 3.48
+        },
+        {
+          "text": "guest",
+          "index": 53,
+          "start": 3.48,
+          "end": 3.825
+        },
+        {
+          "text": "room",
+          "index": 59,
+          "start": 3.825,
+          "end": 4.125
+        },
+        {
+          "text": "for",
+          "index": 64,
+          "start": 4.125,
+          "end": 4.38
+        },
+        {
+          "text": "now,",
+          "index": 68,
+          "start": 4.38,
+          "end": 4.635
+        },
+        {
+          "text": "though",
+          "index": 73,
+          "start": 4.815,
+          "end": 5.205
+        },
+        {
+          "text": "there",
+          "index": 80,
+          "start": 5.205,
+          "end": 5.55
+        },
+        {
+          "text": "is",
+          "index": 86,
+          "start": 5.55,
+          "end": 5.76
+        },
+        {
+          "text": "easily",
+          "index": 89,
+          "start": 5.76,
+          "end": 6.15
+        },
+        {
+          "text": "room",
+          "index": 96,
+          "start": 6.15,
+          "end": 6.45
+        },
+        {
+          "text": "for",
+          "index": 101,
+          "start": 6.45,
+          "end": 6.705
+        },
+        {
+          "text": "a",
+          "index": 105,
+          "start": 6.705,
+          "end": 6.87
+        },
+        {
+          "text": "desk",
+          "index": 107,
+          "start": 6.87,
+          "end": 7.17
+        },
+        {
+          "text": "if",
+          "index": 112,
+          "start": 7.17,
+          "end": 7.38
+        },
+        {
+          "text": "you",
+          "index": 115,
+          "start": 7.38,
+          "end": 7.635
+        },
+        {
+          "text": "need",
+          "index": 119,
+          "start": 7.635,
+          "end": 7.935
+        },
+        {
+          "text": "the",
+          "index": 124,
+          "start": 7.935,
+          "end": 8.19
+        },
+        {
+          "text": "office.",
+          "index": 128,
+          "start": 8.19,
+          "end": 8.58
+        },
+        {
+          "text": "That",
+          "index": 136,
+          "start": 9,
+          "end": 9.3
+        },
+        {
+          "text": "is",
+          "index": 141,
+          "start": 9.3,
+          "end": 9.51
+        },
+        {
+          "text": "142",
+          "index": 144,
+          "start": 9.51,
+          "end": 9.765
+        },
+        {
+          "text": "Maple",
+          "index": 148,
+          "start": 9.765,
+          "end": 10.11
+        },
+        {
+          "text": "Street.",
+          "index": 154,
+          "start": 10.11,
+          "end": 10.5
+        },
+        {
+          "text": "It",
+          "index": 162,
+          "start": 10.92,
+          "end": 11.13
+        },
+        {
+          "text": "photographs",
+          "index": 165,
+          "start": 11.13,
+          "end": 11.745
+        },
+        {
+          "text": "well,",
+          "index": 177,
+          "start": 11.745,
+          "end": 12.045
+        },
+        {
+          "text": "but",
+          "index": 183,
+          "start": 12.225,
+          "end": 12.48
+        },
+        {
+          "text": "it",
+          "index": 187,
+          "start": 12.48,
+          "end": 12.69
+        },
+        {
+          "text": "lives",
+          "index": 190,
+          "start": 12.69,
+          "end": 13.035
+        },
+        {
+          "text": "better.",
+          "index": 196,
+          "start": 13.035,
+          "end": 13.425
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 5.194,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": -2.2
+        },
+        {
+          "at": 6.15,
+          "type": "lookAt",
+          "heading": 270,
+          "pitch": -2,
+          "fov": 64,
+          "duration": 2200
+        }
+      ]
+    }
+  ]
+}

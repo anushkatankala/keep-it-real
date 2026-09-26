@@ -6,7 +6,43 @@ import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 const AXIS = { x: 0, y: 1, z: 2 };
 const dom = new Proxy({}, { get: (_, id) => document.getElementById(id) });
 
-const meta = await fetch("/meta").then((response) => response.json());
+const params = new URLSearchParams(location.search);
+const wantCropped = params.get("src") === "cropped";
+const parentOrigins = new Set(["http://localhost:3000", "http://127.0.0.1:3000"]);
+
+function notifyParent(type, payload) {
+  if (window.parent === window) return;
+  const message = { type, payload };
+  try {
+    window.parent.postMessage(message, "*");
+  } catch {
+    for (const origin of parentOrigins) {
+      try {
+        window.parent.postMessage(message, origin);
+      } catch {
+        /* ignore */
+      }
+    }
+  }
+}
+
+async function loadMeta() {
+  if (wantCropped) {
+    const cropped = await fetch("/cropped/meta");
+    if (cropped.ok) return { meta: await cropped.json(), modelPath: "/cropped", cropped: true };
+  }
+  return { meta: await fetch("/meta").then((response) => response.json()), modelPath: "/model", cropped: false };
+}
+
+const loaded = await loadMeta();
+const meta = loaded.meta;
+const modelPath = loaded.modelPath;
+const viewingCropped = loaded.cropped;
+
+if (viewingCropped) {
+  document.body.classList.add("view-cropped");
+  document.title = "Cropped GLB";
+}
 const upIndex = AXIS[meta.up];
 const [uName, vName] = meta.horizontal;
 const uIndex = AXIS[uName];
@@ -125,9 +161,15 @@ function show(object) {
 
 async function loadOriginal() {
   status("Loading model…");
-  const gltf = await loader.loadAsync("/model");
+  const gltf = await loader.loadAsync(modelPath);
   show(gltf.scene);
   status("");
+}
+
+function setContinueReady(ready) {
+  if (!dom.continue || viewingCropped) return;
+  dom.continue.disabled = !ready;
+  if (dom.continueBar) dom.continueBar.hidden = !ready;
 }
 
 // ---------------------------------------------------------------- selection
@@ -322,6 +364,7 @@ renderer.domElement.addEventListener("pointerup", (event) => {
 // ---------------------------------------------------------------- actions
 
 let croppedBlob = null;
+let lastCropStats = null;
 
 function status(message, isError = false) {
   dom.status.textContent = message;
@@ -352,7 +395,11 @@ async function crop() {
     show(gltf.scene);
     dom.download.disabled = false;
     dom.reset.disabled = false;
-    status(`Kept ${kept.toLocaleString()} of ${total.toLocaleString()} triangles (${((kept / total) * 100).toFixed(1)}%)`);
+    lastCropStats = { region, kept, total };
+    setContinueReady(true);
+    showcaseOrbit();
+    notifyParent("CROP_DONE", lastCropStats);
+    status(`Kept ${kept.toLocaleString()} of ${total.toLocaleString()} triangles (${((kept / total) * 100).toFixed(1)}%). Drag to turn it, then continue.`);
   } catch (error) {
     status(error.message, true);
   } finally {
@@ -402,7 +449,14 @@ addEventListener("keydown", (event) => {
   else return;
   event.preventDefault();
 });
+function continueWithCrop() {
+  if (!lastCropStats && !region) return;
+  notifyParent("CROP_CONTINUE", lastCropStats ?? { region, kept: null, total: null });
+}
+
 dom.crop.onclick = crop;
+if (dom.continue) dom.continue.onclick = continueWithCrop;
+if (dom.continueBanner) dom.continueBanner.onclick = continueWithCrop;
 dom.download.onclick = () => {
   const url = URL.createObjectURL(croppedBlob);
   const anchorElement = document.createElement("a");
@@ -415,16 +469,43 @@ dom.reset.onclick = async () => {
   await loadOriginal();
   dom.download.disabled = true;
   dom.reset.disabled = true;
+  lastCropStats = null;
+  setContinueReady(false);
+  notifyParent("CROP_RESET", {});
 };
 
 controls.addEventListener("change", updateTilt);
 
 resize();
-setViewAngle(0);
-setMode("draw");
 setRegion(null);
 updateTilt();
 await loadOriginal();
+
+/**
+ * Three-quarter view that keeps turning. A drag takes over immediately and
+ * the model stays where the user left it.
+ */
+function showcaseOrbit() {
+  setMode("orbit");
+  const horizontal = horizontalDirection(35).multiplyScalar(span * 1.35);
+  camera.position.copy(centre).add(horizontal).addScaledVector(upVector, span * 0.42);
+  camera.lookAt(centre);
+  controls.target.copy(centre);
+  controls.enableRotate = true;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 1.6;
+  controls.update();
+}
+
+if (viewingCropped) showcaseOrbit();
+else {
+  setViewAngle(0);
+  setMode("draw");
+}
+
+controls.addEventListener("start", () => {
+  controls.autoRotate = false;
+});
 
 renderer.setAnimationLoop(() => {
   controls.update();

@@ -12,14 +12,15 @@ interface RouteGuardProps {
 /** Shows protected workflow content only when drone images exist in context. */
 export function RouteGuard({ children }: RouteGuardProps) {
   const router = useRouter();
-  const { droneImages } = useProject();
+  const { demoMode, droneImages } = useProject();
   const hasDroneImages = droneImages.files.length > 0;
+  const canEnter = hasDroneImages || demoMode;
 
   useEffect(() => {
-    if (!hasDroneImages) {
+    if (!canEnter) {
       router.replace("/");
     }
-  }, [hasDroneImages, router]);
+  }, [canEnter, router]);
 
-  return hasDroneImages ? children : null;
+  return canEnter ? children : null;
 }

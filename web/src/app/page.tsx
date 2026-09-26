@@ -15,7 +15,15 @@ import {
 /** Presents the upload-first landing experience for drone capture images. */
 export default function LandingPage() {
   const router = useRouter();
-  const { droneImages, setDroneImages } = useProject();
+  const {
+    demoMode,
+    droneImages,
+    resetDemo,
+    results,
+    setDroneImages,
+    startDemo,
+  } = useProject();
+  const hasDemoResults = demoMode && Boolean(results);
   const [selectedFiles, setSelectedFiles] = useState<File[]>(
     droneImages.files,
   );
@@ -37,6 +45,16 @@ export default function LandingPage() {
   const handleContinue = () => {
     setDroneImages(selectedFiles);
     router.push("/configure");
+  };
+
+  const handleDemo = () => {
+    startDemo();
+    router.push(hasDemoResults ? "/results" : "/demo");
+  };
+
+  const handleStartOver = () => {
+    resetDemo();
+    router.push("/demo");
   };
 
   return (
@@ -63,11 +81,21 @@ export default function LandingPage() {
           />
         </GlassCard>
 
-        {selectedFiles.length > 0 ? (
-          <div className="mt-8 flex justify-end">
-            <Button onClick={handleContinue}>Continue →</Button>
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <Button onClick={handleDemo} variant="ghost">
+              View demo
+            </Button>
+            {hasDemoResults ? (
+              <Button onClick={handleStartOver} variant="ghost">
+                Start over
+              </Button>
+            ) : null}
           </div>
-        ) : null}
+          {selectedFiles.length > 0 ? (
+            <Button onClick={handleContinue}>Continue →</Button>
+          ) : null}
+        </div>
       </div>
     </main>
   );
