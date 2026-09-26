@@ -28,6 +28,7 @@ export function TabBar({
         return (
           <button
             key={tab.id}
+            aria-controls={`${tab.id}-panel`}
             aria-selected={isActive}
             className={`border-b py-4 pr-8 text-sm font-light transition-colors duration-200 ${
               isActive
@@ -35,6 +36,7 @@ export function TabBar({
                 : "border-transparent text-white/35 hover:text-white/65"
             }`}
             onClick={handleTabChange}
+            id={`${tab.id}-tab`}
             role="tab"
             type="button"
           >

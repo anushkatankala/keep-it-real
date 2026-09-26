@@ -44,6 +44,8 @@ export interface ProjectState {
 
 export interface ProjectResults {
   glbModelUrl: string | null;
+  /** URL of the hosted existing viewer with its model and crop routes ready. */
+  viewerUrl: string | null;
   virtualTourUrl: string | null;
   aiVideoUrl: string | null;
 }

@@ -7,9 +7,7 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { TabBar, type TabDefinition } from "@/components/ui/TabBar";
 import { STANDARD_ROOMS } from "@/constants/rooms";
 import { useProject } from "@/context/ProjectContext";
-import type { ProjectResults, RoomConfig } from "@/types";
-
-const PROCESSING_PREVIEW_DELAY_MS = 2400;
+import type { RoomConfig } from "@/types";
 
 const RESULT_TABS = [
   { id: "model", label: "3D Model" },
@@ -23,24 +21,11 @@ const LOADING_MESSAGES: Record<string, string> = {
   walkthrough: "Composing AI walkthrough…",
 };
 
-const MEASUREMENTS = [
-  { label: "Gross area", value: "— m²" },
-  { label: "Roof height", value: "— m" },
-  { label: "Perimeter", value: "— m" },
-  { label: "Ground level", value: "— m" },
-];
-
 const TRANSCRIPT_ROWS = [
   { time: "00:00", text: "Exterior approach and aerial context." },
   { time: "00:18", text: "Entry sequence and primary living spaces." },
   { time: "00:46", text: "Private rooms and additional spaces." },
 ];
-
-const EMPTY_RESULTS: ProjectResults = {
-  glbModelUrl: null,
-  virtualTourUrl: null,
-  aiVideoUrl: null,
-};
 
 const buildTourRoomList = (roomConfig: RoomConfig): string[] => {
   const standardRooms = STANDARD_ROOMS.flatMap(({ key, singularLabel }) =>
@@ -75,50 +60,62 @@ function LoadingPanel({ message }: LoadingPanelProps) {
 }
 
 interface ModelPanelProps {
-  modelUrl: string | null;
+  viewerUrl: string | null;
 }
 
-/** Displays the dominant model canvas with floating property measurements. */
-function ModelPanel({ modelUrl }: ModelPanelProps) {
-  return (
-    <div className="relative min-h-[calc(100vh-14rem)] py-6">
-      <div className="relative min-h-[calc(100vh-17rem)] overflow-hidden border border-white/[0.08] bg-white/[0.02]">
-        {/* TODO: integrate Three.js GLB viewer */}
-        <canvas
-          aria-label="3D property model viewer"
-          className="absolute inset-0 h-full w-full"
-          data-model-url={modelUrl ?? ""}
-        />
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="text-center">
-            <p className="text-xs uppercase tracking-[0.2em] text-white/25">
-              Spatial model
-            </p>
-            <p className="mt-3 text-sm font-light text-white/40">
-              {modelUrl ? "Model asset ready" : "GLB viewer placeholder"}
-            </p>
-          </div>
-        </div>
-      </div>
+/** Embeds the existing hosted model viewer when its backend URL is ready. */
+function ModelPanel({ viewerUrl }: ModelPanelProps) {
+  const [isViewerLoading, setIsViewerLoading] = useState(Boolean(viewerUrl));
 
-      <GlassCard className="absolute right-6 top-12 w-64 p-5">
-        <p className="text-xs uppercase tracking-[0.2em] text-white/40">
-          Measurements
-        </p>
-        <dl className="mt-5">
-          {MEASUREMENTS.map(({ label, value }) => (
-            <div
-              key={label}
-              className="flex justify-between border-b border-white/[0.06] py-3 text-xs"
-            >
-              <dt className="font-light text-white/40">{label}</dt>
-              <dd className="font-medium tabular-nums text-white/70">
-                {value}
-              </dd>
+  useEffect(() => {
+    setIsViewerLoading(Boolean(viewerUrl));
+  }, [viewerUrl]);
+
+  const handleViewerLoad = () => {
+    setIsViewerLoading(false);
+  };
+
+  return (
+    <div className="min-h-[calc(100vh-14rem)] py-6">
+      <div className="relative min-h-[calc(100vh-17rem)] overflow-hidden border border-white/[0.08] bg-white/[0.02]">
+        {viewerUrl ? (
+          <>
+            <iframe
+              key={viewerUrl}
+              allow="fullscreen"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full border-0"
+              onLoad={handleViewerLoad}
+              sandbox="allow-downloads allow-same-origin allow-scripts"
+              src={viewerUrl}
+              title="3D property model viewer"
+            />
+            {isViewerLoading ? (
+              <div className="pointer-events-none absolute inset-0 flex items-center bg-canvas">
+                <div className="w-full max-w-xl px-8">
+                  <p className="text-sm font-light text-white/60">
+                    Loading 3D viewer…
+                  </p>
+                  <div className="mt-5 h-px bg-white/10">
+                    <div className="h-px w-2/3 animate-pulse bg-white/80" />
+                  </div>
+                </div>
+              </div>
+            ) : null}
+          </>
+        ) : (
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full max-w-xl px-8">
+              <p className="text-sm font-light text-white/60">
+                Preparing 3D viewer…
+              </p>
+              <div className="mt-5 h-px bg-white/10">
+                <div className="h-px w-2/3 animate-pulse bg-white/80" />
+              </div>
             </div>
-          ))}
-        </dl>
-      </GlassCard>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -230,35 +227,14 @@ function WalkthroughPanel({ videoUrl }: WalkthroughPanelProps) {
 
 /** Presents the processed property across model, tour, and video result tabs. */
 export default function ResultsPage() {
-  const {
-    isProcessing,
-    results,
-    roomConfig,
-    setIsProcessing,
-    setResults,
-  } = useProject();
+  const { isProcessing, results, roomConfig } = useProject();
   const [activeTab, setActiveTab] = useState<string>(RESULT_TABS[0].id);
-
-  useEffect(() => {
-    if (!isProcessing) {
-      return undefined;
-    }
-
-    const processingTimer = window.setTimeout(() => {
-      setResults(EMPTY_RESULTS);
-      setIsProcessing(false);
-    }, PROCESSING_PREVIEW_DELAY_MS);
-
-    return () => {
-      window.clearTimeout(processingTimer);
-    };
-  }, [isProcessing, setIsProcessing, setResults]);
 
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
   };
 
-  const renderActivePanel = () => {
+  const renderResultsPanels = () => {
     if (isProcessing) {
       return (
         <LoadingPanel
@@ -267,22 +243,41 @@ export default function ResultsPage() {
       );
     }
 
-    if (activeTab === "tour") {
-      return (
-        <TourPanel
-          roomConfig={roomConfig}
-          tourUrl={results?.virtualTourUrl ?? null}
-        />
-      );
-    }
+    return (
+      <>
+        <section
+          aria-labelledby="model-tab"
+          hidden={activeTab !== "model"}
+          id="model-panel"
+          role="tabpanel"
+        >
+          <ModelPanel viewerUrl={results?.viewerUrl ?? null} />
+        </section>
 
-    if (activeTab === "walkthrough") {
-      return (
-        <WalkthroughPanel videoUrl={results?.aiVideoUrl ?? null} />
-      );
-    }
+        {activeTab === "tour" ? (
+          <section
+            aria-labelledby="tour-tab"
+            id="tour-panel"
+            role="tabpanel"
+          >
+            <TourPanel
+              roomConfig={roomConfig}
+              tourUrl={results?.virtualTourUrl ?? null}
+            />
+          </section>
+        ) : null}
 
-    return <ModelPanel modelUrl={results?.glbModelUrl ?? null} />;
+        {activeTab === "walkthrough" ? (
+          <section
+            aria-labelledby="walkthrough-tab"
+            id="walkthrough-panel"
+            role="tabpanel"
+          >
+            <WalkthroughPanel videoUrl={results?.aiVideoUrl ?? null} />
+          </section>
+        ) : null}
+      </>
+    );
   };
 
   return (
@@ -297,7 +292,7 @@ export default function ResultsPage() {
             onTabChange={handleTabChange}
             tabs={RESULT_TABS}
           />
-          <section role="tabpanel">{renderActivePanel()}</section>
+          {renderResultsPanels()}
         </div>
       </main>
     </RouteGuard>
