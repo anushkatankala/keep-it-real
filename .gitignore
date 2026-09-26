@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Build output — regenerate with `npm run build`
+dist/
+
+# Source photographs and reconstruction output are large binaries, not source
+photos/
+*.glb
+
+# Local runtime files
+.server.log
+.tmp-*
+
+# macOS
+.DS_Store
