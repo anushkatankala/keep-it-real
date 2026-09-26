@@ -53,25 +53,46 @@ function resize() {
 }
 addEventListener("resize", resize);
 
-const vVector = new THREE.Vector3().setComponent(vIndex, 1);
+/** Degrees the top-down view is turned about the vertical axis. */
+let viewAngle = 0;
+
+/** A horizontal direction, turned anticlockwise from the v axis. */
+function horizontalDirection(degrees) {
+  const radians = THREE.MathUtils.degToRad(degrees);
+  return new THREE.Vector3()
+    .setComponent(uIndex, -Math.sin(radians))
+    .setComponent(vIndex, Math.cos(radians));
+}
 
 /**
- * Straight down, with the v axis pointing up the screen.
+ * Straight down, turned so that `viewAngle` points up the screen. Turning the
+ * view is what lets a box be drawn square to a building: the drag stays
+ * aligned to the screen and the building is what moves.
  *
- * The camera cannot sit exactly on the pole: OrbitControls keeps camera.up
+ * The camera cannot sit exactly on the pole. OrbitControls keeps camera.up
  * aligned to the model's vertical so orbiting feels right, and lookAt is
  * degenerate when up is parallel to the view direction, which leaves the roll
- * arbitrary. Nudging a hair along v fixes the roll; the resulting 0.006 degree
- * tilt moves a 13 m rooftop by under 2 mm.
+ * arbitrary. Nudging a hair opposite the wanted screen-up direction fixes the
+ * roll; the resulting 0.006 degree tilt moves a 13 m rooftop by under 2 mm.
  */
 function topView() {
   camera.position
     .copy(centre)
     .addScaledVector(upVector, span * 2)
-    .addScaledVector(vVector, -span * 1e-4);
+    .addScaledVector(horizontalDirection(viewAngle), -span * 1e-4);
   camera.lookAt(centre);
   controls.target.copy(centre);
   controls.update();
+}
+
+/**
+ * How far the view is turned about the vertical, from the camera itself rather
+ * than from `viewAngle`, so a box drawn after free orbiting still lines up
+ * with what is on screen.
+ */
+function screenAngle() {
+  const right = new THREE.Vector3(1, 0, 0).applyQuaternion(camera.quaternion);
+  return THREE.MathUtils.radToDeg(Math.atan2(right.getComponent(vIndex), right.getComponent(uIndex)));
 }
 
 /** Degrees between the view direction and straight down. */
@@ -112,7 +133,6 @@ async function loadOriginal() {
 // ---------------------------------------------------------------- selection
 
 let region = null;
-let rotation = 0;
 let outline = null;
 
 /** The four corners of the region at a given height, turned by its rotation. */
@@ -121,7 +141,7 @@ function regionCorners(level) {
   const centreV = (region.minV + region.maxV) / 2;
   const halfU = (region.maxU - region.minU) / 2;
   const halfV = (region.maxV - region.minV) / 2;
-  const radians = THREE.MathUtils.degToRad(rotation);
+  const radians = THREE.MathUtils.degToRad(region.rotation);
   const cos = Math.cos(radians);
   const sin = Math.sin(radians);
 
@@ -172,16 +192,20 @@ function setRegion(next) {
     ? `<dt>${uName}</dt><dd>${region.minU.toFixed(1)} → ${region.maxU.toFixed(1)}</dd>` +
       `<dt>${vName}</dt><dd>${region.minV.toFixed(1)} → ${region.maxV.toFixed(1)}</dd>` +
       `<dt>size</dt><dd>${(region.maxU - region.minU).toFixed(1)} × ${(region.maxV - region.minV).toFixed(1)} m</dd>` +
-      `<dt>angle</dt><dd>${rotation.toFixed(0)}°</dd>`
+      `<dt>angle</dt><dd>${region.rotation.toFixed(0)}°</dd>`
     : `<dt>model</dt><dd>${(max.getComponent(uIndex) - min.getComponent(uIndex)).toFixed(1)} × ` +
       `${(max.getComponent(vIndex) - min.getComponent(vIndex)).toFixed(1)} m</dd>`;
 }
 
-function setRotation(degrees) {
-  rotation = ((degrees + 180) % 360 + 360) % 360 - 180;
-  dom.rotate.value = String(rotation);
-  dom.rotateValue.textContent = `${rotation.toFixed(0)}°`;
-  setRegion(region);
+function normaliseDegrees(degrees) {
+  return ((((degrees + 180) % 360) + 360) % 360) - 180;
+}
+
+function setViewAngle(degrees) {
+  viewAngle = normaliseDegrees(degrees);
+  dom.rotate.value = String(viewAngle);
+  dom.rotateValue.textContent = `${viewAngle.toFixed(0)}°`;
+  topView();
 }
 
 const raycaster = new THREE.Raycaster();
@@ -208,8 +232,9 @@ function regionFromPixels(a, b) {
   ].filter(Boolean);
   if (corners.length < 2) return null;
 
-  // Measure the drag in the turned frame, so a box drawn while the slider is
-  // set stays square to the building rather than to the world axes.
+  // Measure the drag in the screen's frame, so the box is square to the view
+  // the box was drawn in rather than to the world axes.
+  const rotation = screenAngle();
   const radians = THREE.MathUtils.degToRad(rotation);
   const cos = Math.cos(radians);
   const sin = Math.sin(radians);
@@ -237,7 +262,8 @@ function regionFromPixels(a, b) {
     minU: centreU - halfAlong,
     maxU: centreU + halfAlong,
     minV: centreV - halfAcross,
-    maxV: centreV + halfAcross
+    maxV: centreV + halfAcross,
+    rotation
   };
 }
 
@@ -312,7 +338,7 @@ async function crop() {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        region: { ...region, rotation },
+        region,
         select: dom.overlapping.checked ? "overlapping" : "centroid"
       })
     });
@@ -337,6 +363,7 @@ async function crop() {
 function resizeRegion(metres) {
   if (!region) return;
   const next = {
+    ...region,
     minU: region.minU - metres,
     maxU: region.maxU + metres,
     minV: region.minV - metres,
@@ -360,7 +387,7 @@ dom.orbit.onclick = () => setMode("orbit");
 dom.top.onclick = topView;
 dom.grow.onclick = () => resizeRegion(1);
 dom.shrink.onclick = () => resizeRegion(-1);
-dom.rotate.oninput = (event) => setRotation(Number(event.target.value));
+dom.rotate.oninput = (event) => setViewAngle(Number(event.target.value));
 dom.clear.onclick = () => {
   setRegion(null);
   status("");
@@ -369,8 +396,8 @@ dom.clear.onclick = () => {
 addEventListener("keydown", (event) => {
   if (event.target instanceof HTMLInputElement) return;
   const step = event.shiftKey ? 5 : 1;
-  if (event.key === "[") setRotation(rotation - step);
-  else if (event.key === "]") setRotation(rotation + step);
+  if (event.key === "[") setViewAngle(viewAngle - step);
+  else if (event.key === "]") setViewAngle(viewAngle + step);
   else if (event.key === "t") topView();
   else return;
   event.preventDefault();
@@ -393,7 +420,7 @@ dom.reset.onclick = async () => {
 controls.addEventListener("change", updateTilt);
 
 resize();
-topView();
+setViewAngle(0);
 setMode("draw");
 setRegion(null);
 updateTilt();
