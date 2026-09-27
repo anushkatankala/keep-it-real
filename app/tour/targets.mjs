@@ -213,18 +213,90 @@ export function targetsFor(room, rooms, doors) {
   return targets;
 }
 
+/** Heading of +V, which is north on a plan drawn with north at the top. */
+export const NORTH_HEADING = 270;
+
+export function roomContains(room, point, margin = 0) {
+  const { minU, minV, maxU, maxV } = room.rect;
+  return (
+    point.u >= minU - margin && point.u <= maxU + margin && point.v >= minV - margin && point.v <= maxV + margin
+  );
+}
+
+/**
+ * The plan's camera positions, grouped by room and ordered along each room's
+ * long axis so a stop can walk through them in a straight line.
+ *
+ * A plan without `viewpoints` gets one per room at its centre, with the room id
+ * as the viewpoint id. That keeps `panos/<roomId>.jpg` working unchanged.
+ * `facing` is the heading the centre of the image looks toward; it defaults to
+ * 0 because that is what the panorama convention has always said.
+ */
+export function planViewpoints(plan, rooms = allRooms(plan)) {
+  const authored = Array.isArray(plan.viewpoints) && plan.viewpoints.length > 0;
+  const viewpoints = authored
+    ? plan.viewpoints.map((point) => ({
+        id: String(point.id),
+        roomId: String(point.roomId),
+        u: Number(point.u),
+        v: Number(point.v),
+        facing: normaliseHeading(Number(point.facing ?? 0))
+      }))
+    : rooms.map((room) => ({ id: room.id, roomId: room.id, ...roomCentre(room), facing: 0 }));
+
+  const byRoom = new Map(rooms.map((room) => [room.id, []]));
+  for (const point of viewpoints) byRoom.get(point.roomId)?.push(point);
+
+  for (const room of rooms) {
+    const points = byRoom.get(room.id);
+    if (points.length === 0) {
+      // A room nobody photographed still needs somewhere to stand, or the
+      // route would have a stop with nothing to show.
+      const fallback = { id: room.id, roomId: room.id, ...roomCentre(room), facing: 0 };
+      points.push(fallback);
+      viewpoints.push(fallback);
+      continue;
+    }
+    const { minU, minV, maxU, maxV } = room.rect;
+    const axis = maxU - minU >= maxV - minV ? "u" : "v";
+    points.sort((a, b) => a[axis] - b[axis]);
+  }
+
+  return {
+    viewpoints,
+    byId: new Map(viewpoints.map((point) => [point.id, point])),
+    byRoom
+  };
+}
+
 /**
  * One pass over a plan producing everything downstream needs: rooms, lookup,
- * doorways, and named targets per room.
+ * doorways, named targets per room, and the viewpoints inside each room.
  */
 export function analysePlan(plan) {
   const rooms = allRooms(plan);
   const byId = new Map(rooms.map((room) => [room.id, room]));
+  // A hidden room keeps its walls, so its neighbours do not mistake the shared
+  // wall for an outside one, but nobody can walk into it.
   const doors = doorways(rooms, plan.doorOverrides ?? {});
+  for (const [roomId, list] of doors) {
+    doors.set(roomId, byId.get(roomId).hidden ? [] : list.filter((door) => !byId.get(door.roomId).hidden));
+  }
   const targets = new Map(rooms.map((room) => [room.id, targetsFor(room, rooms, doors)]));
   const centres = new Map(rooms.map((room) => [room.id, roomCentre(room)]));
+  const points = planViewpoints(plan, rooms);
 
-  return { plan, rooms, byId, doors, targets, centres };
+  return {
+    plan,
+    rooms,
+    byId,
+    doors,
+    targets,
+    centres,
+    viewpoints: points.viewpoints,
+    viewpointById: points.byId,
+    viewpointsByRoom: points.byRoom
+  };
 }
 
 /** Heading to use when leaving `fromRoom` for `toRoom`, or null if not adjacent. */

@@ -1,0 +1,1935 @@
+{
+  "projectId": "generated",
+  "projectName": "Generated House",
+  "generatedAt": "2026-09-26T22:58:26.898Z",
+  "voice": {
+    "provider": "elevenlabs",
+    "voiceId": "EXAVITQu4vr4xnSDxMaL",
+    "modelId": "eleven_multilingual_v2"
+  },
+  "totalDuration": 82.058,
+  "stops": [
+    {
+      "id": "s0",
+      "kind": "exterior",
+      "roomId": null,
+      "viewpointIds": [],
+      "name": "Generated House",
+      "transit": false,
+      "audio": "audio/s0.mp3",
+      "duration": 11.378,
+      "text": "Welcome home. Warm red brick, dark metal roofing and stone on the gables, this is Canadian transitional done properly. Just over 2,100 square feet on one level. Let's step inside.",
+      "words": [
+        {
+          "text": "Welcome",
+          "index": 0,
+          "start": 0,
+          "end": 0.441
+        },
+        {
+          "text": "home.",
+          "index": 8,
+          "start": 0.476,
+          "end": 0.894
+        },
+        {
+          "text": "Warm",
+          "index": 14,
+          "start": 1.173,
+          "end": 1.498
+        },
+        {
+          "text": "red",
+          "index": 19,
+          "start": 1.567,
+          "end": 1.753
+        },
+        {
+          "text": "brick,",
+          "index": 23,
+          "start": 1.811,
+          "end": 2.148
+        },
+        {
+          "text": "dark",
+          "index": 30,
+          "start": 2.194,
+          "end": 2.438
+        },
+        {
+          "text": "metal",
+          "index": 35,
+          "start": 2.508,
+          "end": 2.728
+        },
+        {
+          "text": "roofing",
+          "index": 41,
+          "start": 2.786,
+          "end": 3.135
+        },
+        {
+          "text": "and",
+          "index": 49,
+          "start": 3.181,
+          "end": 3.262
+        },
+        {
+          "text": "stone",
+          "index": 53,
+          "start": 3.332,
+          "end": 3.622
+        },
+        {
+          "text": "on",
+          "index": 59,
+          "start": 3.657,
+          "end": 3.727
+        },
+        {
+          "text": "the",
+          "index": 62,
+          "start": 3.762,
+          "end": 3.831
+        },
+        {
+          "text": "gables,",
+          "index": 66,
+          "start": 3.866,
+          "end": 4.319
+        },
+        {
+          "text": "this",
+          "index": 74,
+          "start": 4.342,
+          "end": 4.528
+        },
+        {
+          "text": "is",
+          "index": 79,
+          "start": 4.598,
+          "end": 4.69
+        },
+        {
+          "text": "Canadian",
+          "index": 82,
+          "start": 4.748,
+          "end": 5.213
+        },
+        {
+          "text": "transitional",
+          "index": 91,
+          "start": 5.259,
+          "end": 5.886
+        },
+        {
+          "text": "done",
+          "index": 104,
+          "start": 5.944,
+          "end": 6.177
+        },
+        {
+          "text": "properly.",
+          "index": 109,
+          "start": 6.223,
+          "end": 6.861
+        },
+        {
+          "text": "Just",
+          "index": 119,
+          "start": 7.14,
+          "end": 7.396
+        },
+        {
+          "text": "over",
+          "index": 124,
+          "start": 7.442,
+          "end": 7.639
+        },
+        {
+          "text": "2,100",
+          "index": 129,
+          "start": 7.721,
+          "end": 8.568
+        },
+        {
+          "text": "square",
+          "index": 135,
+          "start": 8.615,
+          "end": 8.882
+        },
+        {
+          "text": "feet",
+          "index": 142,
+          "start": 8.928,
+          "end": 9.137
+        },
+        {
+          "text": "on",
+          "index": 147,
+          "start": 9.207,
+          "end": 9.311
+        },
+        {
+          "text": "one",
+          "index": 150,
+          "start": 9.392,
+          "end": 9.578
+        },
+        {
+          "text": "level.",
+          "index": 154,
+          "start": 9.625,
+          "end": 10.089
+        },
+        {
+          "text": "Let's",
+          "index": 161,
+          "start": 10.24,
+          "end": 10.437
+        },
+        {
+          "text": "step",
+          "index": 167,
+          "start": 10.461,
+          "end": 10.635
+        },
+        {
+          "text": "inside.",
+          "index": 172,
+          "start": 10.681,
+          "end": 11.378
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "orbit",
+          "from": 335,
+          "to": 90,
+          "elevation": 18,
+          "fov": 55
+        }
+      ]
+    },
+    {
+      "id": "s1",
+      "kind": "room",
+      "roomId": "r2",
+      "viewpointIds": [
+        "v1"
+      ],
+      "name": "Entry",
+      "transit": false,
+      "audio": "audio/s1.mp3",
+      "duration": 8.777,
+      "text": "The entry keeps things practical, with a coat closet right by the door, and it opens straight into the living room so the house feels welcoming the moment you arrive.",
+      "words": [
+        {
+          "text": "The",
+          "index": 0,
+          "start": 0,
+          "end": 0.151
+        },
+        {
+          "text": "entry",
+          "index": 4,
+          "start": 0.221,
+          "end": 0.58
+        },
+        {
+          "text": "keeps",
+          "index": 10,
+          "start": 0.662,
+          "end": 0.929
+        },
+        {
+          "text": "things",
+          "index": 16,
+          "start": 0.964,
+          "end": 1.184
+        },
+        {
+          "text": "practical,",
+          "index": 23,
+          "start": 1.231,
+          "end": 1.858
+        },
+        {
+          "text": "with",
+          "index": 34,
+          "start": 1.916,
+          "end": 2.09
+        },
+        {
+          "text": "a",
+          "index": 39,
+          "start": 2.125,
+          "end": 2.148
+        },
+        {
+          "text": "coat",
+          "index": 41,
+          "start": 2.206,
+          "end": 2.403
+        },
+        {
+          "text": "closet",
+          "index": 46,
+          "start": 2.461,
+          "end": 2.833
+        },
+        {
+          "text": "right",
+          "index": 53,
+          "start": 2.879,
+          "end": 3.065
+        },
+        {
+          "text": "by",
+          "index": 59,
+          "start": 3.111,
+          "end": 3.216
+        },
+        {
+          "text": "the",
+          "index": 62,
+          "start": 3.286,
+          "end": 3.355
+        },
+        {
+          "text": "door,",
+          "index": 66,
+          "start": 3.39,
+          "end": 3.808
+        },
+        {
+          "text": "and",
+          "index": 72,
+          "start": 3.982,
+          "end": 4.133
+        },
+        {
+          "text": "it",
+          "index": 76,
+          "start": 4.203,
+          "end": 4.284
+        },
+        {
+          "text": "opens",
+          "index": 79,
+          "start": 4.342,
+          "end": 4.69
+        },
+        {
+          "text": "straight",
+          "index": 85,
+          "start": 4.748,
+          "end": 5.108
+        },
+        {
+          "text": "into",
+          "index": 94,
+          "start": 5.155,
+          "end": 5.306
+        },
+        {
+          "text": "the",
+          "index": 99,
+          "start": 5.364,
+          "end": 5.433
+        },
+        {
+          "text": "living",
+          "index": 103,
+          "start": 5.48,
+          "end": 5.712
+        },
+        {
+          "text": "room",
+          "index": 110,
+          "start": 5.759,
+          "end": 5.944
+        },
+        {
+          "text": "so",
+          "index": 115,
+          "start": 6.014,
+          "end": 6.142
+        },
+        {
+          "text": "the",
+          "index": 118,
+          "start": 6.2,
+          "end": 6.269
+        },
+        {
+          "text": "house",
+          "index": 122,
+          "start": 6.327,
+          "end": 6.571
+        },
+        {
+          "text": "feels",
+          "index": 128,
+          "start": 6.606,
+          "end": 6.873
+        },
+        {
+          "text": "welcoming",
+          "index": 134,
+          "start": 6.943,
+          "end": 7.384
+        },
+        {
+          "text": "the",
+          "index": 144,
+          "start": 7.442,
+          "end": 7.512
+        },
+        {
+          "text": "moment",
+          "index": 148,
+          "start": 7.57,
+          "end": 7.848
+        },
+        {
+          "text": "you",
+          "index": 155,
+          "start": 7.883,
+          "end": 7.964
+        },
+        {
+          "text": "arrive.",
+          "index": 159,
+          "start": 8.034,
+          "end": 8.777
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 270,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": 2.2
+        },
+        {
+          "at": 4.342,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": -4,
+          "fov": 64,
+          "duration": 2200
+        },
+        {
+          "at": 6.777,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "kind": "room",
+      "roomId": "r3",
+      "viewpointIds": [
+        "v2",
+        "v3"
+      ],
+      "name": "Living Room",
+      "transit": false,
+      "audio": "audio/s2.mp3",
+      "duration": 9.567,
+      "text": "Here's the living room. The gas fireplace anchors the space, and that big south-facing window keeps it bright all afternoon. Wide-plank oak runs underfoot throughout.",
+      "words": [
+        {
+          "text": "Here's",
+          "index": 0,
+          "start": 0,
+          "end": 0.313
+        },
+        {
+          "text": "the",
+          "index": 7,
+          "start": 0.36,
+          "end": 0.43
+        },
+        {
+          "text": "living",
+          "index": 11,
+          "start": 0.476,
+          "end": 0.708
+        },
+        {
+          "text": "room.",
+          "index": 18,
+          "start": 0.755,
+          "end": 1.091
+        },
+        {
+          "text": "The",
+          "index": 24,
+          "start": 1.3,
+          "end": 1.416
+        },
+        {
+          "text": "gas",
+          "index": 28,
+          "start": 1.463,
+          "end": 1.672
+        },
+        {
+          "text": "fireplace",
+          "index": 32,
+          "start": 1.73,
+          "end": 2.241
+        },
+        {
+          "text": "anchors",
+          "index": 42,
+          "start": 2.299,
+          "end": 2.647
+        },
+        {
+          "text": "the",
+          "index": 50,
+          "start": 2.694,
+          "end": 2.763
+        },
+        {
+          "text": "space,",
+          "index": 54,
+          "start": 2.798,
+          "end": 3.204
+        },
+        {
+          "text": "and",
+          "index": 61,
+          "start": 3.228,
+          "end": 3.344
+        },
+        {
+          "text": "that",
+          "index": 65,
+          "start": 3.39,
+          "end": 3.529
+        },
+        {
+          "text": "big",
+          "index": 70,
+          "start": 3.587,
+          "end": 3.773
+        },
+        {
+          "text": "south-facing",
+          "index": 74,
+          "start": 3.855,
+          "end": 4.493
+        },
+        {
+          "text": "window",
+          "index": 87,
+          "start": 4.551,
+          "end": 4.899
+        },
+        {
+          "text": "keeps",
+          "index": 94,
+          "start": 4.992,
+          "end": 5.259
+        },
+        {
+          "text": "it",
+          "index": 100,
+          "start": 5.306,
+          "end": 5.375
+        },
+        {
+          "text": "bright",
+          "index": 103,
+          "start": 5.422,
+          "end": 5.712
+        },
+        {
+          "text": "all",
+          "index": 110,
+          "start": 5.759,
+          "end": 5.898
+        },
+        {
+          "text": "afternoon.",
+          "index": 114,
+          "start": 5.956,
+          "end": 6.641
+        },
+        {
+          "text": "Wide-plank",
+          "index": 125,
+          "start": 6.966,
+          "end": 7.616
+        },
+        {
+          "text": "oak",
+          "index": 136,
+          "start": 7.697,
+          "end": 7.906
+        },
+        {
+          "text": "runs",
+          "index": 140,
+          "start": 7.999,
+          "end": 8.266
+        },
+        {
+          "text": "underfoot",
+          "index": 145,
+          "start": 8.348,
+          "end": 8.789
+        },
+        {
+          "text": "throughout.",
+          "index": 155,
+          "start": 8.824,
+          "end": 9.567
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 13.647,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": 2.2
+        },
+        {
+          "at": 3.855,
+          "type": "lookAt",
+          "heading": 90,
+          "pitch": -2,
+          "fov": 62,
+          "duration": 2200
+        },
+        {
+          "at": 6.966,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": -4,
+          "fov": 64,
+          "duration": 2200
+        },
+        {
+          "at": 9.166,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "kind": "room",
+      "roomId": "r5",
+      "viewpointIds": [
+        "v5"
+      ],
+      "name": "Kitchen",
+      "transit": false,
+      "audio": "audio/s3.mp3",
+      "duration": 7.941,
+      "text": "The kitchen is built for real cooking. A large central island, a gas range, and windows on two sides, so you're never working in the dark.",
+      "words": [
+        {
+          "text": "The",
+          "index": 0,
+          "start": 0,
+          "end": 0.151
+        },
+        {
+          "text": "kitchen",
+          "index": 4,
+          "start": 0.197,
+          "end": 0.488
+        },
+        {
+          "text": "is",
+          "index": 12,
+          "start": 0.546,
+          "end": 0.615
+        },
+        {
+          "text": "built",
+          "index": 15,
+          "start": 0.673,
+          "end": 0.882
+        },
+        {
+          "text": "for",
+          "index": 21,
+          "start": 0.929,
+          "end": 1.045
+        },
+        {
+          "text": "real",
+          "index": 25,
+          "start": 1.126,
+          "end": 1.347
+        },
+        {
+          "text": "cooking.",
+          "index": 30,
+          "start": 1.416,
+          "end": 1.904
+        },
+        {
+          "text": "A",
+          "index": 39,
+          "start": 2.055,
+          "end": 2.136
+        },
+        {
+          "text": "large",
+          "index": 41,
+          "start": 2.229,
+          "end": 2.577
+        },
+        {
+          "text": "central",
+          "index": 47,
+          "start": 2.635,
+          "end": 3.019
+        },
+        {
+          "text": "island,",
+          "index": 55,
+          "start": 3.088,
+          "end": 3.587
+        },
+        {
+          "text": "a",
+          "index": 63,
+          "start": 3.634,
+          "end": 3.704
+        },
+        {
+          "text": "gas",
+          "index": 65,
+          "start": 3.773,
+          "end": 4.04
+        },
+        {
+          "text": "range,",
+          "index": 69,
+          "start": 4.133,
+          "end": 4.516
+        },
+        {
+          "text": "and",
+          "index": 76,
+          "start": 4.54,
+          "end": 4.656
+        },
+        {
+          "text": "windows",
+          "index": 80,
+          "start": 4.725,
+          "end": 5.085
+        },
+        {
+          "text": "on",
+          "index": 88,
+          "start": 5.143,
+          "end": 5.224
+        },
+        {
+          "text": "two",
+          "index": 91,
+          "start": 5.283,
+          "end": 5.445
+        },
+        {
+          "text": "sides,",
+          "index": 95,
+          "start": 5.515,
+          "end": 5.991
+        },
+        {
+          "text": "so",
+          "index": 102,
+          "start": 6.235,
+          "end": 6.351
+        },
+        {
+          "text": "you're",
+          "index": 105,
+          "start": 6.409,
+          "end": 6.571
+        },
+        {
+          "text": "never",
+          "index": 112,
+          "start": 6.594,
+          "end": 6.78
+        },
+        {
+          "text": "working",
+          "index": 118,
+          "start": 6.838,
+          "end": 7.129
+        },
+        {
+          "text": "in",
+          "index": 126,
+          "start": 7.175,
+          "end": 7.221
+        },
+        {
+          "text": "the",
+          "index": 129,
+          "start": 7.256,
+          "end": 7.326
+        },
+        {
+          "text": "dark.",
+          "index": 133,
+          "start": 7.361,
+          "end": 7.941
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": 2.2
+        },
+        {
+          "at": 4.725,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": -2,
+          "fov": 64,
+          "duration": 2200
+        },
+        {
+          "at": 6.925,
+          "type": "lookAt",
+          "heading": 270,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "kind": "room",
+      "roomId": "r4",
+      "viewpointIds": [
+        "v4"
+      ],
+      "name": "Dining Room",
+      "transit": false,
+      "audio": "audio/s4.mp3",
+      "duration": 9.009,
+      "text": "Right next door, the dining room. At 267 square feet there's space for a proper table, and the east-facing windows make breakfast here a pleasure.",
+      "words": [
+        {
+          "text": "Right",
+          "index": 0,
+          "start": 0,
+          "end": 0.372
+        },
+        {
+          "text": "next",
+          "index": 6,
+          "start": 0.406,
+          "end": 0.592
+        },
+        {
+          "text": "door,",
+          "index": 11,
+          "start": 0.627,
+          "end": 0.952
+        },
+        {
+          "text": "the",
+          "index": 17,
+          "start": 1.01,
+          "end": 1.115
+        },
+        {
+          "text": "dining",
+          "index": 21,
+          "start": 1.161,
+          "end": 1.451
+        },
+        {
+          "text": "room.",
+          "index": 28,
+          "start": 1.498,
+          "end": 1.834
+        },
+        {
+          "text": "At",
+          "index": 34,
+          "start": 2.159,
+          "end": 2.322
+        },
+        {
+          "text": "267",
+          "index": 37,
+          "start": 2.392,
+          "end": 3.611
+        },
+        {
+          "text": "square",
+          "index": 41,
+          "start": 3.68,
+          "end": 3.971
+        },
+        {
+          "text": "feet",
+          "index": 48,
+          "start": 4.017,
+          "end": 4.249
+        },
+        {
+          "text": "there's",
+          "index": 53,
+          "start": 4.296,
+          "end": 4.516
+        },
+        {
+          "text": "space",
+          "index": 61,
+          "start": 4.54,
+          "end": 4.865
+        },
+        {
+          "text": "for",
+          "index": 67,
+          "start": 4.899,
+          "end": 5.016
+        },
+        {
+          "text": "a",
+          "index": 71,
+          "start": 5.062,
+          "end": 5.085
+        },
+        {
+          "text": "proper",
+          "index": 73,
+          "start": 5.132,
+          "end": 5.41
+        },
+        {
+          "text": "table,",
+          "index": 80,
+          "start": 5.468,
+          "end": 5.944
+        },
+        {
+          "text": "and",
+          "index": 87,
+          "start": 6.06,
+          "end": 6.2
+        },
+        {
+          "text": "the",
+          "index": 91,
+          "start": 6.246,
+          "end": 6.316
+        },
+        {
+          "text": "east-facing",
+          "index": 95,
+          "start": 6.385,
+          "end": 6.943
+        },
+        {
+          "text": "windows",
+          "index": 107,
+          "start": 7.001,
+          "end": 7.361
+        },
+        {
+          "text": "make",
+          "index": 115,
+          "start": 7.43,
+          "end": 7.581
+        },
+        {
+          "text": "breakfast",
+          "index": 120,
+          "start": 7.616,
+          "end": 8.022
+        },
+        {
+          "text": "here",
+          "index": 130,
+          "start": 8.069,
+          "end": 8.231
+        },
+        {
+          "text": "a",
+          "index": 135,
+          "start": 8.266,
+          "end": 8.301
+        },
+        {
+          "text": "pleasure.",
+          "index": 137,
+          "start": 8.348,
+          "end": 9.009
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 270,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": 2.2
+        },
+        {
+          "at": 6.385,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": -2,
+          "fov": 62,
+          "duration": 2200
+        },
+        {
+          "at": 8.585,
+          "type": "lookAt",
+          "heading": 133.452,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "kind": "room",
+      "roomId": "r6",
+      "viewpointIds": [
+        "v6"
+      ],
+      "name": "Hallway",
+      "transit": true,
+      "audio": "audio/s5.mp3",
+      "duration": 4.876,
+      "text": "The hallway ties the whole home together, with every bedroom and bathroom just off it.",
+      "words": [
+        {
+          "text": "The",
+          "index": 0,
+          "start": 0,
+          "end": 0.128
+        },
+        {
+          "text": "hallway",
+          "index": 4,
+          "start": 0.186,
+          "end": 0.488
+        },
+        {
+          "text": "ties",
+          "index": 12,
+          "start": 0.546,
+          "end": 0.824
+        },
+        {
+          "text": "the",
+          "index": 17,
+          "start": 0.882,
+          "end": 0.952
+        },
+        {
+          "text": "whole",
+          "index": 21,
+          "start": 1.01,
+          "end": 1.254
+        },
+        {
+          "text": "home",
+          "index": 27,
+          "start": 1.289,
+          "end": 1.521
+        },
+        {
+          "text": "together,",
+          "index": 32,
+          "start": 1.567,
+          "end": 2.02
+        },
+        {
+          "text": "with",
+          "index": 42,
+          "start": 2.067,
+          "end": 2.241
+        },
+        {
+          "text": "every",
+          "index": 47,
+          "start": 2.31,
+          "end": 2.624
+        },
+        {
+          "text": "bedroom",
+          "index": 53,
+          "start": 2.682,
+          "end": 3.065
+        },
+        {
+          "text": "and",
+          "index": 61,
+          "start": 3.135,
+          "end": 3.262
+        },
+        {
+          "text": "bathroom",
+          "index": 65,
+          "start": 3.332,
+          "end": 3.762
+        },
+        {
+          "text": "just",
+          "index": 74,
+          "start": 3.831,
+          "end": 4.098
+        },
+        {
+          "text": "off",
+          "index": 79,
+          "start": 4.168,
+          "end": 4.4
+        },
+        {
+          "text": "it.",
+          "index": 83,
+          "start": 4.481,
+          "end": 4.876
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 180,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": 2.2
+        },
+        {
+          "at": 2.876,
+          "type": "lookAt",
+          "heading": 180,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "kind": "room",
+      "roomId": "r7",
+      "viewpointIds": [
+        "v8"
+      ],
+      "name": "Master Bedroom",
+      "transit": false,
+      "audio": "audio/s6.mp3",
+      "duration": 7.755,
+      "text": "The master bedroom sits in its own quiet corner, with windows along the west wall for soft evening light and an ensuite right through here.",
+      "words": [
+        {
+          "text": "The",
+          "index": 0,
+          "start": 0,
+          "end": 0.255
+        },
+        {
+          "text": "master",
+          "index": 4,
+          "start": 0.302,
+          "end": 0.592
+        },
+        {
+          "text": "bedroom",
+          "index": 11,
+          "start": 0.65,
+          "end": 1.01
+        },
+        {
+          "text": "sits",
+          "index": 19,
+          "start": 1.091,
+          "end": 1.324
+        },
+        {
+          "text": "in",
+          "index": 24,
+          "start": 1.358,
+          "end": 1.428
+        },
+        {
+          "text": "its",
+          "index": 27,
+          "start": 1.486,
+          "end": 1.614
+        },
+        {
+          "text": "own",
+          "index": 31,
+          "start": 1.66,
+          "end": 1.904
+        },
+        {
+          "text": "quiet",
+          "index": 35,
+          "start": 1.985,
+          "end": 2.345
+        },
+        {
+          "text": "corner,",
+          "index": 41,
+          "start": 2.403,
+          "end": 2.926
+        },
+        {
+          "text": "with",
+          "index": 49,
+          "start": 3.135,
+          "end": 3.309
+        },
+        {
+          "text": "windows",
+          "index": 54,
+          "start": 3.355,
+          "end": 3.692
+        },
+        {
+          "text": "along",
+          "index": 62,
+          "start": 3.75,
+          "end": 3.982
+        },
+        {
+          "text": "the",
+          "index": 68,
+          "start": 4.017,
+          "end": 4.087
+        },
+        {
+          "text": "west",
+          "index": 72,
+          "start": 4.122,
+          "end": 4.319
+        },
+        {
+          "text": "wall",
+          "index": 77,
+          "start": 4.377,
+          "end": 4.598
+        },
+        {
+          "text": "for",
+          "index": 82,
+          "start": 4.656,
+          "end": 4.772
+        },
+        {
+          "text": "soft",
+          "index": 86,
+          "start": 4.818,
+          "end": 5.12
+        },
+        {
+          "text": "evening",
+          "index": 91,
+          "start": 5.19,
+          "end": 5.48
+        },
+        {
+          "text": "light",
+          "index": 99,
+          "start": 5.538,
+          "end": 5.77
+        },
+        {
+          "text": "and",
+          "index": 105,
+          "start": 5.84,
+          "end": 6.06
+        },
+        {
+          "text": "an",
+          "index": 109,
+          "start": 6.118,
+          "end": 6.188
+        },
+        {
+          "text": "ensuite",
+          "index": 112,
+          "start": 6.246,
+          "end": 6.687
+        },
+        {
+          "text": "right",
+          "index": 120,
+          "start": 6.757,
+          "end": 6.978
+        },
+        {
+          "text": "through",
+          "index": 126,
+          "start": 7.012,
+          "end": 7.233
+        },
+        {
+          "text": "here.",
+          "index": 134,
+          "start": 7.268,
+          "end": 7.755
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 224.935,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": -2.2
+        },
+        {
+          "at": 3.355,
+          "type": "lookAt",
+          "heading": 180,
+          "pitch": -2,
+          "fov": 62,
+          "duration": 2200
+        },
+        {
+          "at": 6.118,
+          "type": "lookAt",
+          "heading": 339.587,
+          "pitch": -4,
+          "fov": 64,
+          "duration": 2200
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "kind": "room",
+      "roomId": "r8",
+      "viewpointIds": [
+        "v9"
+      ],
+      "name": "Master Bath",
+      "transit": false,
+      "audio": "audio/s7.mp3",
+      "duration": 5.898,
+      "text": "The ensuite is bright and private, with a small high window that lets the light in and keeps the view out.",
+      "words": [
+        {
+          "text": "The",
+          "index": 0,
+          "start": 0,
+          "end": 0.151
+        },
+        {
+          "text": "ensuite",
+          "index": 4,
+          "start": 0.221,
+          "end": 0.673
+        },
+        {
+          "text": "is",
+          "index": 12,
+          "start": 0.708,
+          "end": 0.801
+        },
+        {
+          "text": "bright",
+          "index": 15,
+          "start": 0.894,
+          "end": 1.196
+        },
+        {
+          "text": "and",
+          "index": 22,
+          "start": 1.242,
+          "end": 1.312
+        },
+        {
+          "text": "private,",
+          "index": 26,
+          "start": 1.37,
+          "end": 1.916
+        },
+        {
+          "text": "with",
+          "index": 35,
+          "start": 2.159,
+          "end": 2.31
+        },
+        {
+          "text": "a",
+          "index": 40,
+          "start": 2.357,
+          "end": 2.38
+        },
+        {
+          "text": "small",
+          "index": 42,
+          "start": 2.426,
+          "end": 2.694
+        },
+        {
+          "text": "high",
+          "index": 48,
+          "start": 2.763,
+          "end": 2.949
+        },
+        {
+          "text": "window",
+          "index": 53,
+          "start": 2.995,
+          "end": 3.309
+        },
+        {
+          "text": "that",
+          "index": 60,
+          "start": 3.379,
+          "end": 3.506
+        },
+        {
+          "text": "lets",
+          "index": 65,
+          "start": 3.553,
+          "end": 3.785
+        },
+        {
+          "text": "the",
+          "index": 70,
+          "start": 3.843,
+          "end": 3.913
+        },
+        {
+          "text": "light",
+          "index": 74,
+          "start": 3.971,
+          "end": 4.203
+        },
+        {
+          "text": "in",
+          "index": 80,
+          "start": 4.261,
+          "end": 4.365
+        },
+        {
+          "text": "and",
+          "index": 83,
+          "start": 4.435,
+          "end": 4.54
+        },
+        {
+          "text": "keeps",
+          "index": 87,
+          "start": 4.621,
+          "end": 4.899
+        },
+        {
+          "text": "the",
+          "index": 93,
+          "start": 4.957,
+          "end": 5.027
+        },
+        {
+          "text": "view",
+          "index": 97,
+          "start": 5.074,
+          "end": 5.271
+        },
+        {
+          "text": "out.",
+          "index": 102,
+          "start": 5.341,
+          "end": 5.898
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": -2.2
+        },
+        {
+          "at": 2.357,
+          "type": "lookAt",
+          "heading": 270,
+          "pitch": -2,
+          "fov": 64,
+          "duration": 2200
+        },
+        {
+          "at": 4.557,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "kind": "room",
+      "roomId": "r9",
+      "viewpointIds": [
+        "v10"
+      ],
+      "name": "Bedroom 2",
+      "transit": false,
+      "audio": "audio/s8.mp3",
+      "duration": 7.755,
+      "text": "Bedroom two is a comfortable size, with a north window and its own closet. Perfect for a child, a guest, or a home office.",
+      "words": [
+        {
+          "text": "Bedroom",
+          "index": 0,
+          "start": 0,
+          "end": 0.464
+        },
+        {
+          "text": "two",
+          "index": 8,
+          "start": 0.534,
+          "end": 0.813
+        },
+        {
+          "text": "is",
+          "index": 12,
+          "start": 0.929,
+          "end": 1.08
+        },
+        {
+          "text": "a",
+          "index": 15,
+          "start": 1.126,
+          "end": 1.149
+        },
+        {
+          "text": "comfortable",
+          "index": 17,
+          "start": 1.207,
+          "end": 1.637
+        },
+        {
+          "text": "size,",
+          "index": 29,
+          "start": 1.672,
+          "end": 2.183
+        },
+        {
+          "text": "with",
+          "index": 35,
+          "start": 2.31,
+          "end": 2.485
+        },
+        {
+          "text": "a",
+          "index": 40,
+          "start": 2.519,
+          "end": 2.543
+        },
+        {
+          "text": "north",
+          "index": 42,
+          "start": 2.601,
+          "end": 2.821
+        },
+        {
+          "text": "window",
+          "index": 48,
+          "start": 2.868,
+          "end": 3.204
+        },
+        {
+          "text": "and",
+          "index": 55,
+          "start": 3.286,
+          "end": 3.379
+        },
+        {
+          "text": "its",
+          "index": 59,
+          "start": 3.437,
+          "end": 3.553
+        },
+        {
+          "text": "own",
+          "index": 63,
+          "start": 3.599,
+          "end": 3.75
+        },
+        {
+          "text": "closet.",
+          "index": 67,
+          "start": 3.82,
+          "end": 4.423
+        },
+        {
+          "text": "Perfect",
+          "index": 75,
+          "start": 4.748,
+          "end": 5.12
+        },
+        {
+          "text": "for",
+          "index": 83,
+          "start": 5.155,
+          "end": 5.271
+        },
+        {
+          "text": "a",
+          "index": 87,
+          "start": 5.317,
+          "end": 5.352
+        },
+        {
+          "text": "child,",
+          "index": 89,
+          "start": 5.41,
+          "end": 5.933
+        },
+        {
+          "text": "a",
+          "index": 96,
+          "start": 6.002,
+          "end": 6.072
+        },
+        {
+          "text": "guest,",
+          "index": 98,
+          "start": 6.142,
+          "end": 6.513
+        },
+        {
+          "text": "or",
+          "index": 105,
+          "start": 6.56,
+          "end": 6.687
+        },
+        {
+          "text": "a",
+          "index": 108,
+          "start": 6.745,
+          "end": 6.769
+        },
+        {
+          "text": "home",
+          "index": 110,
+          "start": 6.827,
+          "end": 7.024
+        },
+        {
+          "text": "office.",
+          "index": 115,
+          "start": 7.07,
+          "end": 7.755
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": -2.2
+        },
+        {
+          "at": 2.519,
+          "type": "lookAt",
+          "heading": 270,
+          "pitch": -2,
+          "fov": 64,
+          "duration": 2200
+        },
+        {
+          "at": 5.755,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": -3,
+          "fov": 66,
+          "duration": 1600
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "kind": "room",
+      "roomId": "r10",
+      "viewpointIds": [
+        "v11"
+      ],
+      "name": "Main Bath",
+      "transit": false,
+      "audio": "audio/s9.mp3",
+      "duration": 9.102,
+      "text": "And finally, the main bath, with a tub and shower combination finished in the same warm, clean style as the rest of the house. Thanks for touring with us.",
+      "words": [
+        {
+          "text": "And",
+          "index": 0,
+          "start": 0,
+          "end": 0.151
+        },
+        {
+          "text": "finally,",
+          "index": 4,
+          "start": 0.221,
+          "end": 0.836
+        },
+        {
+          "text": "the",
+          "index": 13,
+          "start": 1.01,
+          "end": 1.115
+        },
+        {
+          "text": "main",
+          "index": 17,
+          "start": 1.161,
+          "end": 1.335
+        },
+        {
+          "text": "bath,",
+          "index": 22,
+          "start": 1.393,
+          "end": 1.776
+        },
+        {
+          "text": "with",
+          "index": 28,
+          "start": 1.811,
+          "end": 1.985
+        },
+        {
+          "text": "a",
+          "index": 33,
+          "start": 2.02,
+          "end": 2.055
+        },
+        {
+          "text": "tub",
+          "index": 35,
+          "start": 2.101,
+          "end": 2.38
+        },
+        {
+          "text": "and",
+          "index": 39,
+          "start": 2.45,
+          "end": 2.531
+        },
+        {
+          "text": "shower",
+          "index": 43,
+          "start": 2.589,
+          "end": 2.902
+        },
+        {
+          "text": "combination",
+          "index": 50,
+          "start": 2.961,
+          "end": 3.529
+        },
+        {
+          "text": "finished",
+          "index": 62,
+          "start": 3.599,
+          "end": 3.924
+        },
+        {
+          "text": "in",
+          "index": 71,
+          "start": 3.959,
+          "end": 4.017
+        },
+        {
+          "text": "the",
+          "index": 74,
+          "start": 4.063,
+          "end": 4.133
+        },
+        {
+          "text": "same",
+          "index": 78,
+          "start": 4.18,
+          "end": 4.458
+        },
+        {
+          "text": "warm,",
+          "index": 83,
+          "start": 4.516,
+          "end": 4.876
+        },
+        {
+          "text": "clean",
+          "index": 89,
+          "start": 4.923,
+          "end": 5.213
+        },
+        {
+          "text": "style",
+          "index": 95,
+          "start": 5.271,
+          "end": 5.828
+        },
+        {
+          "text": "as",
+          "index": 101,
+          "start": 6.072,
+          "end": 6.235
+        },
+        {
+          "text": "the",
+          "index": 104,
+          "start": 6.304,
+          "end": 6.374
+        },
+        {
+          "text": "rest",
+          "index": 108,
+          "start": 6.42,
+          "end": 6.606
+        },
+        {
+          "text": "of",
+          "index": 113,
+          "start": 6.653,
+          "end": 6.699
+        },
+        {
+          "text": "the",
+          "index": 116,
+          "start": 6.745,
+          "end": 6.815
+        },
+        {
+          "text": "house.",
+          "index": 120,
+          "start": 6.861,
+          "end": 7.338
+        },
+        {
+          "text": "Thanks",
+          "index": 127,
+          "start": 7.721,
+          "end": 7.964
+        },
+        {
+          "text": "for",
+          "index": 134,
+          "start": 7.988,
+          "end": 8.081
+        },
+        {
+          "text": "touring",
+          "index": 138,
+          "start": 8.115,
+          "end": 8.382
+        },
+        {
+          "text": "with",
+          "index": 146,
+          "start": 8.417,
+          "end": 8.557
+        },
+        {
+          "text": "us.",
+          "index": 151,
+          "start": 8.615,
+          "end": 9.102
+        }
+      ],
+      "camera": [
+        {
+          "at": 0,
+          "type": "lookAt",
+          "heading": 0,
+          "pitch": 0,
+          "fov": 74,
+          "duration": 0
+        },
+        {
+          "at": 0,
+          "type": "drift",
+          "speed": 2.2
+        }
+      ]
+    }
+  ]
+}

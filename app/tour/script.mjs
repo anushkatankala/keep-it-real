@@ -63,7 +63,8 @@ function describeStop(geometry, stop) {
 }
 
 export function buildPrompt({ plan, geometry, route }) {
-  const totalSqFt = geometry.rooms.reduce((sum, room) => sum + (room.areaSqFt ?? 0), 0);
+  const shown = geometry.rooms.filter((room) => !room.hidden);
+  const totalSqFt = shown.reduce((sum, room) => sum + (room.areaSqFt ?? 0), 0);
 
   return `You are writing the narration for a video tour of a house, spoken by an
 enthusiastic but credible real-estate agent. The viewer sees the real exterior
@@ -71,7 +72,7 @@ of the house first, then a series of interior panoramas, one per room.
 
 House: ${plan.name}
 Style: ${plan.style ?? "unspecified"}
-Total floor area: ${totalSqFt} sq ft across ${geometry.rooms.length} rooms.
+Total floor area: ${totalSqFt} sq ft across ${shown.length} rooms.
 
 Write one stop per entry below, in exactly this order. The first stop has
 roomId "${EXTERIOR_STOP_ID}" and is spoken over a slow orbit of the house from outside.

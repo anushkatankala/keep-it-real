@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { createServer } from "node:http";
-import { readFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { extname, join, resolve } from "node:path";
 import { cropGlb, glbFootprint } from "./dist/index.js";
 
@@ -225,6 +225,9 @@ async function main() {
           console.warn(`cropped footprint: ${error.message}`);
         }
         lastCrop = { glb, region, metadata: croppedMeta };
+        await writeFile(join(ROOT, ".last-crop.glb"), glb).catch((error) => {
+          console.warn(`could not persist cropped model: ${error.message}`);
+        });
 
         response.writeHead(200, commonHeaders({
           "content-type": "model/gltf-binary",

@@ -12,9 +12,18 @@ photos/
 # in app/tour/build/ is the artefact worth committing.
 app/tour/.cache/
 
+# API keys
+.env
+
 # Local runtime files
 .server.log
 .tmp-*
 
+# Uploads saved by the tour server, per project
+.live/
+
 # macOS
 .DS_Store
+
+# ffmpeg/qlmanage thumbnails of generated clips
+*.mp4.png

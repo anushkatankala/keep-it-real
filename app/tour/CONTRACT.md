@@ -80,6 +80,49 @@ Rules that the tour depends on:
   narration quotes it, so it should be the number the user agreed to.
 - **`notes`** is free text per room and is passed to the script model. This is where
   "south-facing windows" or "original hardwood" belongs.
+- **`hidden: true`** leaves a room out of the tour: no stop, no narration, and no
+  doorway into it. Its walls still count, so a neighbour does not mistake the
+  shared wall for an outside one.
+
+### Viewpoints
+
+A plan may list the positions photographs were taken from:
+
+```json
+"viewpoints": [
+  { "id": "v1", "roomId": "r2", "u": -7, "v": -3, "facing": 270 },
+  { "id": "v2", "roomId": "r2", "u": -4, "v": -3, "facing": 270 }
+]
+```
+
+- The image for a viewpoint is `panos/<viewpointId>.jpg`. It may be a 2:1
+  panorama or an ordinary photo; `scene.mjs` decides from the aspect ratio.
+- **`facing`** is the heading the centre of the image looks toward, in the heading
+  convention below. `270` is +V, which is north on a plan drawn north-up.
+- Viewpoint ids follow the same rule as room ids: letters, digits, `-` and `_`.
+- Without `viewpoints`, every room gets one at its centre with the room's own id
+  and `facing: 0`, so `panos/<roomId>.jpg` keeps working. A room with none listed
+  also gets that fallback.
+- `targets.mjs` exposes them as `viewpointsByRoom`, ordered along each room's long
+  axis, and `tour.json` room stops carry the ordered `viewpointIds`.
+
+`import.mjs` builds a plan with viewpoints from the output of
+`GENERATION_PROMPT.md`, snapping walls that nearly meet and reporting image sizes.
+
+### Uploads
+
+`serve.mjs` accepts the plan and its images from the web app and saves them in
+`<project>/.live/` (gitignored), where they take precedence over the project's own
+files and survive a restart:
+
+```
+PUT    /api/plan              plan.json body, validated before saving
+DELETE /api/plan              back to the project's plan.json
+PUT    /api/floorplan         JPEG, PNG or WebP body; served at GET /floorplan
+PUT    /api/pano/:viewpointId JPEG, PNG or WebP body; served at GET /panos/:id
+DELETE /api/pano/:viewpointId
+DELETE /api/live              drop every upload
+```
 
 ## 1b. When there is no floor plan: `adapt.mjs`
 
@@ -249,6 +292,7 @@ app/tour/
   CONTRACT.md          this document
   fixture/             a hand-written 8-room plan.json and narration, no keys needed
   adapt.mjs            web-app room counts -> a laid-out plan.json
+  import.mjs           generated rooms, viewpoints and images -> a project
   targets.mjs          geometry: centres, doors, exterior walls, headings
   route.mjs            adjacency-aware room ordering
   script.mjs           Gemini structured output, or load hand-written narration

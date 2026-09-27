@@ -1,0 +1,127 @@
+{
+  "model": "kling-video/v3.0/std/image-to-video",
+  "generatedAt": "2026-09-27T00:26:19.116Z",
+  "duration": 82.38,
+  "shots": [
+    {
+      "id": "s0",
+      "name": "Generated House",
+      "prompt": "Smooth aerial drone shot of this exact house: the camera arcs slowly around to face the front and descends gently toward the garage and front entry, ending exactly on the last frame. Photorealistic natural daylight under a clear sky. Keep the roof, brick, dormer windows, balcony and garage doors exactly as in the frames; no people, no text, no cuts.",
+      "duration": 8,
+      "audioDuration": 11.42,
+      "clip": "clips/s0-2997aa237357.mp4",
+      "frames": {
+        "start": "keyframes/s0-glb-start.jpg",
+        "end": "keyframes/s0-glb-end.jpg"
+      }
+    },
+    {
+      "id": "s1",
+      "name": "Entry",
+      "prompt": "Slow smooth gimbal move through the entry: the camera pans left and gently pushes in, ending exactly on the last frame. Photorealistic real-estate walkthrough footage. Keep the architecture, furniture, materials, colours and lighting exactly as in the first and last frames; do not add, remove or change any object. Steady gimbal camera, no cuts. It features warm red brick veneer, contrasting dark gray tile-effect metal roofing, and a mix of dark gray metal siding and stone accents on gables. The interior floor material throughout is warm wire-brushed wide-plank oak. Walls are a soft, creamy off-white with crisp white shaker-style baseboards and trim.",
+      "duration": 6,
+      "audioDuration": 8.8,
+      "clip": "clips/s1-25f9b81afc3a.mp4",
+      "frames": {
+        "start": "keyframes/s1.jpg",
+        "end": "keyframes/s1-end.jpg"
+      }
+    },
+    {
+      "id": "s2",
+      "name": "Living Room",
+      "prompt": "Slow smooth gimbal move through the living room: the camera pans right and gently pushes in, ending exactly on the last frame. Photorealistic real-estate walkthrough footage. Keep the architecture, furniture, materials, colours and lighting exactly as in the first and last frames; do not add, remove or change any object. Steady gimbal camera, no cuts. It features warm red brick veneer, contrasting dark gray tile-effect metal roofing, and a mix of dark gray metal siding and stone accents on gables. The interior floor material throughout is warm wire-brushed wide-plank oak. Walls are a soft, creamy off-white with crisp white shaker-style baseboards and trim.",
+      "duration": 7,
+      "audioDuration": 9.61,
+      "clip": "clips/s2-d5fbeb82959c.mp4",
+      "frames": {
+        "start": "keyframes/s2.jpg",
+        "end": "keyframes/s2-end.jpg"
+      }
+    },
+    {
+      "id": "s3",
+      "name": "Kitchen",
+      "prompt": "Slow smooth gimbal move through the kitchen: the camera pans left and gently pushes in, ending exactly on the last frame. Photorealistic real-estate walkthrough footage. Keep the architecture, furniture, materials, colours and lighting exactly as in the first and last frames; do not add, remove or change any object. Steady gimbal camera, no cuts. It features warm red brick veneer, contrasting dark gray tile-effect metal roofing, and a mix of dark gray metal siding and stone accents on gables. The interior floor material throughout is warm wire-brushed wide-plank oak. Walls are a soft, creamy off-white with crisp white shaker-style baseboards and trim.",
+      "duration": 5,
+      "audioDuration": 7.97,
+      "clip": "clips/s3-b36192d9e1d6.mp4",
+      "frames": {
+        "start": "keyframes/s3.jpg",
+        "end": "keyframes/s3-end.jpg"
+      }
+    },
+    {
+      "id": "s4",
+      "name": "Dining Room",
+      "prompt": "Slow smooth gimbal move through the dining room: the camera pans right and gently pushes in, ending exactly on the last frame. Photorealistic real-estate walkthrough footage. Keep the architecture, furniture, materials, colours and lighting exactly as in the first and last frames; do not add, remove or change any object. Steady gimbal camera, no cuts. It features warm red brick veneer, contrasting dark gray tile-effect metal roofing, and a mix of dark gray metal siding and stone accents on gables. The interior floor material throughout is warm wire-brushed wide-plank oak. Walls are a soft, creamy off-white with crisp white shaker-style baseboards and trim.",
+      "duration": 6,
+      "audioDuration": 9.04,
+      "clip": "clips/s4-3333e969e281.mp4",
+      "frames": {
+        "start": "keyframes/s4.jpg",
+        "end": "keyframes/s4-end.jpg"
+      }
+    },
+    {
+      "id": "s5",
+      "name": "Hallway",
+      "prompt": "Slow smooth gimbal move through the hallway: the camera pans left and gently pushes in, ending exactly on the last frame. Photorealistic real-estate walkthrough footage. Keep the architecture, furniture, materials, colours and lighting exactly as in the first and last frames; do not add, remove or change any object. Steady gimbal camera, no cuts. It features warm red brick veneer, contrasting dark gray tile-effect metal roofing, and a mix of dark gray metal siding and stone accents on gables. The interior floor material throughout is warm wire-brushed wide-plank oak. Walls are a soft, creamy off-white with crisp white shaker-style baseboards and trim.",
+      "duration": 4,
+      "audioDuration": 4.91,
+      "clip": "clips/s5-a0f6dfe13821.mp4",
+      "frames": {
+        "start": "keyframes/s5.jpg",
+        "end": "keyframes/s5-end.jpg"
+      }
+    },
+    {
+      "id": "s6",
+      "name": "Master Bedroom",
+      "prompt": "pano shot toward -152°",
+      "duration": 7.78,
+      "audioDuration": 7.78,
+      "clip": "clips/s6-pano-1f72903348fd.mp4",
+      "frames": {
+        "start": "keyframes/s6.jpg",
+        "end": "keyframes/s6-end.jpg"
+      }
+    },
+    {
+      "id": "s7",
+      "name": "Master Bath",
+      "prompt": "Slow smooth gimbal move through the master bath: the camera pans left and gently pushes in, ending exactly on the last frame. Photorealistic real-estate walkthrough footage. Keep the architecture, furniture, materials, colours and lighting exactly as in the first and last frames; do not add, remove or change any object. Steady gimbal camera, no cuts. It features warm red brick veneer, contrasting dark gray tile-effect metal roofing, and a mix of dark gray metal siding and stone accents on gables. The interior floor material throughout is warm wire-brushed wide-plank oak. Walls are a soft, creamy off-white with crisp white shaker-style baseboards and trim.",
+      "duration": 4,
+      "audioDuration": 5.93,
+      "clip": "clips/s7-b0080cd242fb.mp4",
+      "frames": {
+        "start": "keyframes/s7.jpg",
+        "end": "keyframes/s7-end.jpg"
+      }
+    },
+    {
+      "id": "s8",
+      "name": "Bedroom 2",
+      "prompt": "Slow smooth gimbal move through the bedroom 2: the camera pans right and gently pushes in, ending exactly on the last frame. Photorealistic real-estate walkthrough footage. Keep the architecture, furniture, materials, colours and lighting exactly as in the first and last frames; do not add, remove or change any object. Steady gimbal camera, no cuts. It features warm red brick veneer, contrasting dark gray tile-effect metal roofing, and a mix of dark gray metal siding and stone accents on gables. The interior floor material throughout is warm wire-brushed wide-plank oak. Walls are a soft, creamy off-white with crisp white shaker-style baseboards and trim.",
+      "duration": 5,
+      "audioDuration": 7.78,
+      "clip": "clips/s8-cb3a0824b895.mp4",
+      "frames": {
+        "start": "keyframes/s8.jpg",
+        "end": "keyframes/s8-end.jpg"
+      }
+    },
+    {
+      "id": "s9",
+      "name": "Main Bath",
+      "prompt": "Slow smooth gimbal move through the main bath: the camera pans left and gently pushes in, ending exactly on the last frame. Photorealistic real-estate walkthrough footage. Keep the architecture, furniture, materials, colours and lighting exactly as in the first and last frames; do not add, remove or change any object. Steady gimbal camera, no cuts. It features warm red brick veneer, contrasting dark gray tile-effect metal roofing, and a mix of dark gray metal siding and stone accents on gables. The interior floor material throughout is warm wire-brushed wide-plank oak. Walls are a soft, creamy off-white with crisp white shaker-style baseboards and trim.",
+      "duration": 6,
+      "audioDuration": 9.14,
+      "clip": "clips/s9-d9df05188c58.mp4",
+      "frames": {
+        "start": "keyframes/s9.jpg",
+        "end": "keyframes/s9-end.jpg"
+      }
+    }
+  ]
+}

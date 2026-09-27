@@ -1,0 +1,258 @@
+{
+  "id": "generated",
+  "name": "Generated House",
+  "style": "This single-family home is a *Canadian Transitional-style suburban house*, drawing architectural inspiration from the exterior materials and gabled forms seen in image_0.png and image_1.png. It features warm red brick veneer, contrasting dark gray tile-effect metal roofing, and a mix of dark gray metal siding and stone accents on gables. The interior floor material throughout is warm wire-brushed wide-plank oak. Walls are a soft, creamy off-white with crisp white shaker-style baseboards and trim. Recessed LED pot lights and select warm modern pendant fixtures provide ambient light, with bright afternoon sun streaming through large windows.",
+  "model": "house.glb",
+  "up": "z",
+  "horizontal": [
+    "x",
+    "y"
+  ],
+  "rotation": 0,
+  "generated": true,
+  "bounds": {
+    "min": [
+      -9,
+      -6,
+      0
+    ],
+    "max": [
+      9,
+      6,
+      3
+    ]
+  },
+  "floors": [
+    {
+      "id": "f0",
+      "name": "Ground floor",
+      "elevation": 0,
+      "ceiling": 2.7,
+      "rooms": [
+        {
+          "id": "r1",
+          "name": "Garage",
+          "type": "garage",
+          "rect": {
+            "minU": -9,
+            "minV": -6,
+            "maxU": -2,
+            "maxV": 0
+          },
+          "hidden": true,
+          "notes": "two-car, interior stair up to the Entry",
+          "areaSqFt": 452
+        },
+        {
+          "id": "r2",
+          "name": "Entry",
+          "type": "entry",
+          "rect": {
+            "minU": -2,
+            "minV": -3.4,
+            "maxU": 0,
+            "maxV": 0
+          },
+          "notes": "coat closet, open to the Living Room",
+          "areaSqFt": 73
+        },
+        {
+          "id": "r3",
+          "name": "Living Room",
+          "type": "living",
+          "rect": {
+            "minU": 0,
+            "minV": -4.58,
+            "maxU": 4.86,
+            "maxV": 0
+          },
+          "notes": "gas fireplace, large south-facing window",
+          "areaSqFt": 240
+        },
+        {
+          "id": "r4",
+          "name": "Dining Room",
+          "type": "dining",
+          "rect": {
+            "minU": 4.86,
+            "minV": 0,
+            "maxU": 9,
+            "maxV": 6
+          },
+          "notes": "windows on the east wall, opens to the Kitchen",
+          "areaSqFt": 267
+        },
+        {
+          "id": "r5",
+          "name": "Kitchen",
+          "type": "kitchen",
+          "rect": {
+            "minU": 4.86,
+            "minV": -4.58,
+            "maxU": 9,
+            "maxV": 0
+          },
+          "notes": "large central island, gas range, south and east windows",
+          "areaSqFt": 204
+        },
+        {
+          "id": "r6",
+          "name": "Hallway",
+          "type": "hallway",
+          "rect": {
+            "minU": -4.62,
+            "minV": 0,
+            "maxU": 4.86,
+            "maxV": 1.63
+          },
+          "notes": "runs east to west, access to all bedrooms and bathrooms",
+          "areaSqFt": 166
+        },
+        {
+          "id": "r7",
+          "name": "Master Bedroom",
+          "type": "bedroom",
+          "rect": {
+            "minU": -9,
+            "minV": 0,
+            "maxU": -4.62,
+            "maxV": 6
+          },
+          "notes": "west wall windows, ensuite",
+          "areaSqFt": 283
+        },
+        {
+          "id": "r8",
+          "name": "Master Bath",
+          "type": "bathroom",
+          "rect": {
+            "minU": -4.62,
+            "minV": 1.63,
+            "maxU": -1.87,
+            "maxV": 6
+          },
+          "notes": "ensuite to the Master Bedroom, small high window",
+          "areaSqFt": 129
+        },
+        {
+          "id": "r9",
+          "name": "Bedroom 2",
+          "type": "bedroom",
+          "rect": {
+            "minU": -1.87,
+            "minV": 1.63,
+            "maxU": 2.13,
+            "maxV": 6
+          },
+          "notes": "north window, closet",
+          "areaSqFt": 188
+        },
+        {
+          "id": "r10",
+          "name": "Main Bath",
+          "type": "bathroom",
+          "rect": {
+            "minU": 2.13,
+            "minV": 1.63,
+            "maxU": 4.86,
+            "maxV": 6
+          },
+          "notes": "tub and shower combo, north window",
+          "areaSqFt": 128
+        }
+      ]
+    }
+  ],
+  "viewpoints": [
+    {
+      "id": "v1",
+      "roomId": "r2",
+      "u": -1,
+      "v": -1.7,
+      "facing": 270
+    },
+    {
+      "id": "v2",
+      "roomId": "r3",
+      "u": 1.8,
+      "v": -3,
+      "facing": 270
+    },
+    {
+      "id": "v3",
+      "roomId": "r3",
+      "u": 3.9,
+      "v": -1.8,
+      "facing": 270
+    },
+    {
+      "id": "v4",
+      "roomId": "r4",
+      "u": 6.9,
+      "v": 3,
+      "facing": 270
+    },
+    {
+      "id": "v5",
+      "roomId": "r5",
+      "u": 6.9,
+      "v": -2.3,
+      "facing": 270
+    },
+    {
+      "id": "v6",
+      "roomId": "r6",
+      "u": -0.5,
+      "v": 0.8,
+      "facing": 270
+    },
+    {
+      "id": "v8",
+      "roomId": "r7",
+      "u": -6.8,
+      "v": 3,
+      "facing": 270
+    },
+    {
+      "id": "v9",
+      "roomId": "r8",
+      "u": -3.25,
+      "v": 3.8,
+      "facing": 270
+    },
+    {
+      "id": "v10",
+      "roomId": "r9",
+      "u": 0.1,
+      "v": 3.8,
+      "facing": 270
+    },
+    {
+      "id": "v11",
+      "roomId": "r10",
+      "u": 3.5,
+      "v": 3.8,
+      "facing": 270
+    }
+  ],
+  "doorOverrides": {
+    "r6:r8": false,
+    "r8:r9": false,
+    "r10:r9": false,
+    "r10:r4": false,
+    "r3:r6": false,
+    "r1:r7": false
+  },
+  "floorplan": {
+    "image": "floorplan.jpeg",
+    "pixelsPerMetre": 96.9,
+    "originPx": [
+      1410,
+      770
+    ]
+  },
+  "exterior": [
+    "exterior/front.jpeg",
+    "exterior/rear.jpeg"
+  ]
+}

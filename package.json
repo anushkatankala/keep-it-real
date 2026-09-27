@@ -21,6 +21,7 @@
     "test": "npm run build && node --test test/*.test.mjs",
     "tour:build": "node app/tour/build.mjs",
     "tour:serve": "node app/tour/serve.mjs",
+    "tour:video": "node app/tour/video.mjs",
     "demo": "node demo.mjs"
   },
   "engines": {
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "ffmpeg-static": "^5.3.0",
     "three": "^0.186.1",
     "typescript": "^5"
   }

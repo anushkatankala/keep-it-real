@@ -15,6 +15,8 @@ export interface RoomImageSet {
   label: string;
   imageFiles: File[];
   imagePreviews: string[];
+  /** Floor-plan room id, used to attach this photo to the tour stop. */
+  planRoomId?: string;
 }
 
 export interface RoomConfig {
@@ -33,6 +35,7 @@ export interface SpecialRoom {
   selected: boolean;
   imageFiles: File[];
   imagePreviews: string[];
+  planRoomId?: string;
 }
 
 export interface CropRegion {
@@ -58,4 +61,6 @@ export interface ProjectResults {
   viewerUrl: string | null;
   virtualTourUrl: string | null;
   aiVideoUrl: string | null;
+  /** WebVTT captions for aiVideoUrl when it is a video file. */
+  aiVideoCaptionsUrl?: string | null;
 }

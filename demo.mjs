@@ -4,12 +4,14 @@
  *   node demo.mjs
  *
  *   5173  crop viewer + full/cropped house.glb + demo assets
- *   5174  maple AI tour player
+ *   5174  AI tour player and walkthrough video for the generated house
  *   3000  Next.js web app  ← open this
  *
  * Reuses a listener that is already serving our routes (EADDRINUSE).
  * Depends on local house.glb (gitignored) next to this file.
  */
+import "./app/tour/env.mjs";
+
 import { spawn } from "node:child_process";
 import { createConnection } from "node:net";
 import { existsSync } from "node:fs";
@@ -18,6 +20,10 @@ import { join, resolve } from "node:path";
 const ROOT = resolve(import.meta.dirname);
 const WEB = join(ROOT, "web");
 const HOUSE = join(ROOT, "house.glb");
+
+const TOUR_PROJECT = "app/tour/projects/generated";
+const TOUR_BUILD = "app/tour/build/generated";
+const TOUR_PLAN_ID = "generated";
 
 const CROP_PORT = 5173;
 const TOUR_PORT = 5174;
@@ -64,7 +70,7 @@ async function isOurCrop() {
 }
 
 async function isOurTour() {
-  return fetchOk(`http://127.0.0.1:${TOUR_PORT}/api/plan`, (plan) => Boolean(plan?.id || plan?.name));
+  return fetchOk(`http://127.0.0.1:${TOUR_PORT}/api/plan`, (plan) => plan?.id === TOUR_PLAN_ID);
 }
 
 async function isOurWeb() {
@@ -176,9 +182,9 @@ async function main() {
         [
           "app/tour/serve.mjs",
           "--project",
-          "app/tour/fixture",
+          TOUR_PROJECT,
           "--build",
-          "app/tour/build/maple",
+          TOUR_BUILD,
           "--model",
           "house.glb",
           "--port",

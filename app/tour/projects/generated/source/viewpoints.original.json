@@ -1,0 +1,13 @@
+[
+  { "id": "v1", "room_id": "r2", "X": -1.0, "Y": -3.0, "notes": "Entry (center)" },
+  { "id": "v2", "room_id": "r3", "X": 3.0, "Y": -2.0, "notes": "Living Room (front, fireplace)" },
+  { "id": "v3", "room_id": "r3", "X": 7.0, "Y": -2.0, "notes": "Living Room (near Kitchen door)" },
+  { "id": "v4", "room_id": "r4", "X": 4.0, "Y": 2.0, "notes": "Dining Room (center)" },
+  { "id": "v5", "room_id": "r5", "X": 7.5, "Y": 3.0, "notes": "Kitchen (from island)" },
+  { "id": "v6", "room_id": "r6", "X": 0.0, "Y": 1.0, "notes": "Hallway (south end)" },
+  { "id": "v7", "room_id": "r6", "X": 0.0, "Y": 5.0, "notes": "Hallway (north end)" },
+  { "id": "v8", "room_id": "r7", "X": -7.0, "Y": 2.0, "notes": "Master Bedroom (bed area)" },
+  { "id": "v9", "room_id": "r8", "X": -6.0, "Y": 7.5, "notes": "Master Bath" },
+  { "id": "v10", "room_id": "r9", "X": 0.0, "Y": 9.0, "notes": "Bedroom 2" },
+  { "id": "v11", "room_id": "r10", "X": 4.0, "Y": 7.5, "notes": "Main Bath" }
+]

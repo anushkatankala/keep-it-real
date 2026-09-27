@@ -1,0 +1,12 @@
+[
+  { "id": "r1", "name": "Garage", "type": "garage", "rect": { "minX": -9, "minY": -6, "maxX": -2, "maxY": 0 }, "notes": "two-car, interior stair to Entry" },
+  { "id": "r2", "name": "Entry", "type": "entry", "rect": { "minX": -2, "minY": -6, "maxX": 2, "maxY": 0 }, "notes": "coat closet, open to Living" },
+  { "id": "r3", "name": "Living Room", "type": "living", "rect": { "minX": 2, "minY": -6, "maxX": 9, "maxY": 0 }, "notes": "gas fireplace, large South-facing window" },
+  { "id": "r4", "name": "Dining Room", "type": "dining", "rect": { "minX": 2, "minY": 0, "maxX": 6, "maxY": 6 }, "notes": "shares North-South axis, glass sliding door to Rear Deck" },
+  { "id": "r5", "name": "Kitchen", "type": "kitchen", "rect": { "minX": 6, "minY": 0, "maxX": 9, "maxY": 6 }, "notes": "U-shaped counters, large central island, gas range" },
+  { "id": "r6", "name": "Hallway", "type": "hallway", "rect": { "minX": -2, "minY": 0, "maxX": 2, "maxY": 6 }, "notes": "access to all bedrooms and bathrooms" },
+  { "id": "r7", "name": "Master Bedroom", "type": "bedroom", "rect": { "minX": -9, "minY": 0, "maxX": -3, "maxY": 6 }, "notes": "West wall windows" },
+  { "id": "r8", "name": "Master Bath", "type": "bathroom", "rect": { "minX": -9, "minY": 6, "maxX": -3, "maxY": 9 }, "notes": "access from Master Bedroom, small high window" },
+  { "id": "r9", "name": "Bedroom 2", "type": "bedroom", "rect": { "minX": -2, "minY": 6, "maxX": 2, "maxY": 12 }, "notes": "small North window, closet" },
+  { "id": "r10", "name": "Main Bath", "type": "bathroom", "rect": { "minX": 2, "minY": 6, "maxX": 6, "maxY": 9 }, "notes": "tub/shower combo" }
+]

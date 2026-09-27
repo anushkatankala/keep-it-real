@@ -1,0 +1,24 @@
+{
+  "note": "Measured from floorplan.jpeg (96.9 px per metre, origin where the +X and +Y axes cross). The model's original table is rooms.original.json.",
+  "floorplan": { "pixelsPerMetre": 96.9, "originPx": [1410, 770] },
+  "rooms": [
+    { "id": "r1", "name": "Garage", "type": "garage", "rect": { "minX": -9, "minY": -6, "maxX": -2, "maxY": 0 }, "notes": "two-car, interior stair up to the Entry", "hidden": true },
+    { "id": "r2", "name": "Entry", "type": "entry", "rect": { "minX": -2, "minY": -3.4, "maxX": 0, "maxY": 0 }, "notes": "coat closet, open to the Living Room" },
+    { "id": "r3", "name": "Living Room", "type": "living", "rect": { "minX": 0, "minY": -4.58, "maxX": 4.86, "maxY": 0 }, "notes": "gas fireplace, large south-facing window" },
+    { "id": "r4", "name": "Dining Room", "type": "dining", "rect": { "minX": 4.86, "minY": 0, "maxX": 9, "maxY": 6 }, "notes": "windows on the east wall, opens to the Kitchen" },
+    { "id": "r5", "name": "Kitchen", "type": "kitchen", "rect": { "minX": 4.86, "minY": -4.58, "maxX": 9, "maxY": 0 }, "notes": "large central island, gas range, south and east windows" },
+    { "id": "r6", "name": "Hallway", "type": "hallway", "rect": { "minX": -4.62, "minY": 0, "maxX": 4.86, "maxY": 1.63 }, "notes": "runs east to west, access to all bedrooms and bathrooms" },
+    { "id": "r7", "name": "Master Bedroom", "type": "bedroom", "rect": { "minX": -9, "minY": 0, "maxX": -4.62, "maxY": 6 }, "notes": "west wall windows, ensuite" },
+    { "id": "r8", "name": "Master Bath", "type": "bathroom", "rect": { "minX": -4.62, "minY": 1.63, "maxX": -1.87, "maxY": 6 }, "notes": "ensuite to the Master Bedroom, small high window" },
+    { "id": "r9", "name": "Bedroom 2", "type": "bedroom", "rect": { "minX": -1.87, "minY": 1.63, "maxX": 2.13, "maxY": 6 }, "notes": "north window, closet" },
+    { "id": "r10", "name": "Main Bath", "type": "bathroom", "rect": { "minX": 2.13, "minY": 1.63, "maxX": 4.86, "maxY": 6 }, "notes": "tub and shower combo, north window" }
+  ],
+  "doorOverrides": {
+    "r6:r8": false,
+    "r8:r9": false,
+    "r10:r9": false,
+    "r10:r4": false,
+    "r3:r6": false,
+    "r1:r7": false
+  }
+}

@@ -101,7 +101,7 @@ export function planRoute(geometry, { transitTypes = TRANSIT_TYPES } = {}) {
   const stops = [];
 
   for (const floor of floors) {
-    const floorRooms = geometry.rooms.filter((room) => room.floorId === floor.id);
+    const floorRooms = geometry.rooms.filter((room) => room.floorId === floor.id && !room.hidden);
     if (floorRooms.length === 0) continue;
 
     const unvisited = new Set(floorRooms.map((room) => room.id));

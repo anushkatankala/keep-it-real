@@ -1,0 +1,61 @@
+{
+  "_comment": "Hand-written stand-in for Gemini output, used when GEMINI_API_KEY is not set. Route order from route.mjs; every atPhrase appears verbatim in its own text, and every target exists in that room's geometry.",
+  "stops": [
+    {
+      "roomId": "exterior",
+      "text": "Welcome home. Warm red brick, dark metal roofing and stone on the gables, this is Canadian transitional done properly. Just over 2,100 square feet on one level. Let's step inside.",
+      "moves": []
+    },
+    {
+      "roomId": "r2",
+      "text": "The entry keeps things practical, with a coat closet right by the door, and it opens straight into the living room so the house feels welcoming the moment you arrive.",
+      "moves": [{ "atPhrase": "opens straight into the living room", "target": "door:r3" }]
+    },
+    {
+      "roomId": "r3",
+      "text": "Here's the living room. The gas fireplace anchors the space, and that big south-facing window keeps it bright all afternoon. Wide-plank oak runs underfoot throughout.",
+      "moves": [
+        { "atPhrase": "south-facing window", "target": "windows", "fov": 62 },
+        { "atPhrase": "Wide-plank oak", "target": "door:r5" }
+      ]
+    },
+    {
+      "roomId": "r5",
+      "text": "The kitchen is built for real cooking. A large central island, a gas range, and windows on two sides, so you're never working in the dark.",
+      "moves": [{ "atPhrase": "windows on two sides", "target": "windows", "fov": 64 }]
+    },
+    {
+      "roomId": "r4",
+      "text": "Right next door, the dining room. At 267 square feet there's space for a proper table, and the east-facing windows make breakfast here a pleasure.",
+      "moves": [{ "atPhrase": "east-facing windows", "target": "windows", "fov": 62 }]
+    },
+    {
+      "roomId": "r6",
+      "text": "The hallway ties the whole home together, with every bedroom and bathroom just off it.",
+      "moves": []
+    },
+    {
+      "roomId": "r7",
+      "text": "The master bedroom sits in its own quiet corner, with windows along the west wall for soft evening light and an ensuite right through here.",
+      "moves": [
+        { "atPhrase": "windows along the west wall", "target": "windows", "fov": 62 },
+        { "atPhrase": "an ensuite right through here", "target": "door:r8" }
+      ]
+    },
+    {
+      "roomId": "r8",
+      "text": "The ensuite is bright and private, with a small high window that lets the light in and keeps the view out.",
+      "moves": [{ "atPhrase": "a small high window", "target": "windows" }]
+    },
+    {
+      "roomId": "r9",
+      "text": "Bedroom two is a comfortable size, with a north window and its own closet. Perfect for a child, a guest, or a home office.",
+      "moves": [{ "atPhrase": "a north window", "target": "windows" }]
+    },
+    {
+      "roomId": "r10",
+      "text": "And finally, the main bath, with a tub and shower combination finished in the same warm, clean style as the rest of the house. Thanks for touring with us.",
+      "moves": []
+    }
+  ]
+}

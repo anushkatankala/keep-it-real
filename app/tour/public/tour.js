@@ -36,21 +36,22 @@ if (!tour) {
 }
 
 const geometry = plan ? analysePlan(plan) : null;
-const mode = new URLSearchParams(location.search).get("mode") === "walk" ? "walk" : "auto";
+const pageQuery = new URLSearchParams(location.search);
+const mode = pageQuery.get("mode") === "walk" ? "walk" : "auto";
+const mediaVersion = pageQuery.get("v") ?? "";
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+/** Until the map walkthrough lands, a room shows the first of its viewpoints. */
+const viewpointOf = (roomId) => geometry?.viewpointsByRoom.get(roomId)?.[0] ?? null;
 
 const scene = new PanoScene(dom.stage, {
   plan,
-  panoUrl: (roomId) => `/panos/${roomId}.jpg`,
+  panoUrl: (roomId) =>
+    `/panos/${viewpointOf(roomId)?.id ?? roomId}.jpg${mediaVersion ? `?v=${mediaVersion}` : ""}`,
+  facingOf: (roomId) => viewpointOf(roomId)?.facing ?? 0,
   roomOf: (roomId) => geometry?.byId.get(roomId) ?? null,
   targetsOf: (roomId) => geometry?.targets.get(roomId) ?? {}
 });
-
-// The narrated tour stays on the house GLB. Room changes still advance the
-// script, but the picture is the model, not the interior photos.
-if (mode === "auto") {
-  scene.showRoom = () => scene.showExterior("/model");
-}
 
 const director = new Director(scene, tour, {
   audioBase: "/",
@@ -93,7 +94,10 @@ if (mode === "walk") {
   dom.controls.classList.add("hidden");
 }
 
-dom.badge.textContent = "Interiors are AI-generated. The exterior is the real house.";
+dom.badge.textContent =
+  mode === "auto"
+    ? "Exterior is the cropped 3D house. Each room uses the interior photo you uploaded."
+    : "Walk the interiors from your photos. The exterior is the cropped 3D house.";
 dom.badge.classList.remove("hidden");
 
 for (const [index, stop] of tour.stops.entries()) {

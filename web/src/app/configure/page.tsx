@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 import { RouteGuard } from "@/components/layout/RouteGuard";
 import { Button } from "@/components/ui/Button";
@@ -11,6 +12,7 @@ import {
   DEMO_FLOOR_PLAN_URL,
   DEMO_PROPERTY_NAME,
   croppedViewerUrl,
+  publishTourMedia,
 } from "@/constants/demo";
 import {
   MAX_ROOM_COUNT,
@@ -34,6 +36,8 @@ export default function RoomConfigPage() {
     setStandardRoomImages,
     toggleSpecialRoom,
   } = useProject();
+  const [isPublishing, setIsPublishing] = useState(false);
+  const [publishError, setPublishError] = useState<string | null>(null);
 
   const hasStandardRoom = STANDARD_ROOMS.some(
     ({ key }) => roomConfig[key] > MIN_ROOM_COUNT,
@@ -83,10 +87,24 @@ export default function RoomConfigPage() {
     setSpecialRoomImages(roomId, files);
   };
 
-  const handleProcessProperty = () => {
-    setResults(null);
-    setIsProcessing(true);
-    router.push("/results");
+  const handleProcessProperty = async () => {
+    setPublishError(null);
+    setIsPublishing(true);
+    try {
+      // The example's panoramas already live on the tour server.
+      if (!demoMode) await publishTourMedia(roomConfig);
+      setResults(null);
+      setIsProcessing(true);
+      router.push("/results");
+    } catch (reason) {
+      setPublishError(
+        reason instanceof Error
+          ? reason.message
+          : "Could not send room photos to the tour.",
+      );
+    } finally {
+      setIsPublishing(false);
+    }
   };
 
   return (
@@ -102,7 +120,7 @@ export default function RoomConfigPage() {
             </h1>
             <p className="mt-5 text-sm font-light leading-loose text-white/50">
               {demoMode
-                ? "The example floor plan and eight rooms are already filled in. Confirm the cropped house, then process."
+                ? "The example floor plan and its room panoramas are already filled in. Confirm the cropped house, then process."
                 : "Add each space, then attach at least one interior image to every room instance."}
             </p>
           </header>
@@ -111,7 +129,7 @@ export default function RoomConfigPage() {
             <section className="mt-14 grid gap-4 md:grid-cols-2">
               <figure className="overflow-hidden border border-white/[0.08] bg-white/[0.02]">
                 <img
-                  alt="Example floor plan for 142 Maple Street"
+                  alt={`Example floor plan for ${DEMO_PROPERTY_NAME}`}
                   className="h-64 w-full object-contain bg-black md:h-80"
                   src={DEMO_FLOOR_PLAN_URL}
                 />
@@ -221,12 +239,21 @@ export default function RoomConfigPage() {
                     ? "Every room has image coverage."
                     : "Upload at least one image for every room before processing."}
             </p>
-            <Button
-              disabled={!canProcessProperty}
-              onClick={handleProcessProperty}
-            >
-              Process Property →
-            </Button>
+            <div className="flex flex-col items-end gap-2">
+              {publishError ? (
+                <p className="max-w-sm text-right text-xs text-red-300" role="alert">
+                  {publishError}
+                </p>
+              ) : null}
+              <Button
+                disabled={!canProcessProperty || isPublishing}
+                onClick={() => {
+                  void handleProcessProperty();
+                }}
+              >
+                {isPublishing ? "Preparing tour…" : "Process Property →"}
+              </Button>
+            </div>
           </div>
         </div>
       </main>

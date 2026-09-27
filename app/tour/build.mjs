@@ -11,6 +11,8 @@
  *   node app/tour/build.mjs --project ../../projects/maple
  */
 
+import "./env.mjs";
+
 import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { basename, join, resolve } from "node:path";
@@ -344,6 +346,7 @@ async function main() {
       id,
       kind: isExterior ? "exterior" : "room",
       roomId: isExterior ? null : entry.roomId,
+      viewpointIds: isExterior ? [] : (geometry.viewpointsByRoom.get(entry.roomId) ?? []).map((point) => point.id),
       name: isExterior ? plan.name : room?.name ?? entry.roomId,
       transit: Boolean(byRoomId.get(entry.roomId)?.transit),
       audio,

@@ -75,10 +75,12 @@ export class PanoScene {
    * @param options.panoUrl  (roomId) => url of that room's equirectangular image
    * @param options.roomOf   (roomId) => room record from plan.json, for placeholders
    * @param options.targetsOf (roomId) => named targets, drawn on placeholders
+   * @param options.facingOf (roomId) => heading the image's centre faces, default 0
    */
-  constructor(container, { panoUrl, roomOf, targetsOf, plan } = {}) {
+  constructor(container, { panoUrl, roomOf, targetsOf, facingOf, plan } = {}) {
     this.container = container;
     this.panoUrl = panoUrl ?? (() => null);
+    this.facingOf = facingOf ?? (() => 0);
     this.roomOf = roomOf ?? (() => null);
     this.targetsOf = targetsOf ?? (() => ({}));
     this.axes = axisMatrix(plan);
@@ -181,8 +183,13 @@ export class PanoScene {
         .loadAsync(url)
         .catch(() => null);
     }
-    if (!texture) {
+    if (texture) {
+      texture.userData.facing = this.facingOf(roomId) ?? 0;
+    } else {
+      // The placeholder draws its compass with heading 0 at the centre, so it
+      // must not inherit the missing photo's facing.
       texture = new THREE.CanvasTexture(placeholderPanorama(this.roomOf(roomId), this.targetsOf(roomId)));
+      texture.userData.facing = 0;
     }
 
     const image = texture.image;
@@ -207,6 +214,11 @@ export class PanoScene {
     return Boolean(map && map.userData.equirect === false);
   }
 
+  /** The heading a flat photo is locked to: the way its camera pointed. */
+  #photoHeading() {
+    return this.layers[this.activeLayer]?.material.map?.userData.facing ?? 0;
+  }
+
   /** Warms a room's texture so its crossfade does not stall. Optional extra. */
   prefetch(roomId) {
     return this.#textureFor(roomId).catch(() => null);
@@ -223,13 +235,16 @@ export class PanoScene {
     incoming.material.needsUpdate = true;
     incoming.material.opacity = fade > 0 ? 0 : 1;
     incoming.mesh.visible = true;
+    // Half a turn puts the image centre on heading 0 (see #createLayer); a
+    // positive Y rotation then moves it counter-clockwise, hence the minus.
+    incoming.mesh.rotation.y = Math.PI - degToRad(texture.userData.facing ?? 0);
 
     this.roomId = roomId;
     this.mode = "room";
     this.activeLayer = 1 - this.activeLayer;
 
     if (texture.userData.equirect === false) {
-      this.heading = 0;
+      this.heading = texture.userData.facing ?? 0;
       this.pitch = 0;
       this.driftSpeed = 0;
       this.tween = null;
@@ -255,8 +270,20 @@ export class PanoScene {
     }
     this.fade = null;
 
-    if (this.exterior.children.length > 0) return;
+    if (this.exterior.userData.modelUrl === glbUrl && this.exterior.children.length > 0) return;
 
+    for (const child of [...this.exterior.children]) {
+      this.exterior.remove(child);
+      child.traverse?.((node) => {
+        node.geometry?.dispose();
+        for (const material of [node.material].flat().filter(Boolean)) {
+          material.map?.dispose();
+          material.dispose();
+        }
+      });
+    }
+
+    this.exterior.userData.modelUrl = glbUrl;
     this.exterior.add(new THREE.HemisphereLight(0xffffff, 0x404050, 2.2));
     const sun = new THREE.DirectionalLight(0xffffff, 1.7);
     sun.position.set(1, 2, 1).multiplyScalar(40);
@@ -278,7 +305,7 @@ export class PanoScene {
 
   lookAt({ heading, pitch, fov } = {}, { duration = 1200, ease = easeInOutCubic } = {}) {
     if (this.#photoLocked()) {
-      heading = 0;
+      heading = this.#photoHeading();
       pitch = 0;
     }
     const target = {

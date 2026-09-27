@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Keyframe</title>
+    <!--
+      Renders one still of the house model with the tour's exterior camera, for
+      the video pipeline to animate between:
+        /keyframe.html?heading=30&pitch=22&fov=50&distance=0.62
+      distance scales the tour's own framing distance.
+    -->
+    <style>
+      html, body { margin: 0; height: 100%; overflow: hidden; background: #b9d3ea; }
+      #stage { position: fixed; left: 0; top: 0; width: min(100vw, 177.78vh); aspect-ratio: 16 / 9; }
+      canvas { display: block; }
+    </style>
+  </head>
+  <body>
+    <div id="stage"></div>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/vendor/three/build/three.module.js",
+          "three/addons/": "/vendor/three/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module">
+      import { PanoScene } from "/scene.mjs";
+
+      const query = new URLSearchParams(location.search);
+      const number = (name, fallback) => (query.has(name) ? Number(query.get(name)) : fallback);
+
+      const plan = await fetch("/api/plan").then((response) => (response.ok ? response.json() : null));
+      const scene = new PanoScene(document.getElementById("stage"), { plan });
+      await scene.showExterior("/model");
+      scene.scene.background.set(query.get("sky") ?? 0xb9d3ea);
+      scene.exteriorDistance *= number("distance", 1);
+      scene.lookAt({ heading: number("heading", 0), pitch: number("pitch", 18), fov: number("fov", 55) }, { duration: 0 });
+      scene.update(0);
+      document.body.dataset.ready = "true";
+    </script>
+  </body>
+</html>

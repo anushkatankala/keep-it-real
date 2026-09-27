@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { RouteGuard } from "@/components/layout/RouteGuard";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { TabBar, type TabDefinition } from "@/components/ui/TabBar";
-import { buildDemoResults } from "@/constants/demo";
+import { buildDemoResults, loadTourTranscript } from "@/constants/demo";
 import { STANDARD_ROOMS } from "@/constants/rooms";
 import { useProject } from "@/context/ProjectContext";
 import type { RoomConfig } from "@/types";
@@ -33,7 +33,10 @@ const buildTourRoomList = (roomConfig: RoomConfig): string[] => {
   const standardRooms = STANDARD_ROOMS.flatMap(({ key, singularLabel }) =>
     Array.from(
       { length: roomConfig[key] },
-      (_, index) => `${singularLabel} ${index + 1}`,
+      (_, index) =>
+        roomConfig.standardRoomImages[key][index]?.planRoomId
+          ? roomConfig.standardRoomImages[key][index].label
+          : `${singularLabel} ${index + 1}`,
     ),
   );
   const specialRooms = roomConfig.specialRooms
@@ -194,18 +197,50 @@ function TourPanel({ roomConfig, tourUrl }: TourPanelProps) {
   );
 }
 
+interface TranscriptRow {
+  time: string;
+  text: string;
+  seconds?: number;
+}
+
 interface WalkthroughPanelProps {
-  transcript: readonly { time: string; text: string }[];
+  captionsUrl: string | null;
+  transcript: readonly TranscriptRow[];
   videoUrl: string | null;
 }
 
+const isVideoFile = (url: string) => /\.mp4(\?|$)/.test(url);
+
 /** Renders the AI walkthrough tour and its timestamped transcript panel. */
-function WalkthroughPanel({ transcript, videoUrl }: WalkthroughPanelProps) {
+function WalkthroughPanel({ captionsUrl, transcript, videoUrl }: WalkthroughPanelProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const seekTo = (seconds: number | undefined) => {
+    const video = videoRef.current;
+    if (!video || seconds === undefined) return;
+    video.currentTime = seconds;
+    void video.play();
+  };
+
   return (
     <div className="min-h-[calc(100vh-14rem)] py-6">
-      {/* The tour is a live page that renders its own camera and captions, not a
-          video file, so it is embedded rather than played. */}
-      {videoUrl ? (
+      {videoUrl && isVideoFile(videoUrl) ? (
+        <video
+          ref={videoRef}
+          className="aspect-video w-full border border-white/[0.08] bg-black"
+          controls
+          crossOrigin="anonymous"
+          playsInline
+          preload="metadata"
+          src={videoUrl}
+        >
+          {captionsUrl ? (
+            <track default kind="captions" label="English" src={captionsUrl} srcLang="en" />
+          ) : null}
+        </video>
+      ) : videoUrl ? (
+        // A live tour page renders its own camera and captions, so it is
+        // embedded rather than played.
         <iframe
           allow="autoplay; fullscreen"
           className="aspect-video w-full border border-white/[0.08] bg-black"
@@ -225,28 +260,25 @@ function WalkthroughPanel({ transcript, videoUrl }: WalkthroughPanelProps) {
           Transcript
         </p>
         <div className="mt-5">
-          {transcript.map(({ time, text }) => (
-            <div
+          {transcript.map(({ time, text, seconds }) => (
+            <button
               key={time}
-              className="flex gap-8 border-b border-white/[0.06] py-4 text-sm"
+              className="flex w-full gap-8 border-b border-white/[0.06] py-4 text-left text-sm transition-colors enabled:hover:bg-white/[0.03]"
+              disabled={seconds === undefined}
+              onClick={() => seekTo(seconds)}
+              type="button"
             >
               <span className="font-medium tabular-nums text-white/30">
                 {time}
               </span>
               <span className="font-light text-white/55">{text}</span>
-            </div>
+            </button>
           ))}
         </div>
       </GlassCard>
     </div>
   );
 }
-
-const DEMO_TRANSCRIPT_ROWS = [
-  { time: "00:00", text: "Welcome to 142 Maple Street — the real exterior, from drone photographs." },
-  { time: "00:13", text: "Entry, living room, and the kitchen that opens to dining." },
-  { time: "00:46", text: "Primary bedroom, second bedroom, and the bath that connects them." },
-];
 
 /** Presents the processed property across model, tour, and video result tabs. */
 export default function ResultsPage() {
@@ -262,6 +294,14 @@ export default function ResultsPage() {
   } = useProject();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<string>(RESULT_TABS[0].id);
+  const [demoTranscript, setDemoTranscript] = useState<TranscriptRow[]>([]);
+
+  useEffect(() => {
+    if (!demoMode) return;
+    loadTourTranscript()
+      .then(setDemoTranscript)
+      .catch(() => setDemoTranscript([]));
+  }, [demoMode]);
 
   useEffect(() => {
     if (!demoMode || !isProcessing) return;
@@ -327,7 +367,12 @@ export default function ResultsPage() {
             role="tabpanel"
           >
             <WalkthroughPanel
-              transcript={demoMode ? DEMO_TRANSCRIPT_ROWS : TRANSCRIPT_ROWS}
+              captionsUrl={
+                (demoMode
+                  ? buildDemoResults(Boolean(cropRegion)).aiVideoCaptionsUrl
+                  : results?.aiVideoCaptionsUrl) ?? null
+              }
+              transcript={demoMode ? demoTranscript : TRANSCRIPT_ROWS}
               videoUrl={
                 (demoMode
                   ? buildDemoResults(Boolean(cropRegion)).aiVideoUrl
