@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion } from "motion/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -25,6 +26,7 @@ import type { StandardRoomKey } from "@/types";
 /** Collects standard room counts and optional-space reference images. */
 export default function RoomConfigPage() {
   const router = useRouter();
+  const shouldReduceMotion = useReducedMotion();
   const {
     cropRegion,
     demoMode,
@@ -160,14 +162,27 @@ export default function RoomConfigPage() {
               Standard Rooms
             </h2>
             <div className="mt-6 border-t border-white/[0.06]">
-              {STANDARD_ROOMS.map(({ key, label }) => {
+              {STANDARD_ROOMS.map(({ key, label }, index) => {
                 const handleCounterChange = (count: number) => {
                   handleRoomCountChange(key, count);
                 };
                 const imageSets = roomConfig.standardRoomImages[key];
 
                 return (
-                  <div key={key}>
+                  <motion.div
+                    key={key}
+                    animate={{ opacity: 1, x: 0 }}
+                    initial={
+                      shouldReduceMotion
+                        ? { opacity: 0 }
+                        : { opacity: 0, x: -8 }
+                    }
+                    transition={{
+                      delay: index * 0.05,
+                      duration: 0.35,
+                      ease: [0.25, 0.1, 0.25, 1],
+                    }}
+                  >
                     <RoomCounter
                       label={label}
                       max={MAX_ROOM_COUNT}
@@ -199,7 +214,7 @@ export default function RoomConfigPage() {
                         })}
                       </div>
                     ) : null}
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
@@ -246,12 +261,14 @@ export default function RoomConfigPage() {
                 </p>
               ) : null}
               <Button
+                className="text-xs uppercase tracking-[0.14em]"
                 disabled={!canProcessProperty || isPublishing}
                 onClick={() => {
                   void handleProcessProperty();
                 }}
+                variant="ghost"
               >
-                {isPublishing ? "Preparing tour…" : "Process Property →"}
+                {isPublishing ? "Preparing tour…" : "Process property"}
               </Button>
             </div>
           </div>

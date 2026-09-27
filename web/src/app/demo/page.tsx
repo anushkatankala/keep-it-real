@@ -1,9 +1,12 @@
 "use client";
 
+import { motion, useReducedMotion } from "motion/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
+import { GlassCard } from "@/components/ui/GlassCard";
 import {
   CROP_ORIGIN,
   loadDemoFixture,
@@ -24,6 +27,7 @@ const isCropOrigin = (origin: string) =>
 /** Full-viewport crop step: embed the existing GLB viewer, then advance. */
 export default function DemoCropPage() {
   const router = useRouter();
+  const shouldReduceMotion = useReducedMotion();
   const { applyDemoProject, startDemo } = useProject();
   const [cropReady, setCropReady] = useState<CropPayload | null>(null);
   const [isAdvancing, setIsAdvancing] = useState(false);
@@ -86,7 +90,7 @@ export default function DemoCropPage() {
   };
 
   return (
-    <main className="relative h-screen overflow-hidden bg-black">
+    <main className="relative h-screen overflow-hidden bg-canvas">
       <iframe
         allow="fullscreen"
         allowFullScreen
@@ -95,21 +99,36 @@ export default function DemoCropPage() {
         title="Crop the example house"
       />
 
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-between px-6 py-5">
-        <p className="rounded-full border border-white/10 bg-black/50 px-4 py-2 text-[11px] uppercase tracking-[0.18em] text-white/70 backdrop-blur">
-          Example · draw a box, crop, then continue
-        </p>
-        <a
-          className="pointer-events-auto text-xs text-white/45 hover:text-white"
+      <motion.div
+        animate={{ opacity: 1, y: 0 }}
+        className="pointer-events-none absolute inset-x-0 top-16 z-10 flex justify-end px-10 py-5"
+        initial={
+          shouldReduceMotion
+            ? { opacity: 0 }
+            : { opacity: 0, y: -6 }
+        }
+        transition={{
+          duration: 0.4,
+          ease: [0.25, 0.1, 0.25, 1],
+        }}
+      >
+        <Link
+          className="pointer-events-auto text-[10px] font-light uppercase tracking-[0.18em] text-white/40 transition-colors duration-200 hover:text-white/75"
           href="/"
         >
-          ← Back
-        </a>
-      </div>
+          Back
+        </Link>
+      </motion.div>
 
       {cropReady ? (
-        <div className="absolute inset-x-0 bottom-0 z-10 flex justify-center bg-gradient-to-t from-black via-black/80 to-transparent px-6 pb-8 pt-16">
-          <div className="flex w-full max-w-xl flex-col items-center gap-4 text-center">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center px-8 pb-8">
+          <GlassCard
+            className="pointer-events-auto flex w-full max-w-xl flex-col items-center gap-4 p-6 text-center"
+            variant="upload"
+          >
+            <p className="text-[10px] font-light uppercase tracking-[0.2em] text-white/35">
+              Selection ready
+            </p>
             <p className="text-sm font-light text-white/70">
               Crop saved
               {cropReady.kept && cropReady.total
@@ -117,21 +136,28 @@ export default function DemoCropPage() {
                 : ""}
               . Next, review the example floor plan and rooms.
             </p>
-            <Button disabled={isAdvancing} onClick={handleContinue}>
-              {isAdvancing ? "Loading floor plan…" : "Continue to floor plan →"}
+            <Button
+              className="text-xs uppercase tracking-[0.14em]"
+              disabled={isAdvancing}
+              onClick={handleContinue}
+              variant="ghost"
+            >
+              {isAdvancing ? "Loading floor plan…" : "Continue"}
             </Button>
             {error ? (
-              <p className="text-xs text-red-300" role="alert">
+              <p className="text-xs font-light text-white/45" role="alert">
                 {error}
               </p>
             ) : null}
-          </div>
+          </GlassCard>
         </div>
       ) : error ? (
         <div className="absolute inset-x-0 bottom-8 z-10 flex justify-center px-6">
-          <p className="max-w-lg text-center text-xs text-red-300" role="alert">
-            {error}
-          </p>
+          <GlassCard className="max-w-lg px-5 py-4 text-center">
+            <p className="text-xs font-light text-white/55" role="alert">
+              {error}
+            </p>
+          </GlassCard>
         </div>
       ) : null}
     </main>

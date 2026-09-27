@@ -44,6 +44,8 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 /** Until the map walkthrough lands, a room shows the first of its viewpoints. */
 const viewpointOf = (roomId) => geometry?.viewpointsByRoom.get(roomId)?.[0] ?? null;
 
+document.body.classList.add(`mode-${mode}`);
+
 const scene = new PanoScene(dom.stage, {
   plan,
   panoUrl: (roomId) =>
@@ -85,19 +87,19 @@ dom.introTitle.textContent = tour.projectName ?? "AI tour";
 const silent = tour.voice?.provider !== "elevenlabs";
 dom.introText.textContent =
   mode === "walk"
-    ? "Click a room, or a doorway inside it, and the camera walks through."
+    ? "Choose a room or doorway to move through the property at your own pace."
     : silent
-      ? "An automated walk through the same rooms, with the narration on screen. Voice arrives with the ElevenLabs key."
+      ? "A guided walkthrough with synchronized on-screen narration."
       : `Narrated tour, ${formatClock(tour.totalDuration)}.`;
 if (mode === "walk") {
-  dom.begin.textContent = "Step inside";
+  dom.begin.textContent = "Enter property";
   dom.controls.classList.add("hidden");
 }
 
 dom.badge.textContent =
   mode === "auto"
-    ? "Exterior is the cropped 3D house. Each room uses the interior photo you uploaded."
-    : "Walk the interiors from your photos. The exterior is the cropped 3D house.";
+    ? "Uploaded interiors · cropped 3D exterior"
+    : "Walk uploaded interiors · cropped 3D exterior";
 dom.badge.classList.remove("hidden");
 
 for (const [index, stop] of tour.stops.entries()) {

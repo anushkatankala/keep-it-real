@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { Navbar } from "@/components/layout/Navbar";
+import { PageTransition } from "@/components/layout/PageTransition";
 
 import "./globals.css";
 import { Providers } from "./providers";
@@ -29,7 +30,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className={`${inter.variable} font-sans antialiased`}>
         <Providers>
           <Navbar />
-          {children}
+          <PageTransition>{children}</PageTransition>
         </Providers>
       </body>
     </html>
