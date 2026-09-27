@@ -2,113 +2,249 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Crop GLB</title>
+    <title>Crop property</title>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap");
+
       :root {
         color-scheme: dark;
-        --panel: #16181d;
-        --line: #2c2f36;
-        --accent: #4f9dff;
+        --canvas: #080808;
+        --line: rgba(255, 255, 255, 0.08);
+        --line-hover: rgba(255, 255, 255, 0.2);
+        --muted: rgba(255, 255, 255, 0.38);
+        --surface: rgba(255, 255, 255, 0.03);
+        --text: rgba(255, 255, 255, 0.86);
       }
+
       * { box-sizing: border-box; }
+
       body {
         margin: 0;
-        font: 13px/1.5 ui-sans-serif, system-ui, -apple-system, sans-serif;
-        background: #0b0c0f;
-        color: #e6e8ec;
+        font: 300 13px/1.5 "Inter", ui-sans-serif, system-ui, sans-serif;
+        background: var(--canvas);
+        color: var(--text);
         overflow: hidden;
       }
+
       #stage { position: fixed; inset: 0; }
       canvas { display: block; }
 
       #panel {
         position: fixed;
-        top: 16px;
-        left: 16px;
-        width: 268px;
-        padding: 14px;
-        background: color-mix(in srgb, var(--panel) 92%, transparent);
+        top: 32px;
+        left: 32px;
+        width: 280px;
+        padding: 18px;
+        background: var(--surface);
         border: 1px solid var(--line);
-        border-radius: 10px;
-        backdrop-filter: blur(8px);
+        border-radius: 16px;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.06),
+          0 24px 48px rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
       }
-      h1 { margin: 0 0 4px; font-size: 14px; }
-      .muted { color: #8b909b; }
-      .row { display: flex; gap: 6px; margin-top: 10px; }
+
+      body.embedded #panel { top: 84px; }
+
+      h1 {
+        margin: 0 0 5px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .muted { color: var(--muted); }
+
+      #model {
+        font-size: 10px;
+        letter-spacing: 0.03em;
+      }
+
+      .row {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
       button {
         flex: 1;
-        padding: 7px 9px;
-        font: inherit;
-        color: inherit;
-        background: #23262d;
-        border: 1px solid var(--line);
-        border-radius: 6px;
+        min-height: 34px;
+        padding: 7px 10px;
+        color: rgba(255, 255, 255, 0.65);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
         cursor: pointer;
+        font: 400 10px/1 "Inter", ui-sans-serif, system-ui, sans-serif;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: all 150ms ease;
       }
-      button:hover:not(:disabled) { border-color: #4a4f59; }
-      button:disabled { opacity: 0.45; cursor: default; }
-      button.primary { background: var(--accent); border-color: var(--accent); color: #05203f; font-weight: 600; }
-      button.active { border-color: var(--accent); color: var(--accent); }
-      label.check { display: flex; align-items: center; gap: 7px; margin-top: 10px; cursor: pointer; }
-      .slider { margin-top: 12px; }
-      .sliderTop { display: flex; justify-content: space-between; color: #8b909b; }
-      #rotateValue { color: #e6e8ec; font-variant-numeric: tabular-nums; }
-      input[type="range"] { width: 100%; margin: 4px 0 0; accent-color: var(--accent); }
-      dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; margin: 12px 0 0; }
-      dt { color: #8b909b; }
+
+      button:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.09);
+        border-color: var(--line-hover);
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      button:disabled {
+        cursor: default;
+        opacity: 0.28;
+      }
+
+      button.primary,
+      button.active {
+        background: rgba(255, 255, 255, 0.92);
+        border-color: rgba(255, 255, 255, 0.92);
+        color: #080808;
+        font-weight: 500;
+      }
+
+      button.primary:hover:not(:disabled),
+      button.active:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.8);
+        border-color: rgba(255, 255, 255, 0.8);
+        color: #080808;
+      }
+
+      label.check {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+        color: rgba(255, 255, 255, 0.48);
+        cursor: pointer;
+        font-size: 11px;
+      }
+
+      input[type="checkbox"],
+      input[type="range"] {
+        accent-color: rgba(255, 255, 255, 0.9);
+      }
+
+      .slider { margin-top: 14px; }
+
+      .sliderTop {
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      #rotateValue {
+        color: rgba(255, 255, 255, 0.72);
+        font-variant-numeric: tabular-nums;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        margin: 6px 0 0;
+      }
+
+      dl {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 3px 12px;
+        margin: 14px 0 0;
+        font-size: 11px;
+      }
+
+      dt { color: var(--muted); }
       dd { margin: 0; font-variant-numeric: tabular-nums; }
-      #status { margin-top: 10px; min-height: 18px; color: var(--accent); }
-      #status.error { color: #ff7a6b; }
-      #tilt { margin-top: 6px; min-height: 18px; }
-      #tilt.warn { color: #ffc46b; }
-      hr { border: 0; border-top: 1px solid var(--line); margin: 12px 0; }
+
+      #status {
+        min-height: 18px;
+        margin-top: 10px;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 11px;
+      }
+
+      #status.error { color: rgba(255, 255, 255, 0.72); }
+      #tilt { min-height: 18px; margin-top: 7px; font-size: 11px; }
+      #tilt.warn { color: rgba(255, 255, 255, 0.58); }
+      hr { margin: 14px 0; border: 0; border-top: 1px solid var(--line); }
 
       #marquee {
         position: fixed;
-        border: 1px solid var(--accent);
-        background: rgba(79, 157, 255, 0.16);
-        pointer-events: none;
         display: none;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        pointer-events: none;
       }
+
       #hint {
         position: fixed;
-        bottom: 16px;
+        bottom: 24px;
         left: 50%;
         transform: translateX(-50%);
-        padding: 7px 13px;
-        background: color-mix(in srgb, var(--panel) 92%, transparent);
+        padding: 8px 14px;
+        background: rgba(8, 8, 8, 0.58);
         border: 1px solid var(--line);
         border-radius: 999px;
-        color: #8b909b;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 10px;
+        letter-spacing: 0.04em;
+        backdrop-filter: blur(18px) saturate(160%);
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
       }
 
       #continueBar {
         position: fixed;
-        right: 16px;
-        bottom: 16px;
+        right: 32px;
+        bottom: 32px;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 12px;
         width: min(360px, calc(100vw - 32px));
-        padding: 14px 16px;
-        background: color-mix(in srgb, var(--panel) 94%, transparent);
-        border: 1px solid var(--accent);
-        border-radius: 12px;
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+        padding: 18px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.06),
+          0 24px 48px rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
       }
+
       #continueBar[hidden] { display: none; }
-      #continueBar p { margin: 0; color: #c9d4e6; }
+
+      #continueBar p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.62);
+        font-size: 12px;
+        font-weight: 300;
+      }
+
       #continueBanner {
         width: 100%;
-        padding: 10px 12px;
-        font: inherit;
-        font-weight: 650;
-        color: #05203f;
-        background: var(--accent);
-        border: 1px solid var(--accent);
+        padding: 11px 12px;
+        color: rgba(255, 255, 255, 0.72);
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 8px;
         cursor: pointer;
+        font: 400 10px/1 "Inter", ui-sans-serif, system-ui, sans-serif;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        transition: all 150ms ease;
       }
+
+      #continueBanner:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      body.embedded #continueBar,
+      body.embedded .continueRow,
+      body.embedded.crop-ready #hint {
+        display: none;
+      }
+
       body.view-cropped #panel,
       body.view-cropped #hint,
       body.view-cropped #continueBar { display: none; }
@@ -119,20 +255,20 @@
     <div id="marquee"></div>
 
     <div id="panel">
-      <h1>Crop GLB</h1>
+      <h1>Crop property</h1>
       <div class="muted" id="model">loading…</div>
 
       <div class="row">
-        <button id="draw" class="active">Draw box</button>
+        <button id="draw" class="active">Draw area</button>
         <button id="orbit">Orbit</button>
       </div>
       <div class="row">
         <button id="top">Top view</button>
-        <button id="clear" disabled>Clear box</button>
+        <button id="clear" disabled>Clear</button>
       </div>
       <div class="row">
-        <button id="shrink" disabled>Shrink 1 m</button>
-        <button id="grow" disabled>Grow 1 m</button>
+        <button id="shrink" disabled>Tighten</button>
+        <button id="grow" disabled>Expand</button>
       </div>
 
       <div class="slider">
@@ -145,7 +281,7 @@
 
       <label class="check">
         <input type="checkbox" id="overlapping" />
-        <span>Keep partly-covered triangles</span>
+        <span>Include intersecting geometry</span>
       </label>
 
       <dl id="readout"></dl>
@@ -153,24 +289,24 @@
 
       <hr />
       <div class="row">
-        <button id="crop" class="primary" disabled>Crop</button>
+        <button id="crop" class="primary" disabled>Apply crop</button>
       </div>
       <div class="row">
-        <button id="download" disabled>Download .glb</button>
-        <button id="reset" disabled>Original</button>
+        <button id="download" disabled>Download model</button>
+        <button id="reset" disabled>Restore original</button>
       </div>
-      <div class="row">
-        <button id="continue" class="primary" disabled>Continue to floor plan →</button>
+      <div class="row continueRow">
+        <button id="continue" disabled>Continue</button>
       </div>
       <div id="status"></div>
     </div>
 
     <div id="continueBar" hidden>
       <p>Crop saved. Next, attach the example floor plan and room details.</p>
-      <button id="continueBanner" type="button">Continue to floor plan →</button>
+      <button id="continueBanner" type="button">Continue</button>
     </div>
 
-    <div id="hint">Turn the view until the house is square to the screen, then left-drag a box · right-drag to orbit · [ ] to turn</div>
+    <div id="hint">Drag to select · right-drag to orbit · scroll to zoom · [ ] to turn</div>
 
     <script type="importmap">
       {

@@ -10,6 +10,10 @@ const params = new URLSearchParams(location.search);
 const wantCropped = params.get("src") === "cropped";
 const parentOrigins = new Set(["http://localhost:3000", "http://127.0.0.1:3000"]);
 
+if (window.parent !== window) {
+  document.body.classList.add("embedded");
+}
+
 function notifyParent(type, payload) {
   if (window.parent === window) return;
   const message = { type, payload };
@@ -62,8 +66,8 @@ renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 dom.stage.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x0b0c0f);
-scene.add(new THREE.HemisphereLight(0xffffff, 0x404050, 2.2));
+scene.background = new THREE.Color(0x080808);
+scene.add(new THREE.HemisphereLight(0xffffff, 0x303030, 2.2));
 const sun = new THREE.DirectionalLight(0xffffff, 1.6);
 sun.position.copy(centre).addScaledVector(upVector, span);
 scene.add(sun);
@@ -168,6 +172,7 @@ async function loadOriginal() {
 
 function setContinueReady(ready) {
   if (!dom.continue || viewingCropped) return;
+  document.body.classList.toggle("crop-ready", ready);
   dom.continue.disabled = !ready;
   if (dom.continueBar) dom.continueBar.hidden = !ready;
 }
@@ -220,7 +225,7 @@ function drawOutline() {
 
   outline = new THREE.LineSegments(
     new THREE.BufferGeometry().setFromPoints(points),
-    new THREE.LineBasicMaterial({ color: 0x4f9dff })
+    new THREE.LineBasicMaterial({ color: 0xffffff, opacity: 0.72, transparent: true })
   );
   scene.add(outline);
 }

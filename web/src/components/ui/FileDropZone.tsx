@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import {
   useRef,
   useState,
@@ -99,18 +100,47 @@ export function FileDropZone({
 
   return (
     <div>
-      <div
+      <motion.div
         aria-label={`${label}. Click or drop files to upload.`}
-        className={`flex cursor-pointer flex-col justify-between border border-dashed bg-black/10 transition-colors duration-200 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-white ${
+        animate={{
+          backgroundColor: isDragging
+            ? "rgba(255, 255, 255, 0.05)"
+            : "rgba(255, 255, 255, 0.03)",
+          borderColor: isDragging
+            ? "rgba(255,255,255,0.35)"
+            : "rgba(255,255,255,0.15)",
+          transition: {
+            duration: 0.2,
+            ease: [0.25, 0.1, 0.25, 1],
+          },
+        }}
+        className={`flex cursor-pointer flex-col justify-between focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-white ${
           compact ? "min-h-32 p-5" : "min-h-72 p-7 md:min-h-80 md:p-9"
-        } ${isDragging ? "border-white/60" : "border-white/20"}`}
+        }`}
         onClick={handleOpenFileDialog}
         onDragLeave={handleDragLeave}
         onDragOver={handleDragOver}
         onDrop={handleFilesDrop}
         onKeyDown={handleDropZoneKeyDown}
         role="button"
+        style={{
+          WebkitBackdropFilter: "blur(24px) saturate(180%)",
+          backdropFilter: "blur(24px) saturate(180%)",
+          backgroundColor: "rgba(255, 255, 255, 0.03)",
+          border: "1.5px dashed rgba(255,255,255,0.15)",
+          boxShadow:
+            "inset 0 1px 0 rgba(255,255,255,0.06), 0 24px 48px rgba(0,0,0,0.4)",
+        }}
         tabIndex={0}
+        transition={{ damping: 30, stiffness: 400, type: "spring" }}
+        whileHover={{
+          borderColor: "rgba(255,255,255,0.35)",
+          transition: {
+            damping: 30,
+            stiffness: 400,
+            type: "spring",
+          },
+        }}
       >
         <div className="flex items-start justify-between gap-6">
           <span className="text-sm font-light text-white/70">{label}</span>
@@ -124,7 +154,7 @@ export function FileDropZone({
             ? `${files.length} ${files.length === 1 ? "image" : "images"} selected`
             : "Click to browse or drag files here"}
         </div>
-      </div>
+      </motion.div>
 
       <input
         ref={inputRef}

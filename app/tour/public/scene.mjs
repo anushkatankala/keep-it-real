@@ -101,7 +101,7 @@ export class PanoScene {
     container.appendChild(this.renderer.domElement);
 
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x05060a);
+    this.scene.background = new THREE.Color(0x080808);
     this.camera = new THREE.PerspectiveCamera(this.fov, 1, 0.1, 5000);
 
     this.layers = [0, 1].map((index) => this.#createLayer(index));
@@ -284,7 +284,7 @@ export class PanoScene {
     }
 
     this.exterior.userData.modelUrl = glbUrl;
-    this.exterior.add(new THREE.HemisphereLight(0xffffff, 0x404050, 2.2));
+    this.exterior.add(new THREE.HemisphereLight(0xffffff, 0x303030, 2.2));
     const sun = new THREE.DirectionalLight(0xffffff, 1.7);
     sun.position.set(1, 2, 1).multiplyScalar(40);
     this.exterior.add(sun);
@@ -418,7 +418,7 @@ export class PanoScene {
 
     const walls = new THREE.Mesh(
       new THREE.BoxGeometry(width, depth, wallHeight),
-      new THREE.MeshStandardMaterial({ color: 0x8d8f96, roughness: 0.9 })
+      new THREE.MeshStandardMaterial({ color: 0x8d8d8d, roughness: 0.9 })
     );
     walls.position.z = min[2] + wallHeight / 2;
 
@@ -426,7 +426,7 @@ export class PanoScene {
     // diagonals, so the radius is scaled up to reach the corners.
     const roof = new THREE.Mesh(
       new THREE.ConeGeometry((Math.max(width, depth) / 2) * Math.SQRT2 * 0.62, total - wallHeight, 4),
-      new THREE.MeshStandardMaterial({ color: 0x6b4a3a, roughness: 0.85 })
+      new THREE.MeshStandardMaterial({ color: 0x555555, roughness: 0.85 })
     );
     roof.rotation.x = Math.PI / 2;
     roof.rotation.y = Math.PI / 4;

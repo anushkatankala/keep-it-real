@@ -1,5 +1,7 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+
 import type { SpecialRoom } from "@/types";
 
 import { FileDropZone } from "./FileDropZone";
@@ -16,6 +18,8 @@ export function RoomSelector({
   onToggle,
   onFilesChange,
 }: RoomSelectorProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div>
       <div
@@ -28,19 +32,25 @@ export function RoomSelector({
           };
 
           return (
-            <button
+            <motion.div
               key={room.id}
-              aria-pressed={room.selected}
-              className={`shrink-0 rounded-lg border px-4 py-2 text-sm font-light transition-colors duration-200 ${
-                room.selected
-                  ? "border-white bg-white text-black"
-                  : "border-white/20 bg-transparent text-white/55 hover:border-white/40 hover:text-white/80"
-              }`}
-              onClick={handleRoomToggle}
-              type="button"
+              className="shrink-0"
+              transition={{ damping: 30, stiffness: 500, type: "spring" }}
+              whileTap={shouldReduceMotion ? undefined : { scale: 0.96 }}
             >
-              {room.label}
-            </button>
+              <button
+                aria-pressed={room.selected}
+                className={`shrink-0 rounded-lg border px-4 py-2 text-sm font-light transition-colors duration-200 ${
+                  room.selected
+                    ? "border-white bg-white text-black"
+                    : "border-white/20 bg-transparent text-white/55 hover:border-white/40 hover:text-white/80"
+                }`}
+                onClick={handleRoomToggle}
+                type="button"
+              >
+                {room.label}
+              </button>
+            </motion.div>
           );
         })}
       </div>
@@ -52,26 +62,36 @@ export function RoomSelector({
           };
 
           return (
-            <div
-              key={room.id}
-              aria-hidden={!room.selected}
-              className={`grid transition-all duration-300 ${
-                room.selected
-                  ? "grid-rows-[1fr] opacity-100"
-                  : "pointer-events-none grid-rows-[0fr] opacity-0"
-              }`}
-              inert={!room.selected}
-            >
-              <div className="min-h-0 overflow-hidden">
-                <FileDropZone
-                  compact
-                  files={room.imageFiles}
-                  label={`${room.label} reference images`}
-                  onFilesChange={handleRoomFilesChange}
-                  previews={room.imagePreviews}
-                />
-              </div>
-            </div>
+            <AnimatePresence key={room.id} initial={false}>
+              {room.selected ? (
+                <motion.div
+                  animate={{ height: "auto", opacity: 1 }}
+                  className="overflow-hidden"
+                  exit={
+                    shouldReduceMotion
+                      ? { opacity: 0 }
+                      : { height: 0, opacity: 0 }
+                  }
+                  initial={
+                    shouldReduceMotion
+                      ? { opacity: 0 }
+                      : { height: 0, opacity: 0 }
+                  }
+                  transition={{
+                    duration: shouldReduceMotion ? 0.2 : 0.3,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
+                >
+                  <FileDropZone
+                    compact
+                    files={room.imageFiles}
+                    label={`${room.label} reference images`}
+                    onFilesChange={handleRoomFilesChange}
+                    previews={room.imagePreviews}
+                  />
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
           );
         })}
       </div>
